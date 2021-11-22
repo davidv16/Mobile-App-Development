@@ -18,7 +18,9 @@ module.exports = {
     'airbnb',
   ],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'no-use-before-define': ['error', { functions: true, classes: true, variables: false }],
+    'react/style-prop-object': [1, { allow: ['string'] }],
+    'react/function-component-definition': [2, { unnamedComponents: 'function-expression' }],
   },
 };
