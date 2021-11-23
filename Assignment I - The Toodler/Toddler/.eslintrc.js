@@ -11,6 +11,12 @@ module.exports = {
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
     },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
+      },
+    },
   },
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
