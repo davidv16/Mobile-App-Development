@@ -15,7 +15,7 @@ export default function BoardList({ boards }) {
             <FlatList
                 numColumns={1}
                 data={boards}
-                renderItem={(boards) => (
+                renderItem={({boards}) => (
                     <Board board={boards} />
                 )}
                 keyExtractor={boards => boards.id} />

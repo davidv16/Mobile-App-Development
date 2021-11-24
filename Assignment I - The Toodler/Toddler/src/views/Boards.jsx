@@ -19,19 +19,19 @@ export default function Boards() {
         name: '',
         thumbnailPhoto: ''
     };
-    const [getBoards, setBoards] = useState(data.boards);
+    const [boards, setBoards] = useState(data.boards);
 
     useEffect(() => {
             //let data = await Data.getData();
 
             //setBoards({...data.boards});
-            console.log(getBoards);
+            console.log(boards);
     }, [])
 
 
     return (
         <View>
-            <BoardList boards={getBoards}/>
+            <BoardList {...boards}/>
         </View>
     );
 }

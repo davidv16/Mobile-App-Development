@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-/*
-interface Props {
-    id: number;
-    name: string;
-    thumbnailPhoto: string;
-}
-*/
-export default function BoardList({ board }) {
-    return (
+import React from 'react'
+import { View, Image , Text } from 'react-native'
+//import styles from 'styles'
+
+
+export default function Board ({board}){
+    return(
         <View>
-            <Text>{board.id}</Text>
-            <Text>{board.name}</Text>
-            <Text>{board.thumbnailPhoto}</Text>
+            <Text>${board.name}</Text>
+            <Image
+                style={styles.image}
+                source={{uri: board.thumbnailPhoto}}/>
         </View>
     );
 }
-
-const styles = StyleSheet.create({});
