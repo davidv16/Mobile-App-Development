@@ -9,7 +9,7 @@ export default function Board ({boards}){
             <Text>${boards.name}</Text>
             <Image
                 style={styles.image}
-                source={{uri: ${boards.thumbnailPhoto}}}/>
+                source={{uri:String ${boards.thumbnailPhoto}}}/>
         </View>
     );
 }

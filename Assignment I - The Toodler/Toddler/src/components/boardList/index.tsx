@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, FlatList } from "react-native";
 
 
-const BoardList = ({ boards }) => {
+const BoardList = ({ boards}) => {
   <View>
     <FlatList
       numColumns={1}
