@@ -17,17 +17,18 @@ export default function Boards() {
         name: '',
         thumbnailPhoto: ''
     };
-    const dataRegistry = new Set<IBoard>();
-
-    const [getBoards, setBoards] = useState<IBoard[]>([]);
+    const [getBoards, setBoards] = useState([]);
 
     useEffect(() => {
         (async () => {
             let data = await Data.getData();
+
             setBoards(data);
             console.log(data);
-        })
-    }, []);
+        })()
+        return () => {
+        }
+    }, [])
 
 
     return (
