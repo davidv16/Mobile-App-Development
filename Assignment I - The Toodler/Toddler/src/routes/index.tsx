@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
-import Boards from '../views/Boards'
+import Boards from '../views/Boards/Boards'
 
 const Stack = createStackNavigator({
     Boards,

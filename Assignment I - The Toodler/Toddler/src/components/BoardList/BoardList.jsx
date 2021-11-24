@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import IBoard from '../models/IBoard';
-import Board from './Board';
-/*
-interface Props {
-    id: number;
-    name: string;
-    thumbnailPhoto: string;
-}
-*/
+import IBoard from '../../models/IBoard';
+import Board from '../Board/Board';
+import styles from './styles'
 export default function BoardList({ boards }) {
     return (
         <View>
             <FlatList
                 numColumns={1}
                 data={boards}
-                renderItem={({boards}) => (
-                    <Board board={boards} />
+                renderItem={({ item }) => (
+                    <Board board={item} />
                 )}
                 keyExtractor={boards => boards.id} />
         </View>
     );
 }
-
-const styles = StyleSheet.create({});
