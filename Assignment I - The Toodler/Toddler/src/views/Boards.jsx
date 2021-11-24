@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Data from '../services/index'
+//import Data from '../services/index'
 import BoardList from '../components/BoardList';
+import data from '../resources/data.json';
 //import IBoard from '../models/IBoard'
 
+/*
 interface IBoard {
     id: number;
     name: string;
     thumbnailPhoto: string;
 }
-
+*/
 export default function Boards() {
 
     const initialBoardState = {
@@ -17,23 +19,19 @@ export default function Boards() {
         name: '',
         thumbnailPhoto: ''
     };
-    const [getBoards, setBoards] = useState([]);
+    const [getBoards, setBoards] = useState(data.boards);
 
     useEffect(() => {
-        (async () => {
-            let data = await Data.getData();
+            //let data = await Data.getData();
 
-            setBoards(data);
-            console.log(data);
-        })()
-        return () => {
-        }
+            //setBoards({...data.boards});
+            console.log(getBoards);
     }, [])
 
 
     return (
         <View>
-            <Text>{getBoards}</Text>
+            <BoardList boards={getBoards}/>
         </View>
     );
 }

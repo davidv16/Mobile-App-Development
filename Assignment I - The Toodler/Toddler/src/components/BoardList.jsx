@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import IBoard from '../models/IBoard';
 import Board from './Board';
-
+/*
 interface Props {
     id: number;
     name: string;
     thumbnailPhoto: string;
 }
-
-export default function BoardList({ boards }: IBoard) {
+*/
+export default function BoardList({ boards }) {
     return (
         <View>
             <FlatList
