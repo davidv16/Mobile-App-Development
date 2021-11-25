@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 const Board = ({board /*, navigation: { navigate }*/}) => {
     const { navigate } = useNavigation();
     return(
-        <Pressable onPress={() => navigate('Board', {filename: name})}>
+        <Pressable onPress={() => navigate('Board', {data: board})}>
         <View style={styles.listItem}>
             <Image
               source={{ uri: board.thumbnailPhoto }}
