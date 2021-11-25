@@ -14,6 +14,7 @@ const Modal = ({
         isVisible={isOpen}
         hasBackdrop = {true}
         onBackButtonPress={closeModal}
+        onBackdropPress={closeModal}
         onSwipeComplete={closeModal}
         swipeDirection={['up', 'down']}
         style = {styles.modal}>

@@ -4,15 +4,13 @@ import { TouchableOpacity, TextInput, Button } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 
-const AddModal = ({
+const EditModal = ({
     isOpen,
     closeModal,
     takePhoto,
     selectFromCameraRoll,
-    addBoard
+    editBoard
 }) => {
-
-    
     
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -24,10 +22,8 @@ const AddModal = ({
             description: description,
             thumbnailPhoto: thumbnailPhoto
         };
-
-        addBoard(newBoard);
+        editBoard(newBoard);
         closeModal(true);
-
     }
 
     return(
@@ -40,10 +36,14 @@ const AddModal = ({
 
             <TextInput
               placeholder="Name"
+
+
               onChangeText={(text) => setName(text)}
             />
             <TextInput
               placeholder="Description"
+
+
               onChangeText={(text) => setDescription(text)}
             />
             <TouchableOpacity
@@ -56,4 +56,4 @@ const AddModal = ({
     )
 };
 
-export default AddModal;
+export default EditModal;

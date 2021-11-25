@@ -4,6 +4,7 @@ import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import styles from './styles'
 import AddModal from '../../components/AddModal';
+import EditModal from '../../components/EditModal';
 
 export default function Boards() {
 
@@ -15,6 +16,8 @@ export default function Boards() {
     }
     const [boards, setBoards] = useState(data.boards);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [editId, setEditId] = useState(0);
 
     useEffect(() => {
         console.log(boards);
@@ -39,21 +42,39 @@ export default function Boards() {
         setBoards(newBoards);
     }
 
+    const openEditModal = (id) => {
+        setIsEditModalOpen(true);
+        setEditId(id);
+    }
+
+    const editBoard = (board) => {
+        console.log(boards.filter((board) => board.id === editId)[0])
+        
+    }
+
     return (
         <View>
             <TouchableHighlight
                 style={styles.button}
                 onPress={() => setIsAddModalOpen(true)}>
-                <Text style={styles.buttonText}>Gallery</Text>
+                <Text style={styles.buttonText}>Add Board</Text>
             </TouchableHighlight>
             <BoardList
                 boards={boards}
                 deleteBoard={(id) => deleteBoard(id)}
+                openEditModal={(id) => openEditModal(id)}
             />
             <AddModal
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
                 addBoard={(board) => addBoard(board)}
+            />
+            <EditModal
+                isOpen={isEditModalOpen}
+                closeModal={() => setIsEditModalOpen(false)}
+                editBoard={(board) => editBoard(board)}
+                
+                
             />
         </View>
     );
