@@ -3,14 +3,15 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import IBoard from '../../models/IBoard';
 import Board from '../Board/Board';
 import styles from './styles'
-export default function BoardList({ boards }) {
+export default function BoardList({ boards, onAdd }) {
     return (
         <View>
             <FlatList
                 numColumns={1}
                 data={boards}
                 renderItem={({ item }) => (
-                    <Board board={item} />
+                    <Board board={item} 
+                    onAdd={onAdd}/>
                 )}
                 keyExtractor={boards => boards.id} />
         </View>

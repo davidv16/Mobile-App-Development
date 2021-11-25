@@ -5,9 +5,12 @@ import { AntDesign } from '@expo/vector-icons';
 import {withNavigation} from 'react-navigation'
 
 
-const Board = ({board, navigation: { navigate }}) => {
+const Board = ({board, navigation: { navigate }, onadd}) => {
     return(
-        <Pressable onPress={() => navigate('Board')}>
+        <Pressable 
+            onPress={() => navigate('Board')}
+            onLongPress={() => onAdd()}
+        >
         <View style={styles.listItem}>
             <Image
               source={{ uri: board.thumbnailPhoto }}
