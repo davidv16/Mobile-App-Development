@@ -14,6 +14,7 @@ export default function Boards() {
         thumbnailPhoto: 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg'
     }
     const [boards, setBoards] = useState(data.boards);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     useEffect(() => {
         console.log(boards);
@@ -47,8 +48,7 @@ export default function Boards() {
             <AddModal
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
-                takePhoto={() => {}}
-                selectFromCameraRoll={()=>{}}/>
+                />
         </View>
     );
 }
