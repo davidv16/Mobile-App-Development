@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-const Board = ({board, onadd}) => {
+const Board = ({board, onAdd}) => {
     const { navigate } = useNavigation();
     return(
         <Pressable 

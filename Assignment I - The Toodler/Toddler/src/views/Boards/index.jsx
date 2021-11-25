@@ -20,14 +20,14 @@ export default function Boards() {
         console.log(boards);
     }, []);
 
-    const addBoard = () => {
+    const addBoard = (board) => {
 
         let nextId = Math.max(...boards.map((b) => b.id)) + 1;
         const newBoard = {
             id: nextId,
-            name: 'asdfasdf',
-            description: 'board.description',
-            thumbnailPhoto: 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg'
+            name: board.name,
+            description: board.description,
+            thumbnailPhoto: board.thumbnailPhoto
         };
 
         setBoards([...boards, newBoard]);
@@ -38,7 +38,7 @@ export default function Boards() {
         <View>
             <TouchableHighlight
                 style={styles.button}
-                onPress={() => addBoard()}>
+                onPress={() => setIsAddModalOpen(true)}>
                 <Text style={styles.buttonText}>Gallery</Text>
             </TouchableHighlight>
             <BoardList 
@@ -48,7 +48,8 @@ export default function Boards() {
             <AddModal
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
-                />
+                addBoard={(board) => addBoard(board)}
+            />
         </View>
     );
 }

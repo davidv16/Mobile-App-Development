@@ -9,8 +9,10 @@ export default function BoardList({ boards, onAdd }) {
                 numColumns={1}
                 data={boards}
                 renderItem={({ item }) => (
-                    <Board board={item} 
-                    onAdd={onAdd}/>
+                    <Board 
+                        board={item} 
+                        onAdd={onAdd}
+                    />
                 )}
                 keyExtractor={boards => boards.id} />
         </View>
