@@ -2,12 +2,13 @@ import React from 'react'
 import { View, Image , Text, Pressable} from 'react-native'
 import styles from './styles'
 import { AntDesign } from '@expo/vector-icons';
-import {withNavigation} from 'react-navigation'
+import { useNavigation } from '@react-navigation/native';
 
 
-const Board = ({board, navigation: { navigate }}) => {
+const Board = ({board /*, navigation: { navigate }*/}) => {
+    const { navigate } = useNavigation();
     return(
-        <Pressable onPress={() => navigate('Board')}>
+        <Pressable onPress={() => navigate('Board', {filename: name})}>
         <View style={styles.listItem}>
             <Image
               source={{ uri: board.thumbnailPhoto }}
@@ -20,4 +21,4 @@ const Board = ({board, navigation: { navigate }}) => {
     );
 };
 
-export default withNavigation(Board)
+export default Board
