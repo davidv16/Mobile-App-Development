@@ -26,20 +26,24 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   text: {
-    height: 50,
+    height: '50%',
     paddingLeft: 10,
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
     justifyContent: 'center',
     flex: 1,
   },
   listItem: {
     margin: 10,
     padding: 10,
-    backgroundColor: '#FFF',
+    backgroundColor: 'rgba(0, 0, 0, 0.08)',
     width: '90%',
     flex: 1,
     alignSelf: 'center',
     flexDirection: 'row',
     borderRadius: 5,
+    borderColor: 'black',
+    borderWidth: 2,
+    alignItems:'center',
+    justifyContent:'center'
   },
 });
