@@ -2,13 +2,14 @@ import React from 'react'
 import { View, Image , Text, Pressable} from 'react-native'
 import styles from './styles'
 import { AntDesign } from '@expo/vector-icons';
-import {withNavigation} from 'react-navigation'
+import { useNavigation } from '@react-navigation/native';
 
 
-const Board = ({board, navigation: { navigate }, onadd}) => {
+const Board = ({board, onadd}) => {
+    const { navigate } = useNavigation();
     return(
         <Pressable 
-            onPress={() => navigate('Board')}
+            onPress={() => navigate('Board', {data: board})}
             onLongPress={() => onAdd()}
         >
         <View style={styles.listItem}>
@@ -23,4 +24,4 @@ const Board = ({board, navigation: { navigate }, onadd}) => {
     );
 };
 
-export default withNavigation(Board)
+export default Board
