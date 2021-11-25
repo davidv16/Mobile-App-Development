@@ -21,7 +21,6 @@ export default function Boards() {
     }, []);
 
     const addBoard = (board) => {
-
         let nextId = Math.max(...boards.map((b) => b.id)) + 1;
         const newBoard = {
             id: nextId,
@@ -34,6 +33,12 @@ export default function Boards() {
         console.log(boards);
     };
 
+    const deleteBoard = (id) => {
+        const newBoards = boards.filter((board) => board.id !== id);
+        setBoards([]);
+        setBoards(newBoards);
+    }
+
     return (
         <View>
             <TouchableHighlight
@@ -41,9 +46,9 @@ export default function Boards() {
                 onPress={() => setIsAddModalOpen(true)}>
                 <Text style={styles.buttonText}>Gallery</Text>
             </TouchableHighlight>
-            <BoardList 
-                onAdd= {() => setIsAddModalOpen(true)}
+            <BoardList
                 boards={boards}
+                deleteBoard={(id) => deleteBoard(id)}
             />
             <AddModal
                 isOpen={isAddModalOpen}
