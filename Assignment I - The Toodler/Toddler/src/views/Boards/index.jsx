@@ -21,10 +21,12 @@ const Boards = () => {
         if (selectedBoard.id === 0) {
             //CREATE
             board.id = Math.max(...boards.map((b) => b.id)) + 1;
-            setBoards([...boards, board])
+            setBoards([...boards, board]);
+            setSelectedBoard(initialBoard);
         } else {
             //EDIT
-            setBoards([...boards.filter(x => x.id !== selectedBoard.id), board])
+            setBoards([...boards.filter(x => x.id !== selectedBoard.id), board]);
+            setSelectedBoard(initialBoard);
       }
     }
 

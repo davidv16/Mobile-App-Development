@@ -14,21 +14,20 @@ const AddList = ({
 
     const handleSubmit = () => {
         const newList = {
-            id: 0,
             name: name,
             color: color,
         };
 
         addEditList(newList);
         closeModal(true);
-
     }
 
     return(
         <Modal
             title={`${selectedList.id !== 0 ? 'Edit' : 'Add'} List`}
             isOpen={isOpen}
-            closeModal={closeModal}>
+            closeModal={closeModal}
+        >
             <TextInput
               placeholder="Name"
               onChangeText={(text) => setName(text)}

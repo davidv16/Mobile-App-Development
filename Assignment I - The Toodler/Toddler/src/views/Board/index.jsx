@@ -23,7 +23,7 @@ const Board = ({ route }) => {
         if (selectedList.id === 0) {
             //CREATE
             list.id = Math.max(...lists.map((b) => b.id)) + 1;
-            setLists([...lists, list])
+            setLists([...lists, list]);
         } else {
             //EDIT
             setLists([...lists.filter(x => x.id !== selectedList.id), list])
@@ -58,7 +58,7 @@ const Board = ({ route }) => {
             <Text style={styles.text}>{board.id}</Text>
             <ListsList
                 lists={lists}
-                data={otherData}s
+                data={otherData}
                 deleteList={(id) => deleteList(id)}
                 editList={(list) => editList(list)}
             />
