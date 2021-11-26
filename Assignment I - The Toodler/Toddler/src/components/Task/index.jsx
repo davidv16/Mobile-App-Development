@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-const Task = ({Tasks}) => {
+const Task = ({Tasks, data}) => {
     const { navigate } = useNavigation();
     return(
         <Pressable 

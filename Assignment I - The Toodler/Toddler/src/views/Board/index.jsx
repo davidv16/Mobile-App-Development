@@ -9,7 +9,8 @@ import ListsList from '../../components/ListsList'
 const Board = ({ route }) => {
     const [board, setBoard] = useState('');
     const [isModalOpen, setModalOpen] = useState(false);
-    const { data } = route.params;
+    
+    const { data, otherData } = route.params;
 
     useEffect(() => {
         (async () => {
@@ -33,7 +34,8 @@ const Board = ({ route }) => {
             />
             <Text style={styles.text}>{data.id}</Text>
             <ListsList
-            Lists={listsInBoard}/>
+            Lists={listsInBoard}
+            data={otherData}/>
         </View>
     );
 };

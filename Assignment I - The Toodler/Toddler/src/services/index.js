@@ -1,3 +1,4 @@
+/*
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const storeData = async (value) => {
@@ -22,3 +23,4 @@ export default {
   storeData,
   getData,
 };
+*/

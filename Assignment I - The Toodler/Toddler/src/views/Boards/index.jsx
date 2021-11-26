@@ -63,6 +63,7 @@ export default function Boards() {
                 boards={boards}
                 deleteBoard={(id) => deleteBoard(id)}
                 openEditModal={(id) => openEditModal(id)}
+                data={data}
             />
             <AddModal
                 isOpen={isAddModalOpen}
