@@ -1,33 +1,32 @@
 import React, {useState} from 'react';
-import { Entypo } from '@expo/vector-icons';
-import { TouchableOpacity, TextInput, Button } from 'react-native';
+import { TextInput, Button } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 
 const AddList = ({
     isOpen,
     closeModal,
-    addList
-}) => {
-
-    
-    
+    selectedList,
+    addEditList
+}) => {   
     const [name, setName] = useState('');
     const [color, setColor] = useState('');
 
     const handleSubmit = () => {
         const newList = {
+            id: 0,
             name: name,
             color: color,
         };
 
-        addList(newList);
+        addEditList(newList);
         closeModal(true);
 
     }
 
     return(
         <Modal
+            title={`${selectedList.id !== 0 ? 'Edit' : 'Add'} List`}
             isOpen={isOpen}
             closeModal={closeModal}>
             <TextInput

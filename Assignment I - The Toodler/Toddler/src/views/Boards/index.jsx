@@ -26,7 +26,12 @@ const Boards = () => {
             //EDIT
             setBoards([...boards.filter(x => x.id !== selectedBoard.id), board])
       }
-    };
+    }
+
+    const editBoard = (board) => {
+        setSelectedBoard(board);
+        setIsAddModalOpen(true);
+      }
 
     const deleteBoard = (id) => {
         const newBoards = boards.filter((board) => board.id !== id);
@@ -34,10 +39,6 @@ const Boards = () => {
         setBoards(newBoards);
     }
 
-    const editBoard = (board) => {
-        setSelectedBoard(board);
-        setIsAddModalOpen(true);
-      }
 
     return (
         <View>
@@ -50,7 +51,7 @@ const Boards = () => {
                 boards={boards}
                 deleteBoard={(id) => deleteBoard(id)}
                 data={data}
-                editBoard={(id) => editBoard(id)}
+                editBoard={(board) => editBoard(board)}
             />
             <AddBoard
                 board={boards}

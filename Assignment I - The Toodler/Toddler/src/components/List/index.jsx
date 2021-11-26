@@ -1,13 +1,11 @@
 import React from 'react'
-import { View, Image , Text, Pressable, TouchableHighlight} from 'react-native'
+import { View, TouchableOpacity , Text, Pressable, TouchableHighlight} from 'react-native'
 import styles from './styles'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import TasksList from '../../components/TasksList'
 
-
-
-const List = ({lists, data, deleteList}) => {
+const List = ({lists, data, deleteList, editList}) => {
     const { navigate } = useNavigation();
     const TasksInList = data.tasks.filter((Tasks) => Tasks.listId === lists.id);
     return(
@@ -18,9 +16,14 @@ const List = ({lists, data, deleteList}) => {
         <View style={styles.listItem}>
             <Text style={styles.text}>{lists.name}</Text>
 
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => editList(lists)}
+            >
             <Text style={{ color: 'blue' }}>
               <AntDesign name="edit" style={styles.icon} />
             </Text>
+            </TouchableOpacity>
             <AntDesign name="rightcircle" size={24} color="black" />
             <TouchableHighlight
                 style={styles.button}
