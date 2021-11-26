@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableHighlight } from 'react-native'
 import styles from './styles';
 import listsData from '../../resources/data.json'
 import ListsList from '../../components/ListsList'
@@ -8,7 +8,7 @@ import ListsList from '../../components/ListsList'
 
 const Board = ({ route }) => {
     const [board, setBoard] = useState('');
-    
+    const [isModalOpen, setModalOpen] = useState(false);
     const { data } = route.params;
 
     useEffect(() => {
@@ -21,6 +21,11 @@ const Board = ({ route }) => {
     console.log(listsInBoard)
     return (
         <View style={styles.listItem}>
+            <TouchableHighlight
+                style={styles.button}
+                onPress={() => setModalOpen(true)}>
+                <Text style={styles.buttonText}>Add Board</Text>
+            </TouchableHighlight>
             <Text style={styles.text}>{board.name}</Text>
             <Image
               source={{ uri: board.thumbnailPhoto }}

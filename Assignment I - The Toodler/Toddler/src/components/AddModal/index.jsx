@@ -5,6 +5,7 @@ import Modal from '../Modal';
 import styles from './styles';
 
 const AddModal = ({
+    board,
     isOpen,
     closeModal,
     takePhoto,
@@ -45,6 +46,10 @@ const AddModal = ({
             <TextInput
               placeholder="Description"
               onChangeText={(text) => setDescription(text)}
+            />
+            <TextInput
+              placeholder="Thumbnail Photo"
+              onChangeText={(text) => setThumbnailphoto(text)}
             />
             <TouchableOpacity
                 onPress={() => selectFromCameraRoll()}>

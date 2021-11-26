@@ -72,9 +72,7 @@ export default function Boards() {
             <EditModal
                 isOpen={isEditModalOpen}
                 closeModal={() => setIsEditModalOpen(false)}
-                editBoard={(board) => editBoard(board)}
-                
-                
+                editBoard={(board) => editBoard(board)}  
             />
         </View>
     );
