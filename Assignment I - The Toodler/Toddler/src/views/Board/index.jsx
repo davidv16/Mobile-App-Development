@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import styles from './styles';
-//import {withNavigation} from 'react-navigation'
+import listsData from '../../resources/data.json'
+import ListsList from '../../components/ListsList'
 
 
 
@@ -16,10 +17,18 @@ const Board = ({ route }) => {
         })();
     }, []);
 
+    const listsInBoard = listsData.lists.filter((lists) => lists.boardId === data.id);
+    console.log(listsInBoard)
     return (
         <View style={styles.listItem}>
             <Text style={styles.text}>{board.name}</Text>
-            <Text style={styles.text}>{board.thumbnailPhoto}</Text>
+            <Image
+              source={{ uri: board.thumbnailPhoto }}
+              style={styles.image}
+            />
+            <Text style={styles.text}>{data.id}</Text>
+            <ListsList
+            Lists={listsInBoard}/>
         </View>
     );
 };
