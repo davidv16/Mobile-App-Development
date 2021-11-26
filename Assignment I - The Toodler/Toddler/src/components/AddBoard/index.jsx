@@ -5,7 +5,7 @@ import Modal from '../Modal';
 import styles from './styles';
 
 const AddBoard = ({
-    board,
+    selectedBoard,
     isOpen,
     closeModal,
     takePhoto,
@@ -21,18 +21,20 @@ const AddBoard = ({
 
     const handleSubmit = () => {
         const newBoard = {
+            id: 0,
             name: name,
             description: description,
             thumbnailPhoto: thumbnailPhoto
         };
 
-        addBoard(newBoard);
+        addEditBoard(newBoard);
         closeModal(true);
 
     }
 
     return(
         <Modal
+            title={`${selectedBoard.id !== 0 ? 'Edit' : 'Add'} Board`}
             isOpen={isOpen}
             closeModal={closeModal}
         >

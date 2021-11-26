@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableHighlight,StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableHighlight } from 'react-native';
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import styles from './styles'
 import AddBoard from '../../components/AddBoard';
-import EditModal from '../../components/EditModal';
 
 const Boards = () => {
+    const initialBoard = {
+        id: 0,
+        name: '',
+        description: '',
+        thumbnailPhoto: ''
+    };
 
     const [boards, setBoards] = useState(data.boards);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    //const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    //const [editId, setEditId] = useState(0);
+    const [selectedBoard, setSelectedBoard] = useState(initialBoard);
 
-    const addBoard = (board) => {
-        let nextId = Math.max(...boards.map((b) => b.id)) + 1;
-        const newBoard = {
-            id: nextId,
-            name: board.name,
-            description: board.description,
-            thumbnailPhoto: board.thumbnailPhoto
-        };
-
-        setBoards([...boards, newBoard]);
-        //console.log(boards);
+    const addEditBoard = (board) => {
+        if (selectedBoard.id === 0) {
+            //CREATE
+            board.id = Math.max(...boards.map((b) => b.id)) + 1;
+            setBoards([...boards, board])
+        } else {
+            //EDIT
+            setBoards([...boards.filter(x => x.id !== selectedBoard.id), board])
+      }
     };
 
     const deleteBoard = (id) => {
@@ -32,17 +34,10 @@ const Boards = () => {
         setBoards(newBoards);
     }
 
-    const openEditModal = (id) => {
-        setIsEditModalOpen(true);
-        setEditId(id);
-    }
-
-    /*
     const editBoard = (board) => {
-        //console.log(boards.filter((board) => board.id === editId)[0])
-        
-    }
-    */
+        setSelectedBoard(board);
+        setIsAddModalOpen(true);
+      }
 
     return (
         <View>
@@ -54,13 +49,15 @@ const Boards = () => {
             <BoardList
                 boards={boards}
                 deleteBoard={(id) => deleteBoard(id)}
-                //openEditModal={(id) => openEditModal(id)}
                 data={data}
+                editBoard={(id) => editBoard(id)}
             />
             <AddBoard
+                board={boards}
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
-                addBoard={(board) => addBoard(board)}
+                addEditBoard={(board) => addEditBoard(board)}
+                selectedBoard={selectedBoard}
             />
         </View>
     );

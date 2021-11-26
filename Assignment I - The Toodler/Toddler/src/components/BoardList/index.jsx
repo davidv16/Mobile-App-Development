@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Board from '../Board';
 import styles from './styles';
 
-const BoardList = ({ boards, deleteBoard, openEditModal, data }) => {
+const BoardList = ({ boards, deleteBoard, data, editBoard }) => {
     return (
         <View>
             <FlatList
@@ -13,7 +13,7 @@ const BoardList = ({ boards, deleteBoard, openEditModal, data }) => {
                     <Board 
                         board={item} 
                         deleteBoard={deleteBoard}
-                        openEditModal={openEditModal}
+                        editBoard={editBoard}
                         data={data}
                     />
                 )}

@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-const Board = ({board, deleteBoard, openEditModal, data}) => {
+const Board = ({board, deleteBoard, editBoard, data}) => {
     const { navigate } = useNavigation();
     return(
         <Pressable 
@@ -20,7 +20,7 @@ const Board = ({board, deleteBoard, openEditModal, data}) => {
             <Text style={styles.text}>{board.name}</Text>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => openEditModal(board.id)}
+                onPress={() => editBoard(board)}
             >
             <Text style={{ color: 'blue' }}>
               <AntDesign name="edit" style={styles.icon} />
