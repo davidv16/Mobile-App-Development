@@ -3,7 +3,6 @@ import { View, Image , Text, Pressable, TouchableHighlight} from 'react-native'
 import styles from './styles'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import TasksData from '../../resources/data.json'
 import TasksList from '../../components/TasksList'
 
 

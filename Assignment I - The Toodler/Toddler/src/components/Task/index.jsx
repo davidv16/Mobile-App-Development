@@ -18,7 +18,7 @@ const Task = ({Tasks, data}) => {
             <Text style={{ color: 'blue' }}>
               <AntDesign name="edit" style={styles.icon} />
             </Text>
-            <AntDesign name="rightcircle" size={24} color="black" />
+            <AntDesign name="check" size={24} color="green" />
             
         </View>
         </Pressable>

@@ -44,6 +44,7 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+
   },
 });

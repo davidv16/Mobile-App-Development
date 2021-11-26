@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './styles';
-import listsData from '../../resources/data.json'
 import ListsList from '../../components/ListsList'
 
 
@@ -17,7 +16,7 @@ const Board = ({ route }) => {
         })();
     }, []);
 
-    const listsInBoard = listsData.lists.filter((lists) => lists.boardId === data.id);
+    const listsInBoard = otherData.lists.filter((lists) => lists.boardId === data.id);
     console.log(listsInBoard)
     return (
         <View style={styles.listItem}>
