@@ -43,8 +43,7 @@ export default StyleSheet.create({
     borderRadius: 5,
     borderColor: 'black',
     borderWidth: 2,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
-

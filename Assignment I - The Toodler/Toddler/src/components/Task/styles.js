@@ -9,12 +9,6 @@ export default StyleSheet.create({
     borderWidth: 0.2,
     borderColor: 'black',
   },
-  button: {
-    height: 50,
-    width: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   checkmark: {
     position: 'absolute',
     top: 15,
@@ -44,10 +38,14 @@ export default StyleSheet.create({
     borderRadius: 5,
     borderColor: 'black',
     borderWidth: 2,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
+    height: 50,
+    width: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 30,
     paddingTop: 10,
     paddingBottom: 10,
@@ -55,6 +53,6 @@ export default StyleSheet.create({
     paddingRight: 20,
     borderColor: 'white',
     borderWidth: 2,
-    backgroundColor: graniteGray
-},
+    backgroundColor: graniteGray,
+  },
 });

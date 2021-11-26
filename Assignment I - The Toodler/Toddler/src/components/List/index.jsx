@@ -7,17 +7,16 @@ import TasksList from '../../components/TasksList'
 
 
 
-const List = ({Lists, data}) => {
+const List = ({lists, data, deleteList}) => {
     const { navigate } = useNavigation();
-    const TasksInList = data.tasks.filter((Tasks) => Tasks.listId === Lists.id);
-    console.log(TasksInList)
+    const TasksInList = data.tasks.filter((Tasks) => Tasks.listId === lists.id);
     return(
         <Pressable 
-            onPress={() => navigate('Board', {data: Lists})}
-            // onLongPress={() => deleteBoard(board.id)}
+            onPress={() => navigate('Board', {data: lists})}
+            onLongPress={() => deleteList(lists.id)}
         >
         <View style={styles.listItem}>
-            <Text style={styles.text}>{Lists.name}</Text>
+            <Text style={styles.text}>{lists.name}</Text>
 
             <Text style={{ color: 'blue' }}>
               <AntDesign name="edit" style={styles.icon} />

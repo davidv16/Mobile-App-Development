@@ -24,10 +24,14 @@ const Board = ({ route }) => {
             color: list.color,
             boardId: board.id
         };
-
         setLists([...lists, newList]);
-        
     };
+
+    const deleteList = (id) => {
+        const newLists = lists.filter((list) => list.id !== id);
+        setLists([]);
+        setLists(newLists);
+    }
 
     
 
@@ -45,8 +49,10 @@ const Board = ({ route }) => {
             />
             <Text style={styles.text}>{board.id}</Text>
             <ListsList
-            Lists={lists}
-            data={otherData}/>
+                lists={lists}
+                data={otherData}
+                deleteList={(id) => deleteList(id)}
+            />
             <AddList
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}

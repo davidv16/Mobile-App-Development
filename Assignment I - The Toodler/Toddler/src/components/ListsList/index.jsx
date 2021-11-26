@@ -3,19 +3,22 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import List from '../List';
 import styles from './styles';
 
-export default function ListsList({ Lists, data }) {
+const ListsList = ({ lists, data, deleteList }) => {
     return (
         <View>
             <FlatList
                 numColumns={1}
-                data={Lists}
+                data={lists}
                 renderItem={({ item }) => (
                     <List 
-                        Lists={item} 
+                        lists={item} 
                         data={data}
+                        deleteList={deleteList}
                     />
                 )}
-                keyExtractor={Lists => Lists.id} />
+                keyExtractor={lists => lists.id} />
         </View>
     );
 }
+
+export default ListsList;
