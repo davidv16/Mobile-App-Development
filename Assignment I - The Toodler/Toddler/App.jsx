@@ -1,8 +1,10 @@
 import React from 'react';
 import AppContainer from './src/routes/index';
 
-export default function App() {
+const App = () => {
   return (
     <AppContainer />
   );
 }
+
+export default App;
