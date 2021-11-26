@@ -1,31 +1,39 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, Image, TouchableHighlight } from 'react-native'
 import styles from './styles';
 import ListsList from '../../components/ListsList';
 import AddList from '../../components/AddList';
 
-
-
 const Board = ({ route }) => {
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    
-    const { board, otherData } = route.params;
-    const listsInBoard = otherData.lists.filter((lists) => lists.boardId === board.id);
-
-    const [lists, setLists] = useState(listsInBoard);
-
-
-
-    const addList = (list) => {
-        let nextId = Math.max(...lists.map((b) => b.id)) + 1;
-        const newList = {
-            id: nextId,
-            name: list.name,
-            color: list.color,
-            boardId: board.id
-        };
-        setLists([...lists, newList]);
+    const initialList = {
+        id: 0,
+        name: '',
+        color: '',
+        boardId: 0
     };
+    const { board, otherData } = route.params;
+    
+    const listsInBoard = otherData.lists.filter((lists) => lists.boardId === board.id);
+    
+    const [lists, setLists] = useState(listsInBoard);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [selectedList, setSelectedList] = useState(initialList);
+
+    const addEditList = (list) => {
+        if (selectedList.id === 0) {
+            //CREATE
+            list.id = Math.max(...lists.map((b) => b.id)) + 1;
+            setLists([...lists, list])
+        } else {
+            //EDIT
+            setLists([...lists.filter(x => x.id !== selectedList.id), list])
+      }
+    }
+
+    const editList = (list) => {
+        setSelectedList(list);
+        setIsAddModalOpen(true);
+      }
 
     const deleteList = (id) => {
         const newLists = lists.filter((list) => list.id !== id);
@@ -50,13 +58,15 @@ const Board = ({ route }) => {
             <Text style={styles.text}>{board.id}</Text>
             <ListsList
                 lists={lists}
-                data={otherData}
+                data={otherData}s
                 deleteList={(id) => deleteList(id)}
+                editList={(list) => editList(list)}
             />
             <AddList
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
-                addList={(list) => addList(list)}
+                addEditList={(list) => addEditList(list)}
+                selectedList={selectedList}
             />
         </View>
     );

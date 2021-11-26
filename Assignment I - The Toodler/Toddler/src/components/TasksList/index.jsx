@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, FlatList } from 'react-native';
 import Task from '../Task';
 import styles from './styles';
 
-export default function TasksList({ Tasks, data }) {
+const TasksList = ({ Tasks, data }) => {
     return (
         <View>
             <FlatList
@@ -20,3 +20,5 @@ export default function TasksList({ Tasks, data }) {
         </View>
     );
 }
+
+export default TasksList;

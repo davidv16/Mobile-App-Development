@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import { Entypo } from '@expo/vector-icons';
-import { TouchableOpacity, TextInput, Button } from 'react-native';
+import { TextInput, Button } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 
@@ -8,13 +7,8 @@ const AddBoard = ({
     selectedBoard,
     isOpen,
     closeModal,
-    takePhoto,
-    selectFromCameraRoll,
-    addBoard
+    addEditBoard
 }) => {
-
-    
-    
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [thumbnailPhoto, setThumbnailphoto] = useState('');
