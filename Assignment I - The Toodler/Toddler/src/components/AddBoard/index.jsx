@@ -1,0 +1,57 @@
+import React, {useState} from 'react';
+import { Entypo } from '@expo/vector-icons';
+import { TouchableOpacity, TextInput, Button } from 'react-native';
+import Modal from '../Modal';
+import styles from './styles';
+
+const AddBoard = ({
+    board,
+    isOpen,
+    closeModal,
+    takePhoto,
+    selectFromCameraRoll,
+    addBoard
+}) => {
+
+    
+    
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [thumbnailPhoto, setThumbnailphoto] = useState('');
+
+    const handleSubmit = () => {
+        const newBoard = {
+            name: name,
+            description: description,
+            thumbnailPhoto: thumbnailPhoto
+        };
+
+        addBoard(newBoard);
+        closeModal(true);
+
+    }
+
+    return(
+        <Modal
+            isOpen={isOpen}
+            closeModal={closeModal}
+        >
+            <TextInput
+              placeholder="Name"
+              onChangeText={(text) => setName(text)}
+            />
+            <TextInput
+              placeholder="Description"
+              onChangeText={(text) => setDescription(text)}
+            />
+            <TextInput
+              placeholder="Thumbnail Photo"
+              onChangeText={(text) => setThumbnailphoto(text)}
+            />
+            <Button title="Save" onPress={() => handleSubmit()} />
+
+        </Modal>
+    )
+};
+
+export default AddBoard;

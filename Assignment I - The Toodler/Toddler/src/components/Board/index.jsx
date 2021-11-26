@@ -9,7 +9,7 @@ const Board = ({board, deleteBoard, openEditModal, data}) => {
     const { navigate } = useNavigation();
     return(
         <Pressable 
-            onPress={() => navigate('Board', {data: board, otherData: data})}
+            onPress={() => navigate('Board', {board: board, otherData: data})}
             onLongPress={() => deleteBoard(board.id)}
         >
         <View style={styles.listItem}>

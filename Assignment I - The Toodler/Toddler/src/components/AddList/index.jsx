@@ -4,28 +4,24 @@ import { TouchableOpacity, TextInput, Button } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 
-const AddModal = ({
+const AddList = ({
     isOpen,
     closeModal,
-    takePhoto,
-    selectFromCameraRoll,
-    addBoard
+    addList
 }) => {
 
     
     
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [thumbnailPhoto, setThumbnailphoto] = useState('');
+    const [color, setColor] = useState('');
 
     const handleSubmit = () => {
-        const newBoard = {
+        const newList = {
             name: name,
-            description: description,
-            thumbnailPhoto: thumbnailPhoto
+            color: color,
         };
 
-        addBoard(newBoard);
+        addList(newList);
         closeModal(true);
 
     }
@@ -34,26 +30,18 @@ const AddModal = ({
         <Modal
             isOpen={isOpen}
             closeModal={closeModal}>
-            <TouchableOpacity>
-                <Entypo style={styles.icon} name="camera" />
-            </TouchableOpacity>
-
             <TextInput
               placeholder="Name"
               onChangeText={(text) => setName(text)}
             />
             <TextInput
-              placeholder="Description"
-              onChangeText={(text) => setDescription(text)}
+              placeholder="Color"
+              onChangeText={(text) => setColor(text)}
             />
-            <TouchableOpacity
-                onPress={() => selectFromCameraRoll()}>
-                <Entypo style={styles.icon} name="image" />
-            </TouchableOpacity>
             <Button title="Save" onPress={() => handleSubmit()} />
 
         </Modal>
     )
 };
 
-export default AddModal;
+export default AddList;
