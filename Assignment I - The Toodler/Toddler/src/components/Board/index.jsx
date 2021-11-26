@@ -5,11 +5,11 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-const Board = ({board, deleteBoard, openEditModal}) => {
+const Board = ({board, deleteBoard, openEditModal, data}) => {
     const { navigate } = useNavigation();
     return(
         <Pressable 
-            onPress={() => navigate('Board', {data: board})}
+            onPress={() => navigate('Board', {data: board, otherData: data})}
             onLongPress={() => deleteBoard(board.id)}
         >
         <View style={styles.listItem}>

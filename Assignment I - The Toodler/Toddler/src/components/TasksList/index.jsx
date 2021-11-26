@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Task from '../Task';
 import styles from './styles';
 
-export default function TasksList({ Tasks }) {
+export default function TasksList({ Tasks, data }) {
     return (
         <View>
             <FlatList
@@ -11,7 +11,8 @@ export default function TasksList({ Tasks }) {
                 data={Tasks}
                 renderItem={({ item }) => (
                     <Task 
-                        Tasks={item} 
+                        Tasks={item}
+                        data={data} 
 
                     />
                 )}

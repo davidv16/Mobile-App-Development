@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { darkerBlue, graniteGray } from '../../styles/colors';
 
 export default StyleSheet.create({
   image: {
@@ -46,4 +47,14 @@ export default StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
+  button: {
+    marginTop: 30,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderColor: 'white',
+    borderWidth: 2,
+    backgroundColor: graniteGray
+},
 });

@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import List from '../List';
 import styles from './styles';
 
-export default function ListsList({ Lists }) {
+export default function ListsList({ Lists, data }) {
     return (
         <View>
             <FlatList
@@ -12,7 +12,7 @@ export default function ListsList({ Lists }) {
                 renderItem={({ item }) => (
                     <List 
                         Lists={item} 
-
+                        data={data}
                     />
                 )}
                 keyExtractor={Lists => Lists.id} />
