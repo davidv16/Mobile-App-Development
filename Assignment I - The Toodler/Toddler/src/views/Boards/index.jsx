@@ -3,25 +3,15 @@ import { View, Text, TouchableHighlight,StyleSheet, Pressable } from 'react-nati
 import BoardList from '../../components/BoardList';
 import data from '../../resources/data.json';
 import styles from './styles'
-import AddModal from '../../components/AddModal';
+import AddBoard from '../../components/AddBoard';
 import EditModal from '../../components/EditModal';
 
-export default function Boards() {
+const Boards = () => {
 
-    const initialBoard = {
-        id: 0,
-        name: '',
-        description: '',
-        thumbnailPhoto: 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg'
-    }
     const [boards, setBoards] = useState(data.boards);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [editId, setEditId] = useState(0);
-
-    useEffect(() => {
-        console.log(boards);
-    }, []);
+    //const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    //const [editId, setEditId] = useState(0);
 
     const addBoard = (board) => {
         let nextId = Math.max(...boards.map((b) => b.id)) + 1;
@@ -33,7 +23,7 @@ export default function Boards() {
         };
 
         setBoards([...boards, newBoard]);
-        console.log(boards);
+        //console.log(boards);
     };
 
     const deleteBoard = (id) => {
@@ -47,10 +37,12 @@ export default function Boards() {
         setEditId(id);
     }
 
+    /*
     const editBoard = (board) => {
-        console.log(boards.filter((board) => board.id === editId)[0])
+        //console.log(boards.filter((board) => board.id === editId)[0])
         
     }
+    */
 
     return (
         <View>
@@ -62,21 +54,17 @@ export default function Boards() {
             <BoardList
                 boards={boards}
                 deleteBoard={(id) => deleteBoard(id)}
-                openEditModal={(id) => openEditModal(id)}
+                //openEditModal={(id) => openEditModal(id)}
                 data={data}
             />
-            <AddModal
+            <AddBoard
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}
                 addBoard={(board) => addBoard(board)}
-            />
-            <EditModal
-                isOpen={isEditModalOpen}
-                closeModal={() => setIsEditModalOpen(false)}
-                editBoard={(board) => editBoard(board)}  
             />
         </View>
     );
 }
 
+export default Boards;
             

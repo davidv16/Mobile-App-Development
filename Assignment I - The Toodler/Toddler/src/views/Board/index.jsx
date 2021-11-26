@@ -1,41 +1,57 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableHighlight } from 'react-native'
 import styles from './styles';
-import listsData from '../../resources/data.json'
-import ListsList from '../../components/ListsList'
+import ListsList from '../../components/ListsList';
+import AddList from '../../components/AddList';
 
 
 
 const Board = ({ route }) => {
-    const [board, setBoard] = useState('');
-    const [isModalOpen, setModalOpen] = useState(false);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     
-    const { data, otherData } = route.params;
+    const { board, otherData } = route.params;
+    const listsInBoard = otherData.lists.filter((lists) => lists.boardId === board.id);
 
-    useEffect(() => {
-        (async () => {
-            setBoard(data);
-        })();
-    }, []);
+    const [lists, setLists] = useState(listsInBoard);
 
-    const listsInBoard = listsData.lists.filter((lists) => lists.boardId === data.id);
-    console.log(listsInBoard)
+
+
+    const addList = (list) => {
+        let nextId = Math.max(...lists.map((b) => b.id)) + 1;
+        const newList = {
+            id: nextId,
+            name: list.name,
+            color: list.color,
+            boardId: board.id
+        };
+
+        setLists([...lists, newList]);
+        
+    };
+
+    
+
     return (
         <View style={styles.listItem}>
             <TouchableHighlight
                 style={styles.button}
-                onPress={() => setModalOpen(true)}>
-                <Text style={styles.buttonText}>Add Board</Text>
+                onPress={() => setIsAddModalOpen(true)}>
+                <Text style={styles.buttonText}>Add List</Text>
             </TouchableHighlight>
             <Text style={styles.text}>{board.name}</Text>
             <Image
               source={{ uri: board.thumbnailPhoto }}
               style={styles.image}
             />
-            <Text style={styles.text}>{data.id}</Text>
+            <Text style={styles.text}>{board.id}</Text>
             <ListsList
-            Lists={listsInBoard}
+            Lists={lists}
             data={otherData}/>
+            <AddList
+                isOpen={isAddModalOpen}
+                closeModal={() => setIsAddModalOpen(false)}
+                addList={(list) => addList(list)}
+            />
         </View>
     );
 };
