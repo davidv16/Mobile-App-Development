@@ -13,7 +13,7 @@ const List = ({lists, data, deleteList, editList}) => {
             onPress={() => navigate('Board', {data: lists})}
             onLongPress={() => deleteList(lists.id)}
         >
-        <View style={styles.listItem}>
+        <View style={styles.listItem  }>
             <Text style={styles.text}>{lists.name}</Text>
 
             <TouchableOpacity
@@ -33,6 +33,7 @@ const List = ({lists, data, deleteList, editList}) => {
             <TasksList
             Tasks={TasksInList}
             data={data}
+            style ={styles.tasklist}
             />
             
         </View>

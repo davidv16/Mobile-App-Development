@@ -40,6 +40,7 @@ export default StyleSheet.create({
     flex: 1,
     alignSelf: 'center',
     flexDirection: 'row',
+    flexWrap: 'wrap',  
     borderRadius: 5,
     borderColor: 'black',
     borderWidth: 2,
@@ -47,4 +48,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
 
   },
+  tasklist:{
+    alignContent: 'center'
+  }
 });

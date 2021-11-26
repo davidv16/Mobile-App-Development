@@ -28,6 +28,7 @@ const AddBoard = ({
 
     return(
         <Modal
+            style={styles.modal}
             title={`${selectedBoard.id !== 0 ? 'Edit' : 'Add'} Board`}
             isOpen={isOpen}
             closeModal={closeModal}

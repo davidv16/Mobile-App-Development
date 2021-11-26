@@ -1,27 +1,22 @@
 import { StyleSheet } from 'react-native';
-import { darkerBlue, graniteGray } from '../../styles/colors';
+import { graniteGray } from '../../styles/colors';
 
 export default StyleSheet.create({
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 30,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     borderWidth: 0.2,
     borderColor: 'black',
+    alignSelf: 'center'
   },
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: darkerBlue,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  paragraph: {
+  boardTitle: {
+    width: '100%',
     textAlign: 'center',
-    color: 'white',
+    fontSize: 20
   },
   button: {
-    marginTop: 30,
+    marginTop: 10,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
@@ -32,9 +27,6 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: 'white',
+    textAlign: 'center'
   },
-  logo: {
-    width: 200,
-    height: 200,
-  },
-});
+  });

@@ -18,8 +18,8 @@ const Modal = ({
         onSwipeComplete={closeModal}
         swipeDirection={['up', 'down']}
         style = {styles.modal}>
-        <View style={styles}>  
-            <Text>{title}</Text>
+        <View style={styles.body}>  
+            <Text style={styles.title}>{title}</Text>
             {children}
         </View>
     </NativeModal>
