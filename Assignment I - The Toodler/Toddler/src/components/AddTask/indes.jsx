@@ -9,7 +9,24 @@ const AddTask = ({
     closeModal,
     addTask
 }) =>{
-    <Modal>
+    const [name, setName] = useState('');
+    const [desciption, setDescription] = useState('');
+
+    const handleSubmit = () => {
+        const newTask = {
+            name: name,
+            desciption: desciption,
+        };
+
+        addTask(newTask);
+        closeModal(true);
+
+    }
+
+
+    <Modal
+        isOpen={isopen}
+        closeModal={closeModal}>
         <TextInput
             placeholder="Name"
             onChangeText={(text) => setName(text)}
