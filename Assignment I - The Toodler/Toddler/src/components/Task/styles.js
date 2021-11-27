@@ -2,19 +2,6 @@ import { StyleSheet } from 'react-native';
 import { darkerBlue, graniteGray } from '../../styles/colors';
 
 export default StyleSheet.create({
-  image: {
-    width: 50,
-    height: 50,
-    borderRadius: 30,
-    borderWidth: 0.2,
-    borderColor: 'black',
-  },
-  checkmark: {
-    position: 'absolute',
-    top: 15,
-    right: 15,
-    fontSize: 16,
-  },
   icon: {
     fontSize: 25,
     marginTop: 20,

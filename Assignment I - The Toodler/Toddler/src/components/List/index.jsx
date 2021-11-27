@@ -27,11 +27,10 @@ const List = ({lists, data, deleteList, editList}) => {
             //CREATE
             task.id = Math.max(...tasks.map((b) => b.id)) + 1;
             setTasks([...tasks, task]);
-            setSelectedTask(initialTask);
         } else {
             //EDIT
+            task.id = selectedTask.id;
             setTasks([...tasks.filter(x => x.id !== selectedTask.id), task]);
-            setSelectedTask(initialTask);
       }
     }
 
@@ -51,7 +50,7 @@ const List = ({lists, data, deleteList, editList}) => {
             onPress={() => navigate('Board', {data: lists})}
             onLongPress={() => deleteList(lists.id)}
         >
-        <View style={styles.listItem}>
+        <View style={styles.listItem  }>
             <Text style={styles.text}>{lists.name}</Text>
 
             <TouchableOpacity

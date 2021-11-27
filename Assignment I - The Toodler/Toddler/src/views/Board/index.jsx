@@ -26,6 +26,7 @@ const Board = ({ route }) => {
             setLists([...lists, list]);
         } else {
             //EDIT
+            list.id = selectedList.id;
             setLists([...lists.filter(x => x.id !== selectedList.id), list])
       }
     }
@@ -45,17 +46,16 @@ const Board = ({ route }) => {
 
     return (
         <View style={styles.listItem}>
+            <Image
+              source={{ uri: board.thumbnailPhoto }}
+              style={styles.image}
+            />
+            <Text style={styles.boardTitle}>{board.name}</Text>
             <TouchableHighlight
                 style={styles.button}
                 onPress={() => setIsAddModalOpen(true)}>
                 <Text style={styles.buttonText}>Add List</Text>
             </TouchableHighlight>
-            <Text style={styles.text}>{board.name}</Text>
-            <Image
-              source={{ uri: board.thumbnailPhoto }}
-              style={styles.image}
-            />
-            <Text style={styles.text}>{board.id}</Text>
             <ListsList
                 lists={lists}
                 data={otherData}

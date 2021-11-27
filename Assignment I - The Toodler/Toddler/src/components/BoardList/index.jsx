@@ -17,7 +17,7 @@ const BoardList = ({ boards, deleteBoard, data, editBoard }) => {
                         data={data}
                     />
                 )}
-                keyExtractor={boards => boards.id} />
+                keyExtractor={board => board.id} />
         </View>
     );
 }

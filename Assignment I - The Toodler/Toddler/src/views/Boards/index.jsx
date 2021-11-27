@@ -22,11 +22,10 @@ const Boards = () => {
             //CREATE
             board.id = Math.max(...boards.map((b) => b.id)) + 1;
             setBoards([...boards, board]);
-            setSelectedBoard(initialBoard);
         } else {
             //EDIT
+            board.id = selectedBoard.id;
             setBoards([...boards.filter(x => x.id !== selectedBoard.id), board]);
-            setSelectedBoard(initialBoard);
       }
     }
 
