@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-const Contacts = () => {
+const ContactDetail = () => {
     <View>
-        <Text>Single Contact</Text>
+        Single Contact
     </View>
 };
 
-export default Contacts;
+export default ContactDetail;
