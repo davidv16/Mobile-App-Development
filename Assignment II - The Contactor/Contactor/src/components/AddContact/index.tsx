@@ -1,9 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
-const AddContacts = () => {
-    <View>
-        AddContacts form
-    </View>
+const AddContact = () => {
+    return (
+        <View>
+            AddContact form
+        </View>
+    );
 };
 
-export default AddContacts;
+export default AddContact;

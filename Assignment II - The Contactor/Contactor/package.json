@@ -11,6 +11,8 @@
     "lint": "./node_modules/eslint/bin/eslint.js '**/*.{js,ts,tsx}' --quiet --fix"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
     "@types/react-native-modal": "^4.1.1",
     "expo": "^43.0.3",
     "expo-status-bar": "^1.1.0",

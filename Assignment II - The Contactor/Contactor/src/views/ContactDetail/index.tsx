@@ -1,9 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 const ContactDetail = () => {
-    <View>
-        Single Contact
-    </View>
+    return (
+        <View>
+            Contact Detail view
+        </View>
+    );
 };
 
 export default ContactDetail;
