@@ -1,8 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 const Contacts = () => {
     <View>
-        Contacts listi
+        <Text>Contacts listi</Text>
     </View>
 };
 

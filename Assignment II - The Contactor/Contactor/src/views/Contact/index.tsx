@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 const Contacts = () => {
     <View>
-        Single Contact
+        <Text>Single Contact</Text>
     </View>
 };
 
