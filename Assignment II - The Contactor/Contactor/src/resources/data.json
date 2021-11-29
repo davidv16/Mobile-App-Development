@@ -1,21 +1,21 @@
 {
     "contacts": [
         {
-            "id": 1,
+            "id": "1",
             "name": "Davíð",
             "phoneNumber": "888-1111",
             "image": "https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg"
 
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "Guðmundur",
             "phoneNumber": "888-2222",
             "image": "https://hbr.org/resources/images/article_assets/2019/06/Jun19_05_1040477378.jpg"
 
         },
         {
-            "id": 3,
+            "id": "3",
             "name": "Jane Doe",
             "phoneNumber": "888-3333",
             "image": "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg"

@@ -6,19 +6,20 @@ import Search from '../../components/Search';
 import IContact from '../../models';
 import data from '../../resources/data.json';
 
-//const [contacts, setContacts] = useState(data);
 
 /*useEffect(() => {
     console.log(contacts);
-
+    
 }, [])
 */
 const Contacts = () => {
+    const [contacts, setContacts] = useState<IContact[]>(data.contacts);
+
     return (
         <View>
             Contacts View
             <Search />
-
+            <ContactList contacts={contacts} />
             <AddContact />
         </View>
     );

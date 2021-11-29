@@ -1,6 +1,6 @@
 export default interface IContact {
   id: string;
   name: string;
-  phoneNumber: number;
+  phoneNumber: string;
   image: string;
 }
