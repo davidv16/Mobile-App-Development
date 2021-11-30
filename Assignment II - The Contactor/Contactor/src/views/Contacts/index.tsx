@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, TextInput } from 'react-native';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
 import Search from '../../components/Search';
@@ -41,10 +41,23 @@ const Contacts = () => {
         setSelectedContact(contact);
         setIsAddModalOpen(true);
     };
+    const search = (text:string) => {
+        const searchedFor = data.contacts.filter((word, index, arr)=>{
+            // console.log('this is word' + word.name)
+            return( 
+            word.name.indexOf(text) !== -1
+            )
+            
+        })
+        setContacts(searchedFor)
+    }
+
 
     return (
         <View>
-            <Search />
+            <TextInput
+            onChangeText={text => search(text)}
+            />
             <TouchableHighlight
                 style={styles.button}
                 onPress={() => setIsAddModalOpen(true)}
