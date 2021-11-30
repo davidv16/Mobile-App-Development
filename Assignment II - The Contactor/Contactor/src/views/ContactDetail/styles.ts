@@ -23,10 +23,14 @@ export default StyleSheet.create({
     paddingRight: 20,
     borderColor: 'white',
     borderWidth: 2,
-    backgroundColor: graniteGray,
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
+  },
+  icon: {
+    fontSize: 25,
+    marginTop: 20,
+    marginBottom: 20,
   },
 });

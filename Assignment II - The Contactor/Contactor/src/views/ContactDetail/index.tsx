@@ -1,9 +1,10 @@
-import React from 'react';
-import { View, Image, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const ContactDetail = ({ route }) => {
-  const { contact } = route.params;
+  const { contact, editContact } = route.params;
 
   return (
     <View>
@@ -13,6 +14,14 @@ const ContactDetail = ({ route }) => {
       />
       <Text style={styles.boardTitle}>{contact.name}</Text>
       <Text style={styles.boardTitle}>{contact.phoneNumber}</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => editContact(contact)}
+      >
+        <Text style={{ color: 'blue' }}>
+          <AntDesign name="edit" style={styles.icon} />
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

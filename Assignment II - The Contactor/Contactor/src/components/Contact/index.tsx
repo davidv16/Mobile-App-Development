@@ -16,7 +16,7 @@ const Contact = ({ contact, editContact }: Props) => {
     const { navigate } = useNavigation();
     return (
         <Pressable
-            onPress={() => navigate('ContactDetail' as never, { contact } as never)}
+            onPress={() => navigate('ContactDetail' as never, { contact, editContact } as never)}
         >
             <View style={styles.listItem}>
                 <Image

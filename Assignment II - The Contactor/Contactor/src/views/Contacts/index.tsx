@@ -51,6 +51,7 @@ const Contacts = () => {
             <ContactList
                 contacts={contacts.sort()}
                 editContact={(contact: IContact) => editContact(contact)}
+
             />
             <AddContact
                 isOpen={isAddModalOpen}
