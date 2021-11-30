@@ -1,9 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-const ContactDetail = () => {
+import { View, Image, Text, TouchableHighlight } from 'react-native';
+import styles from './styles';
+
+
+const ContactDetail = ({ route }) => {
+
+    const { contact } = route.params;
+
     return (
         <View>
-            <Text>Contact Detail view</Text>
+            <Image
+                source={{ uri: contact.image }}
+                style={styles.image}
+            />
+            <Text style={styles.boardTitle}>{contact.name}</Text>
+            <Text style={styles.boardTitle}>{contact.phoneNumber}</Text>
         </View>
     );
 };
