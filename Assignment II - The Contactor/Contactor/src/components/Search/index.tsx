@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 const Search = () => {
     return (
         <View>
-            Search
+            <Text>Search</Text>
         </View>
     );
 };

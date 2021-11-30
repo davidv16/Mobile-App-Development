@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 const ContactDetail = () => {
     return (
         <View>
-            Contact Detail view
+            <Text>Contact Detail view</Text>
         </View>
     );
 };

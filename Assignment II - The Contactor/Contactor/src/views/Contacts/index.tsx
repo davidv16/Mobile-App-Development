@@ -11,7 +11,7 @@ const Contacts = () => {
 
     return (
         <View>
-            Contacts View
+            <Text>Contacts View</Text>
             <Search />
             <ContactList contacts={contacts} />
             <AddContact />
