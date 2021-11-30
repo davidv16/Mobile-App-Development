@@ -50,7 +50,7 @@ const Contacts = () => {
             <ContactList contacts={contacts.sort()} />
             <AddContact
                 isOpen={isAddModalOpen}
-                closeModal={setIsAddModalOpen}
+                closeModal={() => setIsAddModalOpen(false)}
                 addEditContact={(contact: IContact) => addEditContact(contact)}
                 selectedContact={selectedContact}
             />

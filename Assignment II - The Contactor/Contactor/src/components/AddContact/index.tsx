@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { TextInput, Button } from 'react-native';
 import IContact from '../../models';
 import Modal from '../Modal';
-import styles from './styles';
 
 interface Props {
   selectedContact: IContact,

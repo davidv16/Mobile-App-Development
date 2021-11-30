@@ -8,7 +8,7 @@ import styles from './styles';
 import IContact from '../../models';
 
 interface Props {
-    contact: IContact
+  contact: IContact
 }
 
 const Contact = ({ contact }: Props) => {
@@ -16,7 +16,6 @@ const Contact = ({ contact }: Props) => {
   return (
     <Pressable
       onPress={() => navigate('ContactDetail' as never, { contact } as never)}
-      onLongPress={() => { }}
     >
       <View style={styles.listItem}>
         <Image
