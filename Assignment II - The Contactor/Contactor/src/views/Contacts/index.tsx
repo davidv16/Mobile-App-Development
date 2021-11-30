@@ -33,12 +33,12 @@ const Contacts = () => {
             // CREATE
             contact.id = uuidv4();
             setContacts([...contacts, contact]);
-            setDisplayContacts(contacts);
+            setDisplayContacts([...contacts, contact]);
         } else {
             // EDIT
             contact.id = selectedContact.id;
             setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
-            setDisplayContacts(contacts);
+            setDisplayContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
             setSelectedContact(initialContact);
         }
         navigate('Contacts' as never);
@@ -53,7 +53,7 @@ const Contacts = () => {
             setDisplayContacts(contacts);
         }
 
-        const searchedFor = data.contacts.filter((word, index, arr) => {
+        const searchedFor = contacts.filter((word, index, arr) => {
             // console.log('this is word' + word.name)
             return (
                 word.name.indexOf(text) !== -1
