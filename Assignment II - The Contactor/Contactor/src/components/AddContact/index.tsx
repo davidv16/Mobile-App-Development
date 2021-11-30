@@ -29,7 +29,7 @@ const AddBoard = ({ selectedContact, isOpen, closeModal, addEditContact }: Props
 
   return (
     <Modal
-      title={`${selectedContact.id ? 'Edit' : 'Add'} Board`}
+      title={`${selectedContact.id ? 'Edit' : 'Add'} Contact`}
       isOpen={isOpen}
       closeModal={closeModal}
     >

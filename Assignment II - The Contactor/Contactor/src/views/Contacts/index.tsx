@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
@@ -22,7 +22,7 @@ const Contacts = () => {
     const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
 
     const addEditContact = (contact: IContact) => {
-        if (selectedContact.id) {
+        if (selectedContact.id === '') {
             // CREATE
             contact.id = uuidv4();
             setContacts([...contacts, contact]);
@@ -30,10 +30,11 @@ const Contacts = () => {
             // EDIT
             contact.id = selectedContact.id;
             setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
+            setSelectedContact(initialContact);
         }
     };
 
-    const editcontact = (contact: IContact) => {
+    const editContact = (contact: IContact) => {
         setSelectedContact(contact);
         setIsAddModalOpen(true);
     };
@@ -47,7 +48,10 @@ const Contacts = () => {
             >
                 <Text style={styles.buttonText}>Add Contact</Text>
             </TouchableHighlight>
-            <ContactList contacts={contacts.sort()} />
+            <ContactList
+                contacts={contacts.sort()}
+                editContact={(contact: IContact) => editContact(contact)}
+            />
             <AddContact
                 isOpen={isAddModalOpen}
                 closeModal={() => setIsAddModalOpen(false)}

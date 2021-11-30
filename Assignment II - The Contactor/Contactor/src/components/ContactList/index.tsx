@@ -6,22 +6,24 @@ import Contact from '../Contact';
 import styles from './styles';
 
 interface Props {
-    contacts: IContact[]
+    contacts: IContact[],
+    editContact: (contact: IContact) => void
 }
 
-const ContactList = ({ contacts }: Props) => (
-  <View>
-    <FlatList
-      numColumns={1}
-      data={contacts.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))}
-      renderItem={({ item }) => (
-        <Contact
-          contact={item}
+const ContactList = ({ contacts, editContact }: Props) => (
+    <View>
+        <FlatList
+            numColumns={1}
+            data={contacts.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))}
+            renderItem={({ item }) => (
+                <Contact
+                    contact={item}
+                    editContact={editContact}
+                />
+            )}
+            keyExtractor={(contact) => contact.id}
         />
-      )}
-      keyExtractor={(contact) => contact.id}
-    />
-  </View>
+    </View>
 );
 
 export default ContactList;
