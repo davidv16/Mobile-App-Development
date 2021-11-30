@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableHighlight, TextInput } from 'react-native';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
@@ -20,18 +20,25 @@ const Contacts = () => {
 
     const { navigate } = useNavigation();
     const [contacts, setContacts] = useState<IContact[]>(data.contacts);
+    const [displayContacts, setDisplayContacts] = useState<IContact[]>(contacts);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
+
+    useEffect(() => {
+        setDisplayContacts(contacts);
+    }, [])
 
     const addEditContact = (contact: IContact) => {
         if (selectedContact.id === '') {
             // CREATE
             contact.id = uuidv4();
             setContacts([...contacts, contact]);
+            setDisplayContacts(contacts);
         } else {
             // EDIT
             contact.id = selectedContact.id;
             setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
+            setDisplayContacts(contacts);
             setSelectedContact(initialContact);
         }
         navigate('Contacts' as never);
@@ -41,22 +48,29 @@ const Contacts = () => {
         setSelectedContact(contact);
         setIsAddModalOpen(true);
     };
-    const search = (text:string) => {
-        const searchedFor = data.contacts.filter((word, index, arr)=>{
+    const search = (text: string) => {
+        if (text === null) {
+            setDisplayContacts(contacts);
+        }
+
+        const searchedFor = data.contacts.filter((word, index, arr) => {
             // console.log('this is word' + word.name)
-            return( 
-            word.name.indexOf(text) !== -1
+            return (
+                word.name.indexOf(text) !== -1
             )
-            
+
         })
-        setContacts(searchedFor)
+        setDisplayContacts(searchedFor);
+
+
+
     }
 
 
     return (
         <View>
             <TextInput
-            onChangeText={text => search(text)}
+                onChangeText={text => search(text)}
             />
             <TouchableHighlight
                 style={styles.button}
@@ -65,7 +79,7 @@ const Contacts = () => {
                 <Text style={styles.buttonText}>Add Contact</Text>
             </TouchableHighlight>
             <ContactList
-                contacts={contacts.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))}
+                contacts={displayContacts.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))}
                 editContact={(contact: IContact) => editContact(contact)}
 
             />
