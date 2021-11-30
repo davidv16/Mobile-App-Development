@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 
-const Search = () => (
-  <View>
-    <Text>Search</Text>
-  </View>
+interface Props {
+    searchString: (text: string) => void
+}
+
+const Search = ({ searchString }: Props) => (
+    <View>
+        <TextInput
+            onChangeText={(text) => searchString(text)}
+        />
+    </View>
 );
 
 export default Search;
