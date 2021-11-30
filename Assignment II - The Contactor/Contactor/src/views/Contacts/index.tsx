@@ -6,6 +6,7 @@ import Search from '../../components/Search';
 import IContact from '../../models';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 import data from '../../resources/data.json';
 
@@ -17,6 +18,7 @@ const Contacts = () => {
         image: '',
     };
 
+    const { navigate } = useNavigation();
     const [contacts, setContacts] = useState<IContact[]>(data.contacts);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
@@ -32,6 +34,7 @@ const Contacts = () => {
             setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
             setSelectedContact(initialContact);
         }
+        navigate('Contacts' as never);
     };
 
     const editContact = (contact: IContact) => {
