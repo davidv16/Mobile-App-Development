@@ -52,7 +52,7 @@ const Contacts = () => {
                 <Text style={styles.buttonText}>Add Contact</Text>
             </TouchableHighlight>
             <ContactList
-                contacts={contacts.sort()}
+                contacts={contacts.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))}
                 editContact={(contact: IContact) => editContact(contact)}
 
             />
