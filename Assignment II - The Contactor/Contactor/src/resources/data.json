@@ -1,21 +1,21 @@
 {
     "contacts": [
         {
-            "id": "1",
+            "id": "99b535fa-2b52-48f8-a30c-425be740c399",
             "name": "Davíð",
             "phoneNumber": "888-1111",
             "image": "https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg"
 
         },
         {
-            "id": "2",
+            "id": "6b51aa55-23a7-496f-82f0-74b8d148e138",
             "name": "Guðmundur",
             "phoneNumber": "888-2222",
             "image": "https://hbr.org/resources/images/article_assets/2019/06/Jun19_05_1040477378.jpg"
 
         },
         {
-            "id": "3",
+            "id": "c0291357-87d2-4b90-afae-faf09e25fb88",
             "name": "Anna Dóra",
             "phoneNumber": "888-3333",
             "image": "https://images-na.ssl-images-amazon.com/images/I/61fq9A8jEGL._SL1500_.jpg"
