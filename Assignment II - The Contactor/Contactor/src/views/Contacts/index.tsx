@@ -6,12 +6,6 @@ import Search from '../../components/Search';
 import IContact from '../../models';
 import data from '../../resources/data.json';
 
-
-/*useEffect(() => {
-    console.log(contacts);
-    
-}, [])
-*/
 const Contacts = () => {
     const [contacts, setContacts] = useState<IContact[]>(data.contacts);
 
