@@ -49,9 +49,7 @@ const Contacts = () => {
         setIsAddModalOpen(true);
     };
     const search = (text: string) => {
-        if (text === null) {
-            setDisplayContacts(contacts);
-        }
+
 
         const searchedFor = data.contacts.filter((word, index, arr) => {
             // console.log('this is word' + word.name)
