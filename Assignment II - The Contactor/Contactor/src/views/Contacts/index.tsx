@@ -62,8 +62,6 @@ const Contacts = () => {
         })
         setDisplayContacts(searchedFor);
 
-
-
     }
 
 
