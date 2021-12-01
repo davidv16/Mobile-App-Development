@@ -12,8 +12,6 @@ const onException = (cb: any, errorHandler?: any) => {
   }
 };
 export const saveContact = async (contact: IContact) => {
-  //let fileName: string;
-
   let fileName: string = `${contact.name}-${contact.id}.json`;
 
   setupDirectory();
@@ -72,7 +70,6 @@ export const deleteContacts = () => {
   FileSystem.deleteAsync(contactsDirectory);
 };
 
-// TODO: finish
 export const getAllContacts = async () => {
   await setupDirectory();
 

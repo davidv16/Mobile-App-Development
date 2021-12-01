@@ -27,8 +27,6 @@ const Contacts = () => {
 
     useEffect(() => {
         (async () => {
-            //const newContacts: any = await fileService.getAllContacts();
-            //setContacts(newContacts);
             getAllContacts();
         })();
     }, [])
@@ -36,7 +34,6 @@ const Contacts = () => {
     const getAllContacts = async () => {
         let contacts: IContact[] = await fileService.getAllContacts();
 
-        //if (Object.keys(contacts).length === 0) {
         Alert.alert(
             'Hey There!',
             'Do you wanna to import dummy contacts or flush the file system?',
@@ -65,13 +62,10 @@ const Contacts = () => {
                 cancelable: true
             }
         );
-        //}
-        //console.log(contacts)
-        //setContacts(contacts);
     }
 
     const addEditContact = async (contact: IContact) => {
-        if (selectedContact.id) {
+        if (selectedContact) {
             // EDIT
             contact.id = selectedContact.id;
             //remove before recreating
