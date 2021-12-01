@@ -10,12 +10,14 @@ export default StyleSheet.create({
         alignSelf: 'center',
         marginTop: 5,
         paddingLeft: 5,
+        
     },
     searchbar:{
         flexDirection:'row'  
     },
     
     icon:{
-        marginTop:5
+        marginTop:5,
+        marginLeft:5
     }
 });
