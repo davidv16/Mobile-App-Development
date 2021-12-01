@@ -3,7 +3,7 @@ import { graniteGray } from '../../styles/colors';
 
 export default StyleSheet.create({
   button: {
-    marginTop: 5,
+    marginTop: 30,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
@@ -15,7 +15,8 @@ export default StyleSheet.create({
   buttonText: {
     color: 'white',
   },
-  container: {
-    flex: 1,
+  logo: {
+    width: 200,
+    height: 200,
   },
 });

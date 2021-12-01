@@ -16,6 +16,7 @@
     "@types/react-native-modal": "^4.1.1",
     "@types/uuid": "^8.3.3",
     "expo": "^43.0.3",
+    "expo-file-system": "^13.0.3",
     "expo-status-bar": "^1.1.0",
     "@expo/vector-icons": "latest",
     "react": "17.0.2",
@@ -25,7 +26,6 @@
     "react-native-web": "0.17.5",
     "uuid": "^3.4.0",
     "expo-image-picker": "~11.0.3"
-    "expo-file-system": "~13.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
