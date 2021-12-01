@@ -11,39 +11,38 @@ import AddImageModal from '../../components/AddImageModal';
 import IContact from '../../models';
 import styles from './styles';
 
+import * as fileService from '../../services/ContactService';
 import data from '../../resources/data.json';
 import * as ImageService from '../../services/ImageService';
 
 const Contacts = () => {
-  const initialContact = {
-    id: '',
-    name: '',
-    phoneNumber: '',
-    image: '',
-  };
 
   const { navigate } = useNavigation();
   const [contacts, setContacts] = useState<IContact[]>(data.contacts);
+  const [searchString, setSearchString] = useState('');
   const [displayContacts, setDisplayContacts] = useState<IContact[]>(contacts);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
   const [isAddImageModalOpen, setAddImageModalOpen] = useState(false);
 
   useEffect(() => {
-    setDisplayContacts(contacts);
-  }, []);
+    (async () => {
+      //const newContacts: IContact[] = await fileService.getAllContacts();
+      //setContacts(contacts);
+    })();
+  }, [])
 
-  const addEditContact = (contact: IContact) => {
+  const addEditContact = async (contact: IContact) => {
     if (selectedContact.id === '') {
       // CREATE
       contact.id = uuidv4();
+      await fileService.saveContact(contact);
       setContacts([...contacts, contact]);
-      setDisplayContacts(contacts);
     } else {
       // EDIT
       contact.id = selectedContact.id;
       setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
-      setDisplayContacts(contacts);
+
       setSelectedContact(initialContact);
     }
     navigate('Contacts' as never);
@@ -53,17 +52,15 @@ const Contacts = () => {
     setSelectedContact(contact);
     setIsAddModalOpen(true);
   };
-  const search = (text: string) => {
-    if (text === null) {
-      setDisplayContacts(contacts);
-    }
 
-    const searchedFor = data.contacts.filter((word, index, arr) =>
-    // console.log('this is word' + word.name)
-    (
-      word.name.indexOf(text) !== -1
-    ));
-    setDisplayContacts(searchedFor);
+  const filterAndSort = (contacts: IContact[]) => {
+    const searchFilter = contacts
+      .filter((word) =>
+        word.name.toUpperCase()
+          .indexOf(searchString.toUpperCase()) !== -1)
+      .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
+
+    return searchFilter
   };
 
   const takePhoto = async () => {
@@ -72,9 +69,10 @@ const Contacts = () => {
   };
 
   return (
-    <View>
-      <TextInput
-        onChangeText={(text) => search(text)}
+    <View
+      style={styles.container}>
+      <Search
+        searchString={(text) => setSearchString(text)}
       />
       <TouchableHighlight
         style={styles.button}
@@ -83,15 +81,16 @@ const Contacts = () => {
         <Text style={styles.buttonText}>Add Contact</Text>
       </TouchableHighlight>
       <ContactList
-        contacts={displayContacts.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)))}
+        contacts={filterAndSort(contacts)}
         editContact={(contact: IContact) => editContact(contact)}
+
+
       />
       <AddContact
         isOpen={isAddModalOpen}
         closeModal={() => setIsAddModalOpen(false)}
         addEditContact={(contact: IContact) => addEditContact(contact)}
         selectedContact={selectedContact}
-        openImageModal={() => setAddImageModalOpen(true)}
       />
       <AddImageModal
         isOpen={isAddImageModalOpen}
