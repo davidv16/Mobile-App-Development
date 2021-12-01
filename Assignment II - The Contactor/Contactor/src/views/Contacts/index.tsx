@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableHighlight, TextInput } from 'react-native';
+import { Alert, View, Text, TouchableHighlight, TextInput } from 'react-native';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
 import Search from '../../components/Search';
@@ -20,30 +20,70 @@ const Contacts = () => {
     };
 
     const { navigate } = useNavigation();
-    const [contacts, setContacts] = useState<IContact[]>(data.contacts);
+    const [contacts, setContacts] = useState<IContact[]>([]);
     const [searchString, setSearchString] = useState('');
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
 
     useEffect(() => {
         (async () => {
-            //const newContacts: IContact[] = await fileService.getAllContacts();
-            //setContacts(contacts);
+            //const newContacts: any = await fileService.getAllContacts();
+            //setContacts(newContacts);
+            getAllContacts();
         })();
     }, [])
 
+    const getAllContacts = async () => {
+        let contacts: IContact[] = await fileService.getAllContacts();
+
+        //if (Object.keys(contacts).length === 0) {
+        Alert.alert(
+            'Hey There!',
+            'Do you wanna to import dummy contacts or flush the file system?',
+            [
+                {
+                    text: 'Yes',
+                    onPress: async () => {
+                        contacts = await fileService.importDummyContacts();
+                        setContacts(contacts);
+                    }
+                },
+                {
+                    text: 'No',
+                    onPress: async () => {
+                        setContacts(contacts);
+                    }
+                },
+                {
+                    text: 'flush',
+                    onPress: async () => {
+                        fileService.deleteContacts();
+                    }
+                }
+            ],
+            {
+                cancelable: true
+            }
+        );
+        //}
+        //console.log(contacts)
+        //setContacts(contacts);
+    }
+
     const addEditContact = async (contact: IContact) => {
-        if (selectedContact.id === '') {
+        if (selectedContact.id) {
+            // EDIT
+            contact.id = selectedContact.id;
+            //remove before recreating
+            await fileService.deleteContact(selectedContact);
+            await fileService.saveContact(contact);
+            setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
+            setSelectedContact(initialContact);
+        } else {
             // CREATE
             contact.id = uuidv4();
             await fileService.saveContact(contact);
             setContacts([...contacts, contact]);
-        } else {
-            // EDIT
-            contact.id = selectedContact.id;
-            setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
-
-            setSelectedContact(initialContact);
         }
         navigate('Contacts' as never);
     };
