@@ -36,7 +36,7 @@ const Contacts = () => {
         if (selectedContact.id === '') {
             // CREATE
             contact.id = uuidv4();
-            //await fileService.saveContact(contact);
+            await fileService.saveContact(contact);
             setContacts([...contacts, contact]);
         } else {
             // EDIT
@@ -65,7 +65,7 @@ const Contacts = () => {
 
     return (
         <View
-        style={styles.container}>
+            style={styles.container}>
             <Search
                 searchString={(text) => setSearchString(text)}
             />
@@ -78,7 +78,7 @@ const Contacts = () => {
             <ContactList
                 contacts={filterAndSort(contacts)}
                 editContact={(contact: IContact) => editContact(contact)}
-                
+
 
             />
             <AddContact

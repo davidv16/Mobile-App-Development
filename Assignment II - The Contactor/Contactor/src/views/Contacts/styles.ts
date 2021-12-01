@@ -15,7 +15,7 @@ export default StyleSheet.create({
   buttonText: {
     color: 'white',
   },
-  container:{
+  container: {
     flex: 1,
-  }
+  },
 });

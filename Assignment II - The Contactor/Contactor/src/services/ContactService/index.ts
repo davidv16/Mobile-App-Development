@@ -5,32 +5,30 @@ const contactsDirectory = `${FileSystem.documentDirectory}contacts`;
 
 const onException = (cb: any, errorHandler?: any) => {
   try {
-    return cb();
+    cb();
   } catch (err) {
-    if (errorHandler) {
-      return errorHandler(err);
-    }
     console.error(err);
   }
 };
-export const saveContact = async (contact: IContact, fileName?: string) => {
-  //let filename = file;
+export const saveContact = async (contact: IContact, file?: string) => {
+  let fileName = file;
 
-  if (fileName === null) {
+  if (fileName === undefined) {
     fileName = `${contact.name}-${contact.id}.json`;
   }
 
-  await onException(() =>
+  await onException(() => {
     FileSystem.writeAsStringAsync(
       `${contactsDirectory}/${fileName}`,
       JSON.stringify(contact),
       { encoding: FileSystem.EncodingType.UTF8 }
-    )
-  );
+    );
+  });
 
   return fileName;
 };
 
+//TODO: finish
 export const loadContact = async (fileName: string) => {
   return await onException(() =>
     FileSystem.readAsStringAsync(`${contactsDirectory}/${fileName}`, {
@@ -39,6 +37,7 @@ export const loadContact = async (fileName: string) => {
   );
 };
 
+//TODO: finish
 const setupDirectory = async () => {
   const dir = await FileSystem.getInfoAsync(contactsDirectory);
   if (!dir.exists) {
@@ -46,6 +45,7 @@ const setupDirectory = async () => {
   }
 };
 
+// TODO: finish
 export const getAllContacts = async () => {
   await setupDirectory();
 
