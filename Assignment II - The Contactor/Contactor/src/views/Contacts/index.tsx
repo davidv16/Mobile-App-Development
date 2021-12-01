@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 
+import * as fileService from '../../services/ContactService';
 import data from '../../resources/data.json';
 
 const Contacts = () => {
@@ -25,14 +26,18 @@ const Contacts = () => {
     const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
 
     useEffect(() => {
+        (async () => {
+            //const newContacts: IContact[] = await fileService.getAllContacts();
+            //setContacts(contacts);
+        })();
     }, [])
 
-    const addEditContact = (contact: IContact) => {
+    const addEditContact = async (contact: IContact) => {
         if (selectedContact.id === '') {
             // CREATE
             contact.id = uuidv4();
+            //await fileService.saveContact(contact);
             setContacts([...contacts, contact]);
-
         } else {
             // EDIT
             contact.id = selectedContact.id;
