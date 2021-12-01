@@ -36,7 +36,7 @@ const Contacts = () => {
         if (selectedContact.id === '') {
             // CREATE
             contact.id = uuidv4();
-            await fileService.saveContact(contact);
+            //await fileService.saveContact(contact);
             setContacts([...contacts, contact]);
         } else {
             // EDIT
