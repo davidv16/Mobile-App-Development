@@ -59,7 +59,8 @@ const Contacts = () => {
     };
 
     return (
-        <View>
+        <View
+        style={styles.container}>
             <Search
                 searchString={(text) => setSearchString(text)}
             />
@@ -72,6 +73,7 @@ const Contacts = () => {
             <ContactList
                 contacts={filterAndSort(contacts)}
                 editContact={(contact: IContact) => editContact(contact)}
+                
 
             />
             <AddContact
