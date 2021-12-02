@@ -15,7 +15,6 @@ const getPermission = async (permissionTypes) => {
 
 export const selectFromCameraRoll = async () => {
   await getPermission([CAMERA_ROLL]);
-  // const result = await ImagePicker.media
 };
 
 export const takePhoto = async () => {

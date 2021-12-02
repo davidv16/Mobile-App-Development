@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View, Text, TouchableHighlight, TextInput,
-} from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
 import AddContact from '../../components/AddContact';
@@ -11,9 +9,10 @@ import AddImageModal from '../../components/AddImageModal';
 import IContact from '../../models';
 import styles from './styles';
 
-import * as fileService from '../../services/ContactService';
 import data from '../../resources/data.json';
+import * as fileService from '../../services/ContactService';
 import * as ImageService from '../../services/ImageService';
+import * as ImageFileService from '../../services/ImageFileService';
 
 const Contacts = () => {
   const initialContact = {
@@ -29,6 +28,7 @@ const Contacts = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
   const [isAddImageModalOpen, setAddImageModalOpen] = useState(false);
+  const [images, setImages] = useState(data.images);
 
   useEffect(() => {
     (async () => {
@@ -67,9 +67,14 @@ const Contacts = () => {
     return searchFilter;
   };
 
+  const addImage = async (imageLocation) => {
+    const newImage = await ImageFileService.addImage(imageLocation);
+    // todo: finish this
+  };
+
   const takePhoto = async () => {
-    const photo = await ImageService.takePhoto();
-    console.log(photo);
+    const imageLocation = await ImageService.takePhoto();
+    if (imageLocation.length > 0) { await ImageFileService.addImage(imageLocation); }
   };
 
   return (
