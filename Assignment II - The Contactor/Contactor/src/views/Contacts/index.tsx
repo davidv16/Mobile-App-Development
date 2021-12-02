@@ -72,7 +72,7 @@ const Contacts = () => {
   };
 
   const addEditContact = async (contact: IContact) => {
-    if (selectedContact) {
+    if (selectedContact.id) {
       // EDIT
       contact.id = selectedContact.id;
       // remove before recreating
@@ -103,16 +103,6 @@ const Contacts = () => {
     return searchFilter;
   };
 
-  const addImage = async (imageLocation) => {
-    const newImage = await ImageFileService.addImage(imageLocation);
-    // todo: finish this
-  };
-
-  const takePhoto = async () => {
-    const imageLocation = await ImageService.takePhoto();
-    if (imageLocation.length > 0) { await ImageFileService.addImage(imageLocation); }
-  };
-
   return (
     <View
       style={styles.container}
@@ -135,16 +125,85 @@ const Contacts = () => {
         closeModal={() => setIsAddModalOpen(false)}
         addEditContact={(contact: IContact) => addEditContact(contact)}
         selectedContact={selectedContact}
-        openImageModal={() => setAddImageModalOpen(true)}
-      />
-      <AddImageModal
-        isOpen={isAddImageModalOpen}
-        closeModal={() => setAddImageModalOpen(false)}
-        takePhoto={() => takePhoto()}
-        selectFromCameraRoll={() => { }}
       />
     </View>
   );
+};
+
+const addEditContact = async (contact: IContact) => {
+  if (selectedContact) {
+    // EDIT
+    contact.id = selectedContact.id;
+    // remove before recreating
+    await fileService.deleteContact(selectedContact);
+    await fileService.saveContact(contact);
+    setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
+    setSelectedContact(initialContact);
+  } else {
+    // CREATE
+    contact.id = uuidv4();
+    await fileService.saveContact(contact);
+    setContacts([...contacts, contact]);
+  }
+  navigate('Contacts' as never);
+};
+
+const editContact = (contact: IContact) => {
+  setSelectedContact(contact);
+  setIsAddModalOpen(true);
+};
+
+const filterAndSort = (contacts: IContact[]) => {
+  const searchFilter = contacts
+    .filter((word) => word.name.toUpperCase()
+      .indexOf(searchString.toUpperCase()) !== -1)
+    .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
+
+  return searchFilter;
+};
+
+const addImage = async (imageLocation) => {
+  const newImage = await ImageFileService.addImage(imageLocation);
+  // todo: finish this
+};
+
+const takePhoto = async () => {
+  const imageLocation = await ImageService.takePhoto();
+  if (imageLocation.length > 0) { await ImageFileService.addImage(imageLocation); }
+};
+
+return (
+  <View
+    style={styles.container}
+  >
+    <Search
+      searchString={(text) => setSearchString(text)}
+    />
+    <TouchableHighlight
+      style={styles.button}
+      onPress={() => setIsAddModalOpen(true)}
+    >
+      <Text style={styles.buttonText}>Add Contact</Text>
+    </TouchableHighlight>
+    <ContactList
+      contacts={filterAndSort(contacts)}
+      editContact={(contact: IContact) => editContact(contact)}
+    />
+    <AddContact
+      isOpen={isAddModalOpen}
+      closeModal={() => setIsAddModalOpen(false)}
+      addEditContact={(contact: IContact) => addEditContact(contact)}
+      selectedContact={selectedContact}
+      openImageModal={() => setAddImageModalOpen(true)}
+    />
+    <AddImageModal
+      isOpen={isAddImageModalOpen}
+      closeModal={() => setAddImageModalOpen(false)}
+      takePhoto={() => takePhoto()}
+      selectFromCameraRoll={() => { }}
+    />
+  </View>
+);
 };
 
 export default Contacts;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Image, Text, Pressable, TouchableOpacity,
+  View, Image, Text, Pressable, TouchableOpacity,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -13,29 +13,29 @@ interface Props {
 }
 
 const Contact = ({ contact, editContact }: Props) => {
-    const { navigate } = useNavigation();
-    return (
-        <Pressable
-            onPress={() => navigate('ContactDetail' as never, { contact, editContact } as never)}
+  const { navigate } = useNavigation();
+  return (
+    <Pressable
+      onPress={() => navigate('ContactDetail' as never, { contact, editContact } as never)}
+    >
+      <View style={styles.listItem}>
+        <Image
+          source={{ uri: contact.image }}
+          style={styles.image}
+        />
+        <Text style={styles.text}>{contact.name}</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => editContact(contact)}
         >
-            <View style={styles.listItem}>
-                <Image
-                    source={{ uri: contact.image }}
-                    style={styles.image}
-                />
-                <Text style={styles.text}>{contact.name}</Text>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => editContact(contact)}
-                >
-                    <Text style={{ color: 'blue' }}>
-                        <AntDesign name="edit" style={styles.icon} />
-                    </Text>
-                </TouchableOpacity>
-                <AntDesign name="rightcircle" size={24} color="black" />
-            </View>
-        </Pressable>
-    );
+          <Text style={{ color: 'blue' }}>
+            <AntDesign name="edit" style={styles.icon} />
+          </Text>
+        </TouchableOpacity>
+        <AntDesign name="rightcircle" size={24} color="black" />
+      </View>
+    </Pressable>
+  );
 };
 
 export default Contact;

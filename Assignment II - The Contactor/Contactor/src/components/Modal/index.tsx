@@ -5,7 +5,7 @@ import styles from './styles';
 
 interface Props {
   isOpen: boolean,
-  //TODO: checka á þessu
+  // TODO: checka á þessu
   closeModal: any,
   title: string,
   children: any
