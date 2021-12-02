@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, View, Text, TouchableHighlight, TextInput } from 'react-native';
+import {
+    Alert, View, Text, TouchableHighlight, TextInput,
+} from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigation } from '@react-navigation/native';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
 import Search from '../../components/Search';
 import IContact from '../../models';
-import { v4 as uuidv4 } from 'uuid';
 import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
 
 import * as fileService from '../../services/ContactService';
 import data from '../../resources/data.json';
@@ -29,7 +31,7 @@ const Contacts = () => {
         (async () => {
             getAllContacts();
         })();
-    }, [])
+    }, []);
 
     const getAllContacts = async () => {
         let contacts: IContact[] = await fileService.getAllContacts();
@@ -43,32 +45,32 @@ const Contacts = () => {
                     onPress: async () => {
                         contacts = await fileService.importDummyContacts();
                         setContacts(contacts);
-                    }
+                    },
                 },
                 {
                     text: 'No',
                     onPress: async () => {
                         setContacts(contacts);
-                    }
+                    },
                 },
                 {
                     text: 'flush',
                     onPress: async () => {
                         fileService.deleteContacts();
-                    }
-                }
+                    },
+                },
             ],
             {
-                cancelable: true
-            }
+                cancelable: true,
+            },
         );
-    }
+    };
 
     const addEditContact = async (contact: IContact) => {
-        if (selectedContact) {
+        if (selectedContact.id) {
             // EDIT
             contact.id = selectedContact.id;
-            //remove before recreating
+            // remove before recreating
             await fileService.deleteContact(selectedContact);
             await fileService.saveContact(contact);
             setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
@@ -89,17 +91,17 @@ const Contacts = () => {
 
     const filterAndSort = (contacts: IContact[]) => {
         const searchFilter = contacts
-            .filter((word) =>
-                word.name.toUpperCase()
-                    .indexOf(searchString.toUpperCase()) !== -1)
+            .filter((word) => word.name.toUpperCase()
+                .indexOf(searchString.toUpperCase()) !== -1)
             .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
 
-        return searchFilter
+        return searchFilter;
     };
 
     return (
         <View
-            style={styles.container}>
+            style={styles.container}
+        >
             <Search
                 searchString={(text) => setSearchString(text)}
             />
@@ -112,8 +114,6 @@ const Contacts = () => {
             <ContactList
                 contacts={filterAndSort(contacts)}
                 editContact={(contact: IContact) => editContact(contact)}
-
-
             />
             <AddContact
                 isOpen={isAddModalOpen}

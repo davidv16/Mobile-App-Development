@@ -11,19 +11,19 @@ interface Props {
 }
 
 const ContactList = ({ contacts, editContact }: Props) => (
-    <View>
-        <FlatList
-            numColumns={1}
-            data={contacts}
-            renderItem={({ item }) => (
-                <Contact
-                    contact={item}
-                    editContact={editContact}
-                />
-            )}
-            keyExtractor={(contact) => contact.id}
+  <View>
+    <FlatList
+      numColumns={1}
+      data={contacts}
+      renderItem={({ item }) => (
+        <Contact
+          contact={item}
+          editContact={editContact}
         />
-    </View>
+      )}
+      keyExtractor={(contact) => contact.id}
+    />
+  </View>
 );
 
 export default ContactList;

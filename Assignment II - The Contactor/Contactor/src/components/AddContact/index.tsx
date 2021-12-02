@@ -3,7 +3,6 @@ import { TextInput, Button } from 'react-native';
 import IContact from '../../models';
 import Modal from '../Modal';
 
-
 interface Props {
   selectedContact: IContact,
   isOpen: boolean,
@@ -11,7 +10,9 @@ interface Props {
   addEditContact: (contact: IContact) => void
 }
 
-const AddBoard = ({ selectedContact, isOpen, closeModal, addEditContact }: Props) => {
+const AddBoard = ({
+  selectedContact, isOpen, closeModal, addEditContact,
+}: Props) => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [image, setImage] = useState('');
@@ -19,13 +20,13 @@ const AddBoard = ({ selectedContact, isOpen, closeModal, addEditContact }: Props
   const handleSubmit = () => {
     const newContact = {
       id: '',
-      name: name,
-      phoneNumber: phoneNumber,
-      image: image
+      name,
+      phoneNumber,
+      image,
     };
     addEditContact(newContact);
     closeModal(true);
-  }
+  };
 
   return (
     <Modal
@@ -48,7 +49,7 @@ const AddBoard = ({ selectedContact, isOpen, closeModal, addEditContact }: Props
       <Button title="Save" onPress={() => handleSubmit()} />
 
     </Modal>
-  )
+  );
 };
 
 export default AddBoard;

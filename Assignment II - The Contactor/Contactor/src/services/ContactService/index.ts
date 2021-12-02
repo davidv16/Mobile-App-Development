@@ -1,7 +1,8 @@
 import * as FileSystem from 'expo-file-system';
+import { v4 as uuidv4 } from 'uuid';
 import IContact from '../../models';
 import DummyData from '../../resources/data.json';
-import { v4 as uuidv4 } from 'uuid';
+
 const contactsDirectory = `${FileSystem.documentDirectory}contacts`;
 
 const onException = (cb: any, errorHandler?: any) => {
@@ -12,7 +13,7 @@ const onException = (cb: any, errorHandler?: any) => {
   }
 };
 export const saveContact = async (contact: IContact) => {
-  let fileName: string = `${contact.name}-${contact.id}.json`;
+  const fileName = `${contact.name}-${contact.id}.json`;
 
   setupDirectory();
 
@@ -20,7 +21,7 @@ export const saveContact = async (contact: IContact) => {
     FileSystem.writeAsStringAsync(
       `${contactsDirectory}/${fileName}`,
       JSON.stringify(contact),
-      { encoding: FileSystem.EncodingType.UTF8 }
+      { encoding: FileSystem.EncodingType.UTF8 },
     );
   });
 
@@ -28,18 +29,14 @@ export const saveContact = async (contact: IContact) => {
 };
 
 export const deleteContact = async (contact: IContact) => {
-  let fileName = `${contact.name}-${contact.id}.json`;
+  const fileName = `${contact.name}-${contact.id}.json`;
   return await FileSystem.deleteAsync(`${contactsDirectory}/${fileName}`);
 };
 
-//TODO: finish
-export const loadContact = async (fileName: string) => {
-  return await onException(() =>
-    FileSystem.readAsStringAsync(`${contactsDirectory}/${fileName}`, {
-      encoding: FileSystem.EncodingType.Base64,
-    })
-  );
-};
+// TODO: finish
+export const loadContact = async (fileName: string) => await onException(() => FileSystem.readAsStringAsync(`${contactsDirectory}/${fileName}`, {
+  encoding: FileSystem.EncodingType.Base64,
+}));
 
 const setupDirectory = async () => {
   const dir = await FileSystem.getInfoAsync(contactsDirectory);
@@ -56,9 +53,9 @@ export const importDummyContacts = async () => {
   await setupDirectory();
   const contacts: IContact[] = [];
 
-  //save dummy data down to files
+  // save dummy data down to files
   for (const contact of DummyData) {
-    //console.log(contact);
+    // console.log(contact);
     await saveContact(contact);
     contacts.push(contact);
   }
@@ -74,15 +71,15 @@ export const getAllContacts = async () => {
   await setupDirectory();
 
   const directory: string[] = await FileSystem.readDirectoryAsync(
-    contactsDirectory
+    contactsDirectory,
   );
   const contacts: IContact[] = [];
 
   for (const file of directory) {
     try {
-      //console.log(file);
+      // console.log(file);
       const content = await FileSystem.readAsStringAsync(
-        `${contactsDirectory}/${file}`
+        `${contactsDirectory}/${file}`,
       );
       contacts.push(JSON.parse(content));
     } catch (e) {
