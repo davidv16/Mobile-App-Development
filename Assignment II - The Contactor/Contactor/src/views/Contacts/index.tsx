@@ -64,11 +64,13 @@ const Contacts = () => {
                 cancelable: true,
             },
         );
+        navigate('Contacts' as never);
     };
 
     const addEditContact = async (contact: IContact) => {
         if (selectedContact.id) {
             // EDIT
+            //console.log(contact)
             contact.id = selectedContact.id;
             // remove before recreating
             await fileService.deleteContact(selectedContact);
@@ -80,12 +82,14 @@ const Contacts = () => {
             contact.id = uuidv4();
             await fileService.saveContact(contact);
             setContacts([...contacts, contact]);
+            setSelectedContact(initialContact);
         }
         navigate('Contacts' as never);
     };
 
-    const editContact = (contact: IContact) => {
+    const editContact = async (contact: IContact) => {
         setSelectedContact(contact);
+        console.log(selectedContact)
         setIsAddModalOpen(true);
     };
 

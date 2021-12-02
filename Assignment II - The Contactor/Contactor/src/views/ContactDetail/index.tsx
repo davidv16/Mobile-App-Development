@@ -5,7 +5,7 @@ import {
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
-const ContactDetail = ({ route }) => {
+const ContactDetail = ({ route }: any) => {
   const { contact, editContact } = route.params;
 
   return (
