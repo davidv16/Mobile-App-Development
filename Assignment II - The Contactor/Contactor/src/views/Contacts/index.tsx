@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Alert, View, Text, TouchableHighlight, TextInput,
+    Alert, View, Text, TouchableHighlight,
 } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
@@ -11,7 +11,6 @@ import IContact from '../../models';
 import styles from './styles';
 
 import * as fileService from '../../services/ContactService';
-import data from '../../resources/data.json';
 
 const Contacts = () => {
     const initialContact = {
@@ -89,7 +88,6 @@ const Contacts = () => {
 
     const editContact = async (contact: IContact) => {
         setSelectedContact(contact);
-        console.log(selectedContact)
         setIsAddModalOpen(true);
     };
 

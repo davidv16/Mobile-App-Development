@@ -23,11 +23,6 @@ const AddBoard = ({
 
     useEffect(() => {
         (async () => {
-            //await setName(selectedContact.name);
-            //await setPhoneNumber(selectedContact.phoneNumber);
-            //await setImage(selectedContact.image);
-            //await setContact(selectedContact);
-            console.log("modal load up " + selectedContact)
 
         })();
     }, [])
