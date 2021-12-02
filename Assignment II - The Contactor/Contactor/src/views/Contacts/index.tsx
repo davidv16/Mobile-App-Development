@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import {
+  Alert, View, Text, TouchableHighlight, TextInput,
+} from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
 import AddContact from '../../components/AddContact';
@@ -23,7 +25,7 @@ const Contacts = () => {
   };
 
   const { navigate } = useNavigation();
-  const [contacts, setContacts] = useState<IContact[]>(data.contacts);
+  const [contacts, setContacts] = useState<IContact[]>([]);
   const [searchString, setSearchString] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
@@ -32,23 +34,57 @@ const Contacts = () => {
 
   useEffect(() => {
     (async () => {
-      // const newContacts: IContact[] = await fileService.getAllContacts();
-      // setContacts(contacts);
+      getAllContacts();
     })();
   }, []);
 
+  const getAllContacts = async () => {
+    let contacts: IContact[] = await fileService.getAllContacts();
+
+    Alert.alert(
+      'Hey There!',
+      'Do you wanna to import dummy contacts or flush the file system?',
+      [
+        {
+          text: 'Yes',
+          onPress: async () => {
+            contacts = await fileService.importDummyContacts();
+            setContacts(contacts);
+          },
+        },
+        {
+          text: 'No',
+          onPress: async () => {
+            setContacts(contacts);
+          },
+        },
+        {
+          text: 'flush',
+          onPress: async () => {
+            fileService.deleteContacts();
+          },
+        },
+      ],
+      {
+        cancelable: true,
+      },
+    );
+  };
+
   const addEditContact = async (contact: IContact) => {
-    if (selectedContact.id === '') {
+    if (selectedContact) {
+      // EDIT
+      contact.id = selectedContact.id;
+      // remove before recreating
+      await fileService.deleteContact(selectedContact);
+      await fileService.saveContact(contact);
+      setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
+      setSelectedContact(initialContact);
+    } else {
       // CREATE
       contact.id = uuidv4();
       await fileService.saveContact(contact);
       setContacts([...contacts, contact]);
-    } else {
-      // EDIT
-      contact.id = selectedContact.id;
-      setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
-
-      setSelectedContact(initialContact);
     }
     navigate('Contacts' as never);
   };
