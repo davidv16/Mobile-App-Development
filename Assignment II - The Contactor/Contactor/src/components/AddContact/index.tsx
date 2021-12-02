@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { TextInput, Button } from 'react-native';
+import {
+  TextInput, Button, View, TouchableOpacity,
+} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as ImageService from '../../services/ImageService';
+import * as ImageFileService from '../../services/ImageFileService';
 import IContact from '../../models';
-import AddImageModal from '../AddImageModal';
 import Modal from '../Modal';
 import styles from './styles';
 
@@ -12,11 +14,10 @@ interface Props {
   isOpen: boolean,
   closeModal: (x: boolean) => void | any,
   addEditContact: (contact: IContact) => void
-  openImageModal: () => void
 }
 
 const AddBoard = ({
-  selectedContact, isOpen, closeModal, addEditContact, openImageModal,
+  selectedContact, isOpen, closeModal, addEditContact,
 }: Props) => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -33,6 +34,26 @@ const AddBoard = ({
     closeModal(true);
   };
 
+  const takePhoto = async () => {
+    const imageLocation = await ImageService.takePhoto();
+    if (imageLocation.length > 0) {
+      const photo = await ImageFileService.addImage(imageLocation);
+      setImage(photo.location);
+    }
+  };
+
+  const getPhoto = () => {
+
+  };
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setName(selectedContact.name);
+      setPhoneNumber(selectedContact.phoneNumber);
+      setImage(selectedContact.image);
+    }
+  }, [isOpen]);
+
   return (
     <Modal
       title={`${selectedContact.id ? 'Edit' : 'Add'} Contact`}
@@ -41,20 +62,28 @@ const AddBoard = ({
     >
       <TextInput
         placeholder="Name"
+        value={name}
         onChangeText={(text) => setName(text)}
       />
       <TextInput
         placeholder="Phone Number"
+        value={phoneNumber}
         onChangeText={(text) => setPhoneNumber(text)}
       />
-      <TextInput
-        placeholder="Image"
-        onChangeText={(text) => setImage(text)}
-      />
-      <Button title="camera" onPress={() => openImageModal(true)}>
-        {/* <Entypo style={styles.icon} name="camera" /> */}
-        {/* <Entypo style={styles.icon} name="image" /> */}
-      </Button>
+      <View style={styles.image}>
+        <TextInput
+          placeholder="Image"
+          value={image}
+          onChangeText={(text) => setImage(text)}
+        />
+        <TouchableOpacity onPress={() => takePhoto()}>
+          <Entypo style={styles.icon} name="camera" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => takePhoto()}>
+          <Entypo style={styles.icon} name="image" />
+        </TouchableOpacity>
+      </View>
+      {/* <Entypo style={styles.icon} name="image" /> */}
       <Button title="Save" onPress={() => handleSubmit()} />
 
     </Modal>

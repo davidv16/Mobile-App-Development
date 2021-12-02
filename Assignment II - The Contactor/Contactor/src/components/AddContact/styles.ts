@@ -2,8 +2,11 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   icon: {
-    fontSize: 60,
-    marginTop: 20,
-    marginBottom: 20,
+    fontSize: 20,
+    paddingHorizontal: 20,
+  },
+  image: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 });
