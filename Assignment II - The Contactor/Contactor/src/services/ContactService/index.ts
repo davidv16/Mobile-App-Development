@@ -5,25 +5,20 @@ import DummyData from '../../resources/data.json';
 
 const contactsDirectory = `${FileSystem.documentDirectory}contacts`;
 
-const onException = (cb: any, errorHandler?: any) => {
-  try {
-    cb();
-  } catch (err) {
-    console.error(err);
-  }
-};
 export const saveContact = async (contact: IContact) => {
   const fileName = `${contact.name}-${contact.id}.json`;
 
   setupDirectory();
 
-  await onException(() => {
-    FileSystem.writeAsStringAsync(
+  try {
+    await FileSystem.writeAsStringAsync(
       `${contactsDirectory}/${fileName}`,
       JSON.stringify(contact),
-      { encoding: FileSystem.EncodingType.UTF8 },
+      { encoding: FileSystem.EncodingType.UTF8 }
     );
-  });
+  } catch (e) {
+    console.error(e);
+  }
 
   return fileName;
 };
@@ -34,9 +29,15 @@ export const deleteContact = async (contact: IContact) => {
 };
 
 // TODO: finish
-export const loadContact = async (fileName: string) => await onException(() => FileSystem.readAsStringAsync(`${contactsDirectory}/${fileName}`, {
-  encoding: FileSystem.EncodingType.Base64,
-}));
+export const loadContact = async (fileName: string) => {
+  try {
+    await FileSystem.readAsStringAsync(`${contactsDirectory}/${fileName}`, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 const setupDirectory = async () => {
   const dir = await FileSystem.getInfoAsync(contactsDirectory);
@@ -64,14 +65,18 @@ export const importDummyContacts = async () => {
 };
 
 export const deleteContacts = () => {
-  FileSystem.deleteAsync(contactsDirectory);
+  try {
+    FileSystem.deleteAsync(contactsDirectory);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export const getAllContacts = async () => {
   await setupDirectory();
 
   const directory: string[] = await FileSystem.readDirectoryAsync(
-    contactsDirectory,
+    contactsDirectory
   );
   const contacts: IContact[] = [];
 
@@ -79,11 +84,11 @@ export const getAllContacts = async () => {
     try {
       // console.log(file);
       const content = await FileSystem.readAsStringAsync(
-        `${contactsDirectory}/${file}`,
+        `${contactsDirectory}/${file}`
       );
       contacts.push(JSON.parse(content));
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

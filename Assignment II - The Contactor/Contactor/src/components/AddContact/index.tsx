@@ -16,7 +16,7 @@ interface Props {
   addEditContact: (contact: IContact) => void
 }
 
-const AddBoard = ({
+const AddContact = ({
   selectedContact, isOpen, closeModal, addEditContact,
 }: Props) => {
   const [name, setName] = useState('');
@@ -24,13 +24,13 @@ const AddBoard = ({
   const [image, setImage] = useState('');
 
   const handleSubmit = () => {
-    const newContact = {
-      id: '',
+    addEditContact({
+      id: selectedContact.id,
       name,
       phoneNumber,
       image,
-    };
-    addEditContact(newContact);
+
+    });
     closeModal(true);
   };
 
@@ -42,11 +42,13 @@ const AddBoard = ({
     }
   };
 
-  const getPhoto = () => {
-
+  const getPhoto = async () => {
+    const imageLocation = await ImageService.selectFromCameraRoll();
+    setImage(imageLocation);
   };
 
   React.useEffect(() => {
+    // Initialize fields when modal is opened
     if (isOpen) {
       setName(selectedContact.name);
       setPhoneNumber(selectedContact.phoneNumber);
@@ -79,15 +81,13 @@ const AddBoard = ({
         <TouchableOpacity onPress={() => takePhoto()}>
           <Entypo style={styles.icon} name="camera" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => takePhoto()}>
+        <TouchableOpacity onPress={() => getPhoto()}>
           <Entypo style={styles.icon} name="image" />
         </TouchableOpacity>
       </View>
-      {/* <Entypo style={styles.icon} name="image" /> */}
       <Button title="Save" onPress={() => handleSubmit()} />
-
     </Modal>
   );
 };
 
-export default AddBoard;
+export default AddContact;

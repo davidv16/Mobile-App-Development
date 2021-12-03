@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Alert, View, Text, TouchableHighlight, TextInput,
+  Alert, View, Text, TouchableHighlight,
 } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
 import Search from '../../components/Search';
-import AddImageModal from '../../components/AddImageModal';
 import IContact from '../../models';
 import styles from './styles';
-
-import data from '../../resources/data.json';
 import * as fileService from '../../services/ContactService';
-import * as ImageFileService from '../../services/ImageFileService';
 
 const Contacts = () => {
   const initialContact = {
@@ -28,10 +24,6 @@ const Contacts = () => {
   const [searchString, setSearchString] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
-  const [isAddImageModalOpen, setAddImageModalOpen] = useState(false);
-  const [images, setImages] = useState(data.images);
-  // A bool flag to indicate whether the images
-  const [loadingImages, setLoadingImages] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -70,12 +62,12 @@ const Contacts = () => {
         cancelable: true,
       },
     );
+    navigate('Contacts' as never);
   };
 
   const addEditContact = async (contact: IContact) => {
-    if (selectedContact.id) {
+    if (contact.id) {
       // EDIT
-      contact.id = selectedContact.id;
       // remove before recreating
       await fileService.deleteContact(selectedContact);
       await fileService.saveContact(contact);
@@ -83,9 +75,10 @@ const Contacts = () => {
       setSelectedContact(initialContact);
     } else {
       // CREATE
-      contact.id = uuidv4();
-      await fileService.saveContact(contact);
-      setContacts([...contacts, contact]);
+      const newContact = { ...contact, id: uuidv4() };
+      await fileService.saveContact(newContact);
+      setContacts([...contacts, newContact]);
+      setSelectedContact(initialContact);
     }
     navigate('Contacts' as never);
   };

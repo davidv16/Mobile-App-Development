@@ -14,7 +14,16 @@ const getPermission = async (permissionTypes: string[]) => {
 
 export const selectFromCameraRoll = async () => {
   await getPermission([CAMERA_ROLL]);
-  // ToDo: Klara thetta
+  const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    quality: 0.8,
+    base64: true,
+    aspect: [16, 9],
+  });
+
+  if (result.cancelled) { return ''; }
+
+  return result.uri;
 };
 
 export const takePhoto = async (): Promise<string> => {

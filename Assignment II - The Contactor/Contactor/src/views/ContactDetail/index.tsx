@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
-  View, Image, Text, TouchableOpacity,
+  View, Image, Text, TouchableOpacity, Linking,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
-const ContactDetail = ({ route }) => {
+const ContactDetail = ({ route }: any) => {
   const { contact, editContact } = route.params;
 
   return (
@@ -15,7 +15,10 @@ const ContactDetail = ({ route }) => {
         style={styles.image}
       />
       <Text style={styles.boardTitle}>{contact.name}</Text>
-      <Text style={styles.boardTitle}>{contact.phoneNumber}</Text>
+      <Text
+        onPress={() => Linking.openURL(`tel:${contact.phoneNumber}`)}
+        style={styles.boardTitle}>{contact.phoneNumber}
+      </Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => editContact(contact)}

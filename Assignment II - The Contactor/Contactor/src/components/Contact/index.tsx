@@ -8,8 +8,8 @@ import styles from './styles';
 import IContact from '../../models';
 
 interface Props {
-    contact: IContact,
-    editContact: (contact: IContact) => void
+  contact: IContact,
+  editContact: (contact: IContact) => void
 }
 
 const Contact = ({ contact, editContact }: Props) => {
