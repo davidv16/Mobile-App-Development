@@ -11,6 +11,7 @@ import IContact from '../../models';
 import styles from './styles';
 
 import * as fileService from '../../services/ContactService';
+import * as phoneContacts from 'expo-contacts';
 
 const Contacts = () => {
     const initialContact = {
@@ -28,28 +29,58 @@ const Contacts = () => {
 
     useEffect(() => {
         (async () => {
-            getAllContacts();
+            await getAllContacts();
         })();
     }, []);
+
+    const importContacts = async () => {
+        const { status } = await phoneContacts.requestPermissionsAsync();
+        if (status === 'granted') {
+            const { data } = await phoneContacts.getContactsAsync({
+                fields: [phoneContacts.Fields.ID, phoneContacts.Fields.Name, phoneContacts.Fields.Image, phoneContacts.Fields.PhoneNumbers],
+            });
+
+            let i = 0;
+            if (data.length > 0) {
+                for (const element of data) {
+                    i++;
+                    if (i > 20) {
+                        break;
+                    }
+                    const newContact: IContact = {
+                        id: '',
+                        name: element.name,
+                        image: 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg',
+                        phoneNumber: element.phoneNumbers[0].number === undefined ? '' : element.phoneNumbers[0].number,
+                    };
+                    addEditContact(newContact);
+
+                }
+            }
+        }
+        setContacts(await fileService.getAllContacts());
+        navigate('Contacts' as never);
+    }
 
     const getAllContacts = async () => {
         let contacts: IContact[] = await fileService.getAllContacts();
 
         Alert.alert(
             'Hey There!',
-            'Do you wanna to import dummy contacts or flush the file system?',
+            'Do you wanna to import dummy contacts, phone contacts or flush the file system?',
             [
                 {
-                    text: 'Yes',
+                    text: 'dummy',
                     onPress: async () => {
                         contacts = await fileService.importDummyContacts();
                         setContacts(contacts);
                     },
                 },
+
                 {
-                    text: 'No',
+                    text: 'phone',
                     onPress: async () => {
-                        setContacts(contacts);
+                        importContacts();
                     },
                 },
                 {
@@ -91,6 +122,13 @@ const Contacts = () => {
         setIsAddModalOpen(true);
     };
 
+    const removeContact = async (contact: IContact) => {
+        await fileService.deleteContact(contact);
+        const newContacts = contacts.filter((x) => x.id !== contact.id);
+        setContacts([]);
+        setContacts(newContacts);
+    }
+
     const filterAndSort = (contacts: IContact[]) => {
         const searchFilter = contacts
             .filter((word) => word.name.toUpperCase()
@@ -116,6 +154,7 @@ const Contacts = () => {
             <ContactList
                 contacts={filterAndSort(contacts)}
                 editContact={(contact: IContact) => editContact(contact)}
+                deleteContact={(contact: IContact) => removeContact(contact)}
             />
             <AddContact
                 isOpen={isAddModalOpen}

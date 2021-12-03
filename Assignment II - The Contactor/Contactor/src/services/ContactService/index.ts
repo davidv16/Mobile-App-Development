@@ -28,7 +28,6 @@ export const deleteContact = async (contact: IContact) => {
   return await FileSystem.deleteAsync(`${contactsDirectory}/${fileName}`);
 };
 
-// TODO: finish
 export const loadContact = async (fileName: string) => {
   try {
     await FileSystem.readAsStringAsync(`${contactsDirectory}/${fileName}`, {
