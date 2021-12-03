@@ -8,12 +8,12 @@ import ContactDetail from '../views/ContactDetail';
 const Stack = createStackNavigator();
 
 const Routes = () => (
-  <NavigationContainer>
-    <Stack.Navigator initialRouteName="Main">
-      <Stack.Screen name="Contacts" component={Contacts} />
-      <Stack.Screen name="ContactDetail" component={ContactDetail} />
-    </Stack.Navigator>
-  </NavigationContainer>
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName="Main">
+            <Stack.Screen name="Contacts" component={Contacts} />
+            <Stack.Screen name="ContactDetail" component={ContactDetail} />
+        </Stack.Navigator>
+    </NavigationContainer>
 );
 
 export default Routes;

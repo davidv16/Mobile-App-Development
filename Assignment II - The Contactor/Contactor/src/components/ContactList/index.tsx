@@ -3,7 +3,6 @@ import { View, FlatList } from 'react-native';
 import IContact from '../../models';
 
 import Contact from '../Contact';
-import styles from './styles';
 
 interface Props {
   contacts: IContact[],
