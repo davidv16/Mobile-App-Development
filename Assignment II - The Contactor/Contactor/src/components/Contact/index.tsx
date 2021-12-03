@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import IContact from '../../models';
 
+// ToDo: remove this comment
+
 interface Props {
   contact: IContact,
   editContact: (contact: IContact) => void,
