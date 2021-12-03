@@ -51,6 +51,7 @@ const Contacts = () => {
                         id: '',
                         name: element.name,
                         image: 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg',
+                        // @ts-ignore
                         phoneNumber: element.phoneNumbers[0].number === undefined ? '' : element.phoneNumbers[0].number,
                     };
                     addEditContact(newContact);
