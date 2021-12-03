@@ -70,23 +70,23 @@ const Contacts = () => {
             'Do you wanna to import dummy contacts, phone contacts or flush the file system?',
             [
                 {
-                    text: 'dummy',
-                    onPress: async () => {
-                        contacts = await fileService.importDummyContacts();
-                        setContacts(contacts);
-                    },
-                },
-
-                {
                     text: 'phone',
                     onPress: async () => {
                         importContacts();
                     },
                 },
                 {
+                    text: 'dummy',
+                    onPress: async () => {
+                        contacts = await fileService.importDummyContacts();
+                        setContacts(contacts);
+                    },
+                },
+                {
                     text: 'flush',
                     onPress: async () => {
                         fileService.deleteContacts();
+                        setContacts([]);
                     },
                 },
             ],
