@@ -24,6 +24,7 @@ const Modal = ({
     onBackdropPress={closeModal}
     onSwipeComplete={closeModal}
     swipeDirection={['up', 'down']}
+    statusBarTranslucent
     style={styles.modal}
   >
     <View style={styles.body}>

@@ -1,78 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import { TextInput, Button } from 'react-native';
+import React, { useState } from 'react';
+import {
+  TextInput, Button, View, TouchableOpacity,
+} from 'react-native';
+import { Entypo } from '@expo/vector-icons';
+import * as ImageService from '../../services/ImageService';
+import * as ImageFileService from '../../services/ImageFileService';
 import IContact from '../../models';
 import Modal from '../Modal';
+import styles from './styles';
 
 interface Props {
-    selectedContact: IContact,
-    isOpen: boolean,
-    closeModal: (x: boolean) => void | any,
-    addEditContact: (contact: IContact) => void
+  selectedContact: IContact,
+  isOpen: boolean,
+  closeModal: (x: boolean) => void | any,
+  addEditContact: (contact: IContact) => void
 }
 
 const AddContact = ({
     selectedContact, isOpen, closeModal, addEditContact,
 }: Props) => {
-    const initialContact = {
-        id: '',
-        name: '',
-        phoneNumber: '',
-        image: '',
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [image, setImage] = useState('');
+
+  const handleSubmit = () => {
+    addEditContact({
+      id: selectedContact.id,
+      name,
+      phoneNumber,
+      image,
+
+    });
+    closeModal(true);
+  };
+
+  const takePhoto = async () => {
+    const imageLocation = await ImageService.takePhoto();
+    if (imageLocation.length > 0) {
+      const photo = await ImageFileService.addImage(imageLocation);
+      setImage(photo.location);
     }
-    const [contact, setContact] = useState<IContact>(selectedContact);
+  };
 
-    useEffect(() => {
-        (async () => {
+  const getPhoto = async () => {
+    const imageLocation = await ImageService.selectFromCameraRoll();
+    setImage(imageLocation);
+  };
 
-        })();
-    }, [])
-
-    const handleSubmit = () => {
-        //console.log(selectedContact)
-        //console.log(contact)
-        const newContact = {
-            id: selectedContact.id,
-            name: contact.name === '' ? selectedContact.name : contact.name,
-            phoneNumber: contact.phoneNumber === '' ? selectedContact.phoneNumber : contact.phoneNumber,
-            image: contact.image === '' ? selectedContact.image : contact.image,
-        };
-        addEditContact(newContact);
-        closeModal(true);
-        setContact(initialContact);
-    };
-
-    const inputHandler = (name: string, value: string) => {
-        setContact({
-            ...contact,
-            [name]: value
-        });
+  React.useEffect(() => {
+    // Initialize fields when modal is opened
+    if (isOpen) {
+      setName(selectedContact.name);
+      setPhoneNumber(selectedContact.phoneNumber);
+      setImage(selectedContact.image);
     }
+  }, [isOpen]);
 
-    return (
-        <Modal
-            title={`${selectedContact.id ? 'Edit' : 'Add'} Contact`}
-            isOpen={isOpen}
-            closeModal={closeModal}
-        >
-            <TextInput
-                placeholder="Name"
-                value={contact.name}
-                onChangeText={(text: string) => inputHandler('name', text)}
-            />
-            <TextInput
-                placeholder="Phone Number"
-                value={contact.phoneNumber}
-                onChangeText={(text: string) => inputHandler('phoneNumber', text)}
-            />
-            <TextInput
-                placeholder="Image"
-                value={contact.image}
-                onChangeText={(text) => inputHandler('image', text)}
-            />
-            <Button title="Save" onPress={() => handleSubmit()} />
-
-        </Modal>
-    );
+  return (
+    <Modal
+      title={`${selectedContact.id ? 'Edit' : 'Add'} Contact`}
+      isOpen={isOpen}
+      closeModal={closeModal}
+    >
+      <TextInput
+        placeholder="Name"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
+      <TextInput
+        placeholder="Phone Number"
+        value={phoneNumber}
+        onChangeText={(text) => setPhoneNumber(text)}
+      />
+      <View style={styles.image}>
+        <TextInput
+          placeholder="Image"
+          value={image}
+          onChangeText={(text) => setImage(text)}
+        />
+        <TouchableOpacity onPress={() => takePhoto()}>
+          <Entypo style={styles.icon} name="camera" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => getPhoto()}>
+          <Entypo style={styles.icon} name="image" />
+        </TouchableOpacity>
+      </View>
+      <Button title="Save" onPress={() => handleSubmit()} />
+    </Modal>
+  );
 };
 
 export default AddContact;

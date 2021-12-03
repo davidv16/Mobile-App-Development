@@ -28,5 +28,6 @@ module.exports = {
     'no-use-before-define': ['error', { functions: true, classes: true, variables: false }],
     'react/style-prop-object': [1, { allow: ['string'] }],
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'linebreak-style': 'off',
   },
 };
