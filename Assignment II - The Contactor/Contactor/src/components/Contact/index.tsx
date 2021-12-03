@@ -18,7 +18,6 @@ const Contact = ({ contact, editContact, deleteContact }: Props) => {
   return (
     <Pressable
       onPress={() => navigate('ContactDetail' as never, { contact, editContact } as never)}
-      onLongPress={() => deleteContact(contact)}
     >
       <View style={styles.listItem}>
         <Image
@@ -32,6 +31,14 @@ const Contact = ({ contact, editContact, deleteContact }: Props) => {
         >
           <Text style={{ color: 'blue' }}>
             <AntDesign name="edit" style={styles.icon} />
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => deleteContact(contact)}
+        >
+          <Text style={{ color: 'red' }}>
+            <AntDesign name="delete" style={styles.icon} />
           </Text>
         </TouchableOpacity>
         <AntDesign name="rightcircle" size={24} color="black" />

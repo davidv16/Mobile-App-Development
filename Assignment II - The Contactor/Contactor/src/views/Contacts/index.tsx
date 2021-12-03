@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Alert, View, Text, TouchableHighlight,
+    Alert, View, Text, TouchableHighlight,
 } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
@@ -13,18 +13,18 @@ import * as fileService from '../../services/ContactService';
 import * as phoneContacts from 'expo-contacts';
 
 const Contacts = () => {
-  const initialContact = {
-    id: '',
-    name: '',
-    phoneNumber: '',
-    image: '',
-  };
+    const initialContact = {
+        id: '',
+        name: '',
+        phoneNumber: '',
+        image: '',
+    };
 
-  const { navigate } = useNavigation();
-  const [contacts, setContacts] = useState<IContact[]>([]);
-  const [searchString, setSearchString] = useState('');
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
+    const { navigate } = useNavigation();
+    const [contacts, setContacts] = useState<IContact[]>([]);
+    const [searchString, setSearchString] = useState('');
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
 
     useEffect(() => {
         (async () => {
@@ -94,31 +94,32 @@ const Contacts = () => {
                 cancelable: true,
             },
         );
+        setContacts(contacts);
         navigate('Contacts' as never);
     };
 
-  const addEditContact = async (contact: IContact) => {
-    if (contact.id) {
-      // EDIT
-      // remove before recreating
-      await fileService.deleteContact(selectedContact);
-      await fileService.saveContact(contact);
-      setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
-      setSelectedContact(initialContact);
-    } else {
-      // CREATE
-      const newContact = { ...contact, id: uuidv4() };
-      await fileService.saveContact(newContact);
-      setContacts([...contacts, newContact]);
-      setSelectedContact(initialContact);
-    }
-    navigate('Contacts' as never);
-  };
+    const addEditContact = async (contact: IContact) => {
+        if (contact.id) {
+            // EDIT
+            // remove before recreating
+            await fileService.deleteContact(selectedContact);
+            await fileService.saveContact(contact);
+            setContacts([...contacts.filter((x) => x.id !== selectedContact.id), contact]);
+            setSelectedContact(initialContact);
+        } else {
+            // CREATE
+            const newContact = { ...contact, id: uuidv4() };
+            await fileService.saveContact(newContact);
+            setContacts([...contacts, newContact]);
+            setSelectedContact(initialContact);
+        }
+        //navigate('Contacts' as never);
+    };
 
-  const editContact = (contact: IContact) => {
-    setSelectedContact(contact);
-    setIsAddModalOpen(true);
-  };
+    const editContact = (contact: IContact) => {
+        setSelectedContact(contact);
+        setIsAddModalOpen(true);
+    };
 
 
     const removeContact = async (contact: IContact) => {
@@ -134,8 +135,8 @@ const Contacts = () => {
                 .indexOf(searchString.toUpperCase()) !== -1)
             .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
 
-    return searchFilter;
-  };
+        return searchFilter;
+    };
 
     return (
         <View
