@@ -6,11 +6,12 @@ import Contact from '../Contact';
 import styles from './styles';
 
 interface Props {
-    contacts: IContact[],
-    editContact: (contact: IContact) => void
+  contacts: IContact[],
+  editContact: (contact: IContact) => void,
+  deleteContact: (contact: IContact) => void
 }
 
-const ContactList = ({ contacts, editContact }: Props) => (
+const ContactList = ({ contacts, editContact, deleteContact }: Props) => (
   <View>
     <FlatList
       numColumns={1}
@@ -19,6 +20,7 @@ const ContactList = ({ contacts, editContact }: Props) => (
         <Contact
           contact={item}
           editContact={editContact}
+          deleteContact={deleteContact}
         />
       )}
       keyExtractor={(contact) => contact.id}

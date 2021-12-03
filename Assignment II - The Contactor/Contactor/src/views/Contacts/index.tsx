@@ -10,6 +10,7 @@ import Search from '../../components/Search';
 import IContact from '../../models';
 import styles from './styles';
 import * as fileService from '../../services/ContactService';
+import * as phoneContacts from 'expo-contacts';
 
 const Contacts = () => {
   const initialContact = {
@@ -25,45 +26,76 @@ const Contacts = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedContact, setSelectedContact] = useState<IContact>(initialContact);
 
-  useEffect(() => {
-    (async () => {
-      getAllContacts();
-    })();
-  }, []);
+    useEffect(() => {
+        (async () => {
+            await getAllContacts();
+        })();
+    }, []);
 
-  const getAllContacts = async () => {
-    let contacts: IContact[] = await fileService.getAllContacts();
+    const importContacts = async () => {
+        const { status } = await phoneContacts.requestPermissionsAsync();
+        if (status === 'granted') {
+            const { data } = await phoneContacts.getContactsAsync({
+                fields: [phoneContacts.Fields.ID, phoneContacts.Fields.Name, phoneContacts.Fields.Image, phoneContacts.Fields.PhoneNumbers],
+            });
 
-    Alert.alert(
-      'Hey There!',
-      'Do you wanna to import dummy contacts or flush the file system?',
-      [
-        {
-          text: 'Yes',
-          onPress: async () => {
-            contacts = await fileService.importDummyContacts();
-            setContacts(contacts);
-          },
-        },
-        {
-          text: 'No',
-          onPress: async () => {
-            setContacts(contacts);
-          },
-        },
-        {
-          text: 'flush',
-          onPress: async () => {
-            fileService.deleteContacts();
-          },
-        },
-      ],
-      {
-        cancelable: true,
-      },
-    );
-    navigate('Contacts' as never);
-  };
+            let i = 0;
+            if (data.length > 0) {
+                for (const element of data) {
+                    i++;
+                    if (i > 20) {
+                        break;
+                    }
+                    const newContact: IContact = {
+                        id: '',
+                        name: element.name,
+                        image: element.image?.uri === undefined ? 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg' : element.image.uri,
+                        // @ts-ignore
+                        phoneNumber: element.phoneNumbers[0].number === undefined ? '' : element.phoneNumbers[0].number,
+                    };
+                    addEditContact(newContact);
+
+                }
+            }
+        }
+        setContacts(await fileService.getAllContacts());
+        navigate('Contacts' as never);
+    }
+
+    const getAllContacts = async () => {
+        let contacts: IContact[] = await fileService.getAllContacts();
+
+        Alert.alert(
+            'Hey There!',
+            'Do you wanna to import dummy contacts, phone contacts or flush the file system?',
+            [
+                {
+                    text: 'phone',
+                    onPress: async () => {
+                        importContacts();
+                    },
+                },
+                {
+                    text: 'dummy',
+                    onPress: async () => {
+                        contacts = await fileService.importDummyContacts();
+                        setContacts(contacts);
+                    },
+                },
+                {
+                    text: 'flush',
+                    onPress: async () => {
+                        fileService.deleteContacts();
+                        setContacts([]);
+                    },
+                },
+            ],
+            {
+                cancelable: true,
+            },
+        );
+        navigate('Contacts' as never);
+    };
 
   const addEditContact = async (contact: IContact) => {
     if (contact.id) {
@@ -88,40 +120,49 @@ const Contacts = () => {
     setIsAddModalOpen(true);
   };
 
-  const filterAndSort = (contacts: IContact[]) => {
-    const searchFilter = contacts
-      .filter((word) => word.name.toUpperCase()
-        .indexOf(searchString.toUpperCase()) !== -1)
-      .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
+
+    const removeContact = async (contact: IContact) => {
+        await fileService.deleteContact(contact);
+        const newContacts = contacts.filter((x) => x.id !== contact.id);
+        setContacts([]);
+        setContacts(newContacts);
+    }
+
+    const filterAndSort = (contacts: IContact[]) => {
+        const searchFilter = contacts
+            .filter((word) => word.name.toUpperCase()
+                .indexOf(searchString.toUpperCase()) !== -1)
+            .sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
 
     return searchFilter;
   };
 
-  return (
-    <View
-      style={styles.container}
-    >
-      <Search
-        searchString={(text) => setSearchString(text)}
-      />
-      <TouchableHighlight
-        style={styles.button}
-        onPress={() => setIsAddModalOpen(true)}
-      >
-        <Text style={styles.buttonText}>Add Contact</Text>
-      </TouchableHighlight>
-      <ContactList
-        contacts={filterAndSort(contacts)}
-        editContact={(contact: IContact) => editContact(contact)}
-      />
-      <AddContact
-        isOpen={isAddModalOpen}
-        closeModal={() => setIsAddModalOpen(false)}
-        addEditContact={(contact: IContact) => addEditContact(contact)}
-        selectedContact={selectedContact}
-      />
-    </View>
-  );
+    return (
+        <View
+            style={styles.container}
+        >
+            <Search
+                searchString={(text) => setSearchString(text)}
+            />
+            <TouchableHighlight
+                style={styles.button}
+                onPress={() => setIsAddModalOpen(true)}
+            >
+                <Text style={styles.buttonText}>Add Contact</Text>
+            </TouchableHighlight>
+            <ContactList
+                contacts={filterAndSort(contacts)}
+                editContact={(contact: IContact) => editContact(contact)}
+                deleteContact={(contact: IContact) => removeContact(contact)}
+            />
+            <AddContact
+                isOpen={isAddModalOpen}
+                closeModal={() => setIsAddModalOpen(false)}
+                addEditContact={(contact: IContact) => addEditContact(contact)}
+                selectedContact={selectedContact}
+            />
+        </View>
+    );
 };
 
 export default Contacts;

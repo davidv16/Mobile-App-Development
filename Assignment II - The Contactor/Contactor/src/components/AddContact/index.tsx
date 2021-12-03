@@ -17,7 +17,7 @@ interface Props {
 }
 
 const AddContact = ({
-  selectedContact, isOpen, closeModal, addEditContact,
+    selectedContact, isOpen, closeModal, addEditContact,
 }: Props) => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');

@@ -9,14 +9,16 @@ import IContact from '../../models';
 
 interface Props {
   contact: IContact,
-  editContact: (contact: IContact) => void
+  editContact: (contact: IContact) => void,
+  deleteContact: (contact: IContact) => void,
 }
 
-const Contact = ({ contact, editContact }: Props) => {
+const Contact = ({ contact, editContact, deleteContact }: Props) => {
   const { navigate } = useNavigation();
   return (
     <Pressable
       onPress={() => navigate('ContactDetail' as never, { contact, editContact } as never)}
+      onLongPress={() => deleteContact(contact)}
     >
       <View style={styles.listItem}>
         <Image
