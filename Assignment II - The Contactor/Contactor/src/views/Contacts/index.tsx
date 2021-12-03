@@ -4,13 +4,13 @@ import {
 } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigation } from '@react-navigation/native';
+import * as phoneContacts from 'expo-contacts';
 import AddContact from '../../components/AddContact';
 import ContactList from '../../components/ContactList';
 import Search from '../../components/Search';
 import IContact from '../../models';
 import styles from './styles';
 import * as fileService from '../../services/ContactService';
-import * as phoneContacts from 'expo-contacts';
 
 const Contacts = () => {
     const initialContact = {
@@ -53,14 +53,14 @@ const Contacts = () => {
                         // @ts-ignore
                         phoneNumber: element.phoneNumbers[0].number === undefined ? '' : element.phoneNumbers[0].number,
                     };
-                    addEditContact(newContact);
-
+                    await addEditContact(newContact);
                 }
             }
         }
-        setContacts(await fileService.getAllContacts());
+        const contactList = await fileService.getAllContacts();
+        setContacts([...contactList]);
         navigate('Contacts' as never);
-    }
+    };
 
     const getAllContacts = async () => {
         let contacts: IContact[] = await fileService.getAllContacts();
@@ -122,14 +122,13 @@ const Contacts = () => {
         setIsAddModalOpen(true);
     };
 
-
     const removeContact = async (contact: IContact) => {
         await fileService.deleteContact(contact);
         const newContacts = contacts.filter((x) => x.id !== contact.id);
         setContacts([]);
         setContacts(newContacts);
         navigate('Contacts' as never);
-    }
+    };
 
     const filterAndSort = (contacts: IContact[]) => {
         const searchFilter = contacts
