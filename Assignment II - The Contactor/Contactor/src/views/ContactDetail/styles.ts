@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { graniteGray } from '../../styles/colors';
 
 export default StyleSheet.create({
   image: {
@@ -21,21 +20,18 @@ export default StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 20,
     paddingRight: 20,
-
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
-    
   },
   icon: {
     fontSize: 25,
     marginTop: 20,
     marginBottom: 20,
   },
-  editDeleatContacts:{
-    flexDirection:'row',
+  editDeleteContacts: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    
-  }
+  },
 });

@@ -110,9 +110,9 @@ const Contacts = () => {
             // CREATE
             const newContact = { ...contact, id: uuidv4() };
             await fileService.saveContact(newContact);
-            console.log(newContact)
             setContacts([...contacts, newContact]);
             setSelectedContact(initialContact);
+            return newContact;
         }
         navigate('Contacts' as never);
     };
