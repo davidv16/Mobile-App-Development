@@ -14,12 +14,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    checkmark: {
-        position: 'absolute',
-        top: 15,
-        right: 15,
-        fontSize: 16,
-    },
     icon: {
         fontSize: 25,
         marginTop: 20,
