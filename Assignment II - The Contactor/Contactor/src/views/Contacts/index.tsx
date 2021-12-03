@@ -49,7 +49,8 @@ const Contacts = () => {
                     const newContact: IContact = {
                         id: '',
                         name: element.name,
-                        image: element.image?.uri === undefined ? 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg' : element.image.uri,
+                        // @ts-ignore
+                        image: element.imageAvailable ? element.image.uri : 'https://images.prismic.io/indiecampers-demo/9f34856d-05da-4afb-832f-d3a36de83b7f_Hero---Kinderdijk.jpg',
                         // @ts-ignore
                         phoneNumber: element.phoneNumbers[0].number === undefined ? '' : element.phoneNumbers[0].number,
                     };
