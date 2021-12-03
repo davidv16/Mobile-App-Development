@@ -113,7 +113,7 @@ const Contacts = () => {
             setContacts([...contacts, newContact]);
             setSelectedContact(initialContact);
         }
-        //navigate('Contacts' as never);
+        navigate('Contacts' as never);
     };
 
     const editContact = (contact: IContact) => {
@@ -127,6 +127,7 @@ const Contacts = () => {
         const newContacts = contacts.filter((x) => x.id !== contact.id);
         setContacts([]);
         setContacts(newContacts);
+        navigate('Contacts' as never);
     }
 
     const filterAndSort = (contacts: IContact[]) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View, Image, Text, TouchableOpacity, Linking,
 } from 'react-native';
@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const ContactDetail = ({ route }: any) => {
-  const { contact, editContact } = route.params;
+  const { contact, editContact, deleteContact } = route.params;
 
   return (
     <View>
@@ -25,6 +25,14 @@ const ContactDetail = ({ route }: any) => {
       >
         <Text style={{ color: 'blue' }}>
           <AntDesign name="edit" style={styles.icon} />
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => deleteContact(contact)}
+      >
+        <Text style={{ color: 'red' }}>
+          <AntDesign name="delete" style={styles.icon} />
         </Text>
       </TouchableOpacity>
     </View>
