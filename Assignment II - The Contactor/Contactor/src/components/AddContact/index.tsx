@@ -10,7 +10,7 @@ interface Props {
     addEditContact: (contact: IContact) => void
 }
 
-const AddBoard = ({
+const AddContact = ({
     selectedContact, isOpen, closeModal, addEditContact,
 }: Props) => {
     const initialContact = {
@@ -75,4 +75,4 @@ const AddBoard = ({
     );
 };
 
-export default AddBoard;
+export default AddContact;
