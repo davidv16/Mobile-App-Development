@@ -19,22 +19,25 @@ const ContactDetail = ({ route }: any) => {
         onPress={() => Linking.openURL(`tel:${contact.phoneNumber}`)}
         style={styles.boardTitle}>{contact.phoneNumber}
       </Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => editContact(contact)}
-      >
-        <Text style={{ color: 'blue' }}>
-          <AntDesign name="edit" style={styles.icon} />
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => deleteContact(contact)}
-      >
-        <Text style={{ color: 'red' }}>
-          <AntDesign name="delete" style={styles.icon} />
-        </Text>
-      </TouchableOpacity>
+      <View
+      style={styles.editDeleatContacts}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => editContact(contact)}
+        >
+          <Text style={{ color: 'blue' }}>
+            <AntDesign name="edit" style={styles.icon} />
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => deleteContact(contact)}
+        >
+          <Text style={{ color: 'red' }}>
+            <AntDesign name="delete" style={styles.icon} />
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

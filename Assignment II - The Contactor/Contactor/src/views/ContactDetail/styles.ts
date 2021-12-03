@@ -21,16 +21,21 @@ export default StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 20,
     paddingRight: 20,
-    borderColor: 'white',
-    borderWidth: 2,
+
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
+    
   },
   icon: {
     fontSize: 25,
     marginTop: 20,
     marginBottom: 20,
   },
+  editDeleatContacts:{
+    flexDirection:'row',
+    justifyContent: 'center',
+    
+  }
 });
