@@ -11,13 +11,14 @@
     "lint": "./node_modules/eslint/bin/eslint.js '**/*.{js,ts,tsx}' --quiet --fix"
   },
   "dependencies": {
+    "@expo/vector-icons": "latest",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
     "@types/react-native-modal": "^4.1.1",
     "@types/uuid": "^8.3.3",
+    "axios": "^0.24.0",
     "expo": "^43.0.3",
     "expo-status-bar": "~1.1.0",
-    "@expo/vector-icons": "latest",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "^0.66.3",
