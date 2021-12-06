@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 
-const CinemaDetail = () => {
+const UpcomingMovies = () => {
   return (
     <View>
-      <Text>CinemaDetail</Text>
+      <Text>UpcomingMovies</Text>
     </View>
   );
 }
 
-export default CinemaDetail;
+export default UpcomingMovies;
