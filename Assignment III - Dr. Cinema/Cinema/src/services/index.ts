@@ -3,7 +3,7 @@ import credentials from '../resources/credentials.json'
 let token = {};
 const url: string = 'http://api.kvikmyndir.is/authenticate'
 
-const authentiateApi = async () => {
+export const authentiateApi = async () => {
 
   try {
     const response = await axios.post(
