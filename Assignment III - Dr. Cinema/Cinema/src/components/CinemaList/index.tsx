@@ -1,12 +1,28 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
+import ICinema from '../../models/ICinema';
+import Cinema from '../Cinema';
 
-const CinemaList = () => {
+
+interface Props {
+  cinemas: ICinema[];
+}
+
+const CinemaList = ({cinemas}: Props) => {
   return (
     <View>
-      <Text>CinemaList</Text>
-    </View>
+    <FlatList
+      numColumns={1}
+      data={cinemas}
+      renderItem={({ item }) => (
+        <Cinema
+          cinema={item}
+        />
+      )}
+      keyExtractor={(item) => item.id.toString()}
+    />
+  </View>
   );
 }
 

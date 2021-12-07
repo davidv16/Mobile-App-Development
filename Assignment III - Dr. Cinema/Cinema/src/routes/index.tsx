@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Main from '../views/Main';
 import Cinemas from '../views/Cinemas';
 import CinemaDetail from '../views/CinemaDetail';
-import Movie from '../views/Movie';
+import MovieDetail from '../views/MovieDetail';
 import UpcomingMovies from '../views/UpcomingMovies';
 
 const Stack = createStackNavigator();
@@ -16,7 +16,7 @@ const Routes = () => (
       <Stack.Screen name="Main" component={Main} />
       <Stack.Screen name="Cinemas" component={Cinemas} />
       <Stack.Screen name="CinemaDetail" component={CinemaDetail} />
-      <Stack.Screen name="Movie" component={Movie} />
+      <Stack.Screen name="Movie" component={MovieDetail} />
       <Stack.Screen name="UpcomingMovies" component={UpcomingMovies} />
     </Stack.Navigator>
   </NavigationContainer>

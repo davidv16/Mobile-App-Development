@@ -1,12 +1,27 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
+import { getMovies } from '../../services';
+import IMovie from '../../models/IMovie';
+import Movie from '../Movie';
 
-const MovieList = () => {
+interface Props {
+  movies: IMovie[];
+}
+const MovieList = ({movies}: Props) => {
   return (
     <View>
-      <Text>MovieList</Text>
-    </View>
+    <FlatList
+      numColumns={1}
+      data={movies}
+      renderItem={({ item }) => (
+        <Movie
+          movie={item}
+        />
+      )}
+      keyExtractor={(item) => item.id.toString()}
+    />
+  </View>
   );
 }
 

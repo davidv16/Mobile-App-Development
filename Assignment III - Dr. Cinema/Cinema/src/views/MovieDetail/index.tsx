@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 
-const Movie = () => {
+const MovieDetail = () => {
   return (
     <View>
-      <Text>Movie</Text>
+      <Text>MovieDetail</Text>
     </View>
   );
 }
 
-export default Movie;
+export default MovieDetail;
