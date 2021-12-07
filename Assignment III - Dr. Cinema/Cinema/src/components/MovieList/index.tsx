@@ -4,11 +4,13 @@ import styles from './styles';
 import { getMovies } from '../../services';
 import IMovie from '../../models/IMovie';
 import Movie from '../Movie';
+import ICinema from '../../models/ICinema';
 
 interface Props {
   movies?: IMovie[];
+  cinema?: ICinema;
 }
-const MovieList = ({movies}: Props) => {
+const MovieList = ({movies, cinema}: Props) => {
   return (
     <View>
     <FlatList
@@ -17,6 +19,7 @@ const MovieList = ({movies}: Props) => {
       renderItem={({ item }) => (
         <Movie
           movie={item}
+          cinema={cinema}
         />
       )}
       keyExtractor={(item) => item.id.toString()}

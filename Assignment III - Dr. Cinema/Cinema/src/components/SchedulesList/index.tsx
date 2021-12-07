@@ -4,27 +4,29 @@ import styles from './styles';
 import ICinema from '../../models/ICinema';
 import ShowTime from '../ShowTime';
 import IShowTime from '../../models/IShowTime';
+import Schedule from '../Schedule';
+import ISchedule from '../../models/ISchedule';
 
 
 interface Props {
-  showTimes: IShowTime[];
+  schedules: ISchedule[];
 }
 
-const ShowTimesList = ({showTimes}: Props) => {
+const SchedulesList = ({schedules}: Props) => {
   return (
     <View>
     <FlatList
       numColumns={1}
-      data={showTimes}
+      data={schedules}
       renderItem={({ item }) => (
-        <ShowTime
-          showTime={item}
+        <Schedule
+          schedule={item}
         />
       )}
-      keyExtractor={(item) => item.cinema.name}
+      keyExtractor={(item) => item.time}
     />
   </View>
   );
 }
 
-export default ShowTimesList;
+export default SchedulesList;

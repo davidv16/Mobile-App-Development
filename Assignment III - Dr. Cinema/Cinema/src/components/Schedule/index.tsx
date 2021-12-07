@@ -2,22 +2,21 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Pressable, Image } from 'react-native';
-import SchedulesList from '../SchedulesList';
 import ICinema from '../../models/ICinema';
-import IShowTime from '../../models/IShowTime';
+import ISchedule from '../../models/ISchedule';
 import styles from './styles';
 
 interface Props {
-  showTime: IShowTime;
+  schedule: ISchedule;
 }
-const ShowTime = ({ showTime }: Props) => {
+const Schedule = ({ schedule }: Props) => {
   return (
     <View style={styles.listItem}>
-     
-      
+      <Text style={styles.text}>{schedule.time}</Text>
+      <Text style={styles.text}>{schedule.time}</Text>
       <AntDesign name="rightcircle" size={24} color="black" />
     </View>
   );
 }
 
-export default ShowTime;
+export default Schedule;

@@ -35,7 +35,7 @@ const CinemaDetail = ({ route }: any) => {
       <Text style={styles.boardTitle}>{cinema.website}</Text>
       <Text >{cinema.description}</Text>
 
-      <MovieList movies={filteredMovies}/>
+      <MovieList movies={filteredMovies} cinema={cinema}/>
     </View>
   );
 }
