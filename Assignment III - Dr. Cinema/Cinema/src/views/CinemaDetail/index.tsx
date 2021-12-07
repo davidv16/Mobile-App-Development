@@ -7,34 +7,35 @@ import MovieList from '../../components/MovieList';
 
 const CinemaDetail = ({ route }: any) => {
   const { cinema } = route.params;
-  const [movies, setMovies] = useState<IMovie[]>();
-  const [filteredMovies, setFilteredMovies] = useState<IMovie[]>();
+  const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
-    (async() => {
-      setMovies(await getMovies());
-
-    })();
+      filterCinemaMovies();
   }, []);
 
   const filterCinemaMovies = async () => {
-    // @ts-ignore
-    //console.log(...movies.filter((x) => x.showTimes.cinema.id !== cinema.id))
-    // @ts-ignore
-    //console.log(movies.filter((x) => x.showTimes.cinema.id === cinema.id))
-   // console.log('ddf' + movies)
-    //setMovies(movies.filter((x) => x.showTimes.cinema.id === cinema.id));
+    const movies: IMovie[] = await getMovies();
+    const filtered: IMovie[] = [];
+    for(const i of movies) {
+      for(const s of i.showTimes as []) {
+        //@ts-ignore
+        if(s.cinema.id === cinema.id) {
+          filtered.push(i)
+        }
+      }
+    }
+    setFilteredMovies(filtered);
   }
   return (
     <View>
 
       <Text style={styles.boardTitle}>{cinema.name}</Text>
-      <Text style={styles.boardTitle}>{cinema.description}</Text>
       <Text style={styles.boardTitle}>{cinema.completeAddress}</Text>
       <Text style={styles.boardTitle}>{cinema.phone}</Text>
       <Text style={styles.boardTitle}>{cinema.website}</Text>
+      <Text >{cinema.description}</Text>
 
-      <MovieList movies={movies as IMovie[]}/>
+      <MovieList movies={filteredMovies}/>
     </View>
   );
 }

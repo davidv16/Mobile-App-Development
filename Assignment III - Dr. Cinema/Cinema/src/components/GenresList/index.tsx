@@ -4,18 +4,19 @@ import styles from './styles';
 import { getMovies } from '../../services';
 import IMovie from '../../models/IMovie';
 import Movie from '../Movie';
+import Genre from '../Genre';
 
 interface Props {
   movies?: IMovie[];
 }
-const MovieList = ({movies}: Props) => {
+const GenresList = ({movies}: Props) => {
   return (
     <View>
     <FlatList
       numColumns={1}
       data={movies}
       renderItem={({ item }) => (
-        <Movie
+        <Genre
           movie={item}
         />
       )}
@@ -25,4 +26,4 @@ const MovieList = ({movies}: Props) => {
   );
 }
 
-export default MovieList;
+export default GenresList;

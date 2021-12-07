@@ -2,6 +2,7 @@ import axios from 'axios';
 import ICinema from '../models/ICinema';
 import IGenre from '../models/IGenre';
 import IMovie from '../models/IMovie';
+import ITrailer from '../models/ITrailer';
 import ISchedule from '../models/ISchedule';
 import IShowTime from '../models/IShowTime';
 import credentials from '../resources/credentials.json'
@@ -49,7 +50,7 @@ export const getCinemas = async () => {
       let cinema: ICinema = {
         id: i.id,
         name: i.name,
-        description: i.descrition,
+        description: i.description,
         completeAddress: `${i.address}, ${i.city}`,
         phone: i.phone,
         website: i.website
@@ -71,7 +72,7 @@ export const getGenres = async () => {
           'x-access-token': apiResponse.token
         }
       });
-    console.log(genres.data);
+    //console.log(genres.data);
     return genres.data;
   } catch (e) {
     console.log(e);
@@ -86,7 +87,7 @@ export const getImages = async () => {
           'x-access-token': apiResponse.token
         }
       });
-    console.log(images.data);
+    //console.log(images.data);
     return images.data;
   } catch (e) {
     console.log(e);
@@ -101,7 +102,7 @@ export const getUpcomingMovies = async () => {
           'x-access-token': apiResponse.token
         }
       });
-    console.log(upcomingMovies.data);
+    //console.log(upcomingMovies.data);
     return upcomingMovies.data;
   } catch (e) {
     console.log(e);
@@ -151,6 +152,12 @@ export const getMovies = async () => {
         }
         showTimes.push(showTime);
       }
+      let trailers: string[] = [];
+      for(const t of i.trailers) {
+        for(const r of t.results) {
+          trailers.push(r.key);
+        }
+      }
 
       let movie: IMovie = {
         id: i.id,
@@ -160,11 +167,12 @@ export const getMovies = async () => {
         durationMinutes: i.durationMinutes,
         year: i.year,
         genres: genres,
-        ////trailer: i.trailer,
+        //@ts-ignore
+        trailer: trailers,
         showTimes: showTimes
       }
       movies.push(movie);
-    }
+    }    
     return movies as IMovie[];
   } catch (e) {
     console.log(e);

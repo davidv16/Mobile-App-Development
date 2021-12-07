@@ -1,5 +1,6 @@
 import IGenre from '../IGenre';
 import IShowTimes from '../IShowTime';
+import ITrailer from '../ITrailer';
 
 export default interface IMovie {
   id: number;
@@ -8,7 +9,7 @@ export default interface IMovie {
   plot?: string;
   durationMinutes?: number;
   year: string;
-  genres?: IGenre[]
-  trailer?: string;
+  genres?: IGenre[];
+  trailers?: string[];
   showTimes?: IShowTimes[];
 };
