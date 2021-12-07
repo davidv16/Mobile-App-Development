@@ -3,7 +3,7 @@ import { getUpcomingMovies } from "../services";
 
 export const getUpcoming = () => async dispatch => {
     const upcomingMovies = await getUpcomingMovies();
-    console.log('inside async action creator: ' + upcomingMovies[0].title);
+    // console.log('inside async action creator: ' + upcomingMovies[0].title);
     dispatch(getUpcomingMoviesSuccess(upcomingMovies))
 };
 

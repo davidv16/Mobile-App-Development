@@ -4,7 +4,6 @@ import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpComingMovie from '../UpcomingMovie';
 import styles from './styles';
 import { useSelector } from 'react-redux';
-import Movie from '../Movie';
 
 
 // interface Props {
@@ -13,11 +12,12 @@ import Movie from '../Movie';
 
 const UpcomingMovieList = () => {
   const movies = useSelector(state =>state)
+  // console.log(movies)
   return (
     <View>
       <FlatList
         numColumns={1}
-        data={movies}
+        data={movies.upcomingReducer}
         renderItem={({ item }) => (
           <UpComingMovie
             movie={item}
