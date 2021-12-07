@@ -104,10 +104,6 @@ export const getUpcomingMovies = async () => {
           'x-access-token': apiResponse.token
         }
       });
-<<<<<<< HEAD
-    // console.log(upcomingMovies.data);
-    return upcomingMovies.data;
-=======
     const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
     
     // populate the return value
@@ -129,7 +125,6 @@ export const getUpcomingMovies = async () => {
       upcomingMovies.push(upComingMovie);
     }    
     return upcomingMovies as IUpcomingMovie[];
->>>>>>> 873ca9463551a6a95bca4a898a1b33268af6deb2
   } catch (e) {
     console.log(e);
   }
