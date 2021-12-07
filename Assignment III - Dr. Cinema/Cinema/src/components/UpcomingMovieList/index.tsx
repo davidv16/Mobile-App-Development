@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpComingMovie from '../UpcomingMovie';
-import styles from './styles';
 
 interface Props {
   movies: IUpcomingMovie[];
-  setCurrentYouTube: (id: string) => void;
+  setCurrentYouTube: () => void;
   setModal: (x: boolean) => void;
 }
 

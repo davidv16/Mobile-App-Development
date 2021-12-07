@@ -5,4 +5,4 @@ export default interface ICinema {
   completeAddress?: string;
   phone?: string;
   website?: string;
-};
+}

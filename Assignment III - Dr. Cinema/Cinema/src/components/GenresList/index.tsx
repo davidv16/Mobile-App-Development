@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import styles from './styles';
 import Genre from '../Genre';
 import IGenre from '../../models/IGenre';
 
 interface Props {
-  genres?: IGenre[];
+  genres: IGenre[];
 }
 const GenresList = ({ genres }: Props) => (
   <View>

@@ -32,9 +32,8 @@ export const authentiateApi = async () => {
     } catch (e) {
       console.log(e);
     }
-  } else {
-    return apiResponse;
   }
+  return apiResponse;
 };
 
 export const getCinemas = async () => {

@@ -1,9 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
-import styles from './styles';
-import ICinema from '../../models/ICinema';
-import ShowTime from '../ShowTime';
-import IShowTime from '../../models/IShowTime';
+import { View, FlatList } from 'react-native';
 import Schedule from '../Schedule';
 import ISchedule from '../../models/ISchedule';
 

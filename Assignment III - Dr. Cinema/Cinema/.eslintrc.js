@@ -33,5 +33,8 @@ module.exports = {
     'no-nested-ternary': 'off',
     'import/prefer-default-export': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    'no-restricted-syntax': 'off',
+    'no-extra-semi': 'off',
+    semi: 'off',
   },
 };

@@ -1,5 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View, Text, Image, Pressable,
 } from 'react-native';
@@ -12,10 +12,6 @@ interface Props {
   setModal: (x: boolean) => void;
 }
 const UpcomingMovie = ({ movie, setCurrentYouTube, setModal }: Props) => {
-  useEffect(() => {
-
-  }, []);
-
   const setYoutubeTrailerId = () => {
     for (const t of movie.trailers) {
       if (!(t === undefined)) {

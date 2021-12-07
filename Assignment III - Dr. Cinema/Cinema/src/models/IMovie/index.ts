@@ -11,4 +11,4 @@ export default interface IMovie {
   genres?: IGenre[];
   trailers?: string[];
   showTimes?: IShowTimes[];
-};
+}

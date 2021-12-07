@@ -10,7 +10,10 @@ interface Props {
 }
 
 const ShowTimesList = ({ showTimes, cinema }: Props) => {
-  const [selectedCinema] = useState<IShowTime[]>({ ...showTimes.filter((x) => x.cinema.id === cinema.id) });
+  const [selectedCinema] = useState<IShowTime[]>({
+    ...showTimes
+      .filter((x) => x.cinema.id === cinema.id),
+  });
 
   return (
     <View>

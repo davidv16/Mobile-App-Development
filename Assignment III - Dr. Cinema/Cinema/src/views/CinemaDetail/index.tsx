@@ -17,11 +17,13 @@ const CinemaDetail = ({ route }: any) => {
 
   const filterCinemaMovies = async () => {
     const movies: IMovie[] = await getMovies();
-    let filtered: IMovie[] = movies.filter(m => m.showTimes.some(c => c.cinema.id === cinema.id));
-    /* 
+    const filtered: IMovie[] = movies
+      // @ts-ignore
+      .filter((m) => m.showTimes
+        .some((c) => c.cinema.id === cinema.id));
+    /*
     for (const i of movies) {
       for (const s of i.showTimes as []) {
-        // @ts-ignore
         if (s.cinema.id === cinema.id) {
           filtered.push(i);
         }

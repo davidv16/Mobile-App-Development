@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import styles from './styles';
-import { getMovies } from '../../services';
+import React from 'react';
+import { View, FlatList } from 'react-native';
 import IMovie from '../../models/IMovie';
 import Movie from '../Movie';
 import ICinema from '../../models/ICinema';
 
 interface Props {
-  movies?: IMovie[];
-  cinema?: ICinema;
+  movies: IMovie[];
+  cinema: ICinema;
 }
 const MovieList = ({ movies, cinema }: Props) => (
   <View>

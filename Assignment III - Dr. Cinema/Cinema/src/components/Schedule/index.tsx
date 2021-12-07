@@ -1,10 +1,8 @@
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-  View, Text, Pressable, Image, Linking,
+  View, Text, Pressable, Linking,
 } from 'react-native';
-import ICinema from '../../models/ICinema';
 import ISchedule from '../../models/ISchedule';
 import styles from './styles';
 
