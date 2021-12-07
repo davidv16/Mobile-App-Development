@@ -2,10 +2,10 @@ import axios from 'axios';
 import ICinema from '../models/ICinema';
 import IGenre from '../models/IGenre';
 import IMovie from '../models/IMovie';
-import ITrailer from '../models/ITrailer';
 import ISchedule from '../models/ISchedule';
 import IShowTime from '../models/IShowTime';
 import credentials from '../resources/credentials.json'
+import IUpcomingMovie from '../models/IUpcomingMovie';
 let apiResponse = {
   success: '',
   message: '',
@@ -64,6 +64,7 @@ export const getCinemas = async () => {
   return cinemas as ICinema[];
 }
 
+/*
 export const getGenres = async () => {
   try{
     const genres = await axios.get(
@@ -93,20 +94,46 @@ export const getImages = async () => {
     console.log(e);
   }
 }
-
+*/
 export const getUpcomingMovies = async () => {
+  let upcomingMovies: IUpcomingMovie[] = [];
   try{
-    const upcomingMovies = await axios.get(
+    const response = await axios.get(
       `${url}/upcoming`, {
         headers: {
           'x-access-token': apiResponse.token
         }
       });
+<<<<<<< HEAD
     // console.log(upcomingMovies.data);
     return upcomingMovies.data;
+=======
+    const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
+    
+    // populate the return value
+    for(const i of moviesTrimmed) {
+      let trailers: string[] = [];
+      for(const t of i.trailers) {
+        for(const r of t.results) {
+          trailers.push(r.key);
+        }
+      }
+
+      let upComingMovie: IUpcomingMovie = {
+        title: i.title,
+        poster: i.poster,
+        releaseDate: i.releaseDate,
+        //@ts-ignore
+        trailers: trailers
+      }
+      upcomingMovies.push(upComingMovie);
+    }    
+    return upcomingMovies as IUpcomingMovie[];
+>>>>>>> 873ca9463551a6a95bca4a898a1b33268af6deb2
   } catch (e) {
     console.log(e);
   }
+  return upcomingMovies as IUpcomingMovie[];
 }
 
 export const getMovies = async () => {
