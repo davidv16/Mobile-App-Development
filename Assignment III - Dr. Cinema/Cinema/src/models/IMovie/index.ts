@@ -1,6 +1,5 @@
 import IGenre from '../IGenre';
 import IShowTimes from '../IShowTime';
-import ITrailer from '../ITrailer';
 
 export default interface IMovie {
   id: number;

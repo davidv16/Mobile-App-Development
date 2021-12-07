@@ -7,9 +7,8 @@ import IGenre from '../../models/IGenre';
 interface Props {
   genres?: IGenre[];
 }
-const GenresList = ({genres}: Props) => {
-  return (
-    <View>
+const GenresList = ({ genres }: Props) => (
+  <View>
     <FlatList
       numColumns={1}
       data={genres}
@@ -21,7 +20,6 @@ const GenresList = ({genres}: Props) => {
       keyExtractor={(item) => item.id.toString()}
     />
   </View>
-  );
-}
+);
 
 export default GenresList;

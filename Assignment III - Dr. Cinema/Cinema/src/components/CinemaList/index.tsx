@@ -4,14 +4,12 @@ import styles from './styles';
 import ICinema from '../../models/ICinema';
 import Cinema from '../Cinema';
 
-
 interface Props {
   cinemas: ICinema[];
 }
 
-const CinemaList = ({cinemas}: Props) => {
-  return (
-    <View>
+const CinemaList = ({ cinemas }: Props) => (
+  <View>
     <FlatList
       numColumns={1}
       data={cinemas}
@@ -23,7 +21,6 @@ const CinemaList = ({cinemas}: Props) => {
       keyExtractor={(item) => item.id.toString()}
     />
   </View>
-  );
-}
+);
 
 export default CinemaList;
