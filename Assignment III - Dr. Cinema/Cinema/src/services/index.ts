@@ -43,12 +43,9 @@ export const getCinemas = async () => {
           'x-access-token': apiResponse.token
         }
       });
-      const cinemasTrimmed = whiteSpaceDESTROYER(response.data);
-      console.log(response.data);
+      const cinemasTrimmed: any = whiteSpaceDESTROYER(response.data);
       console.log(cinemasTrimmed)
     for(const i of cinemasTrimmed) {
-      //let trimmedAddress = Object.keys(i.address.trim());
-      //console.log(trimmedAddress)
       let cinema: ICinema = {
         id: i.id,
         name: i.name,
@@ -111,7 +108,7 @@ export const getUpcomingMovies = async () => {
   }
 }
 
-export const getMovies = async (cinemaID?: number) => {
+export const getMovies = async () => {
   let movies: IMovie[] = [];
   try{
     const response = await axios.get(
@@ -120,24 +117,27 @@ export const getMovies = async (cinemaID?: number) => {
           'x-access-token': apiResponse.token
         }
       });
+    const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
     // populate the return value
-    for(const i of response.data) {
+    for(const i of moviesTrimmed) {
       // populate genres
-      //let genres: IGenre[] = [];
-      //for(const g of i.genres) {
-      //  let genre: IGenre = {
-      //    id: g.ID,
-      //    name: g.Name,
-      //    nameEN: g.NameEN
-      //  }
-      //  //console.log(genre);
-      //  genres.push(genre);
-      //}
+      let genres: IGenre[] = [];
+      const genresTrimmed: any = whiteSpaceDESTROYER(i.genres);
+      for(const g of genresTrimmed) {
+
+        let genre: IGenre = {
+          id: g.ID,
+          name: g.Name,
+          nameEN: g.NameEN
+        }
+        genres.push(genre);
+      }
 
       // pobulate showtimes
       let showTimes: IShowTime[] = [];
       let schedules: ISchedule[] = [];
       for(const s of i.showtimes) {
+        //populate schedules
         for(const sc of s.schedule) {
         let schedule: ISchedule = {
           time: sc.time,
@@ -145,8 +145,6 @@ export const getMovies = async (cinemaID?: number) => {
         }
         schedules.push(schedule);
       }
-
-
         let showTime: IShowTime = {
           cinema: { id: s.cinema.id, name: s.cinema.name },
           schedule: schedules
@@ -161,13 +159,12 @@ export const getMovies = async (cinemaID?: number) => {
         plot: i.plot,
         durationMinutes: i.durationMinutes,
         year: i.year,
-        //genres: genres,
+        genres: genres,
         ////trailer: i.trailer,
         showTimes: showTimes
       }
       movies.push(movie);
     }
-    //console.log(whiteSpaceDESTROYER(movies));
     return movies as IMovie[];
   } catch (e) {
     console.log(e);
@@ -177,5 +174,12 @@ export const getMovies = async (cinemaID?: number) => {
 }
 
 const whiteSpaceDESTROYER = <T>(data: T[]) => {
-  return Object.keys(data).map(k => data[k] = typeof data[k] === 'string' ? data[k].trim() : data[k]);
+  const trimmedData = data.map((l) => {
+    const parsed: T[] = [];
+    //@ts-ignore
+    Object.keys(l).forEach((key) => parsed[key.trim()] = l[key]);
+    return parsed;
+  })
+
+  return trimmedData;
 }
