@@ -24,7 +24,7 @@ export const authentiateApi = async () => {
         }
       });
       apiResponse = response.data;
-      console.log(apiResponse);
+      console.log(apiResponse.token);
       return apiResponse;
     } catch (e) {
       console.log(e);
@@ -45,7 +45,7 @@ export const getCinemas = async () => {
         }
       });
       const cinemasTrimmed: any = whiteSpaceDESTROYER(response.data);
-      console.log(cinemasTrimmed)
+      // console.log(cinemasTrimmed)
     for(const i of cinemasTrimmed) {
       let cinema: ICinema = {
         id: i.id,
@@ -102,7 +102,7 @@ export const getUpcomingMovies = async () => {
           'x-access-token': apiResponse.token
         }
       });
-    //console.log(upcomingMovies.data);
+    // console.log(upcomingMovies.data);
     return upcomingMovies.data;
   } catch (e) {
     console.log(e);
