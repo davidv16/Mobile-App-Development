@@ -6,7 +6,7 @@ import Modal from '../Modal';
 interface Props {
   youTubeId: string;
   isOpen: boolean;
-  closeModal: (x: boolean) => void | any;
+  closeModal: () => void;
 }
 const Youtube = ({ youTubeId, isOpen, closeModal }: Props) => {
   return (

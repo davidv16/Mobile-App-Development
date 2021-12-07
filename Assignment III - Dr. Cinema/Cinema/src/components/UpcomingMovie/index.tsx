@@ -16,22 +16,12 @@ const UpcomingMovie = ({movie, setCurrentYouTube, setModal}: Props) => {
   }, [])
 
   const setYoutubeTrailerId = () => {
-    console.log(movie.trailers)
-    if(movie.trailers === []){
-      setCurrentYouTube('');
-
-    } else {
       for(const t of movie.trailers) {
         if(!(t === undefined)){
           setCurrentYouTube(t);
           break;
         }
-        else {
-          setCurrentYouTube('');
-        }
       }
-
-    }
   }
 
   const handlePress = () => {

@@ -22,6 +22,11 @@ const UpcomingMovies = () => {
   const sortUpcomingMovies = (data: IUpcomingMovie[]) => {
     setUpcomingMovies(data.sort((a, b) => ((a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))));
   }
+
+  const handleCloseModal = () => {
+    setIsAddModalOpen(false);
+    setCurrentYouTubeId('');
+  }
   return (
     <View>
       <UpcomingMovieList 
@@ -32,7 +37,7 @@ const UpcomingMovies = () => {
       <YouTube
         youTubeId={currentYouTubeId}
         isOpen={isAddModalOpen}
-        closeModal={() => setIsAddModalOpen(false)} 
+        closeModal={() => handleCloseModal()} 
       />
     </View>
   );
