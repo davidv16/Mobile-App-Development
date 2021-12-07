@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import Modal from '../Modal';
 
@@ -8,21 +7,19 @@ interface Props {
   isOpen: boolean;
   closeModal: () => void;
 }
-const Youtube = ({ youTubeId, isOpen, closeModal }: Props) => {
-  return (
-    <Modal
-      title={`Trailer`}
-      isOpen={isOpen}
-      closeModal={closeModal}
-    >
-      <YoutubePlayer
-        height={250}
-        width={250}
-        play={true}
-        videoId={youTubeId}
-      />
-    </Modal>
-  );
-};
+const Youtube = ({ youTubeId, isOpen, closeModal }: Props) => (
+  <Modal
+    title="Trailer"
+    isOpen={isOpen}
+    closeModal={closeModal}
+  >
+    <YoutubePlayer
+      height={250}
+      width={250}
+      play
+      videoId={youTubeId}
+    />
+  </Modal>
+);
 
 export default Youtube;

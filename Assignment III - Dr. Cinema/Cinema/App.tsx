@@ -1,8 +1,8 @@
 import React from 'react';
-import AppContainer from './src/routes/index'
+import AppContainer from './src/routes/index';
 
 const App = () => (
-  <AppContainer/>
+  <AppContainer />
 );
 
 export default App;

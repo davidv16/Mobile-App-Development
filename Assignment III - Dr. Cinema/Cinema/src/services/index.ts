@@ -4,57 +4,56 @@ import IGenre from '../models/IGenre';
 import IMovie from '../models/IMovie';
 import ISchedule from '../models/ISchedule';
 import IShowTime from '../models/IShowTime';
-import credentials from '../resources/credentials.json'
+import credentials from '../resources/credentials.json';
 import IUpcomingMovie from '../models/IUpcomingMovie';
+
 let apiResponse = {
   success: '',
   message: '',
-  token: ''
+  token: '',
 };
-const url: string = 'https://api.kvikmyndir.is';
+const url = 'https://api.kvikmyndir.is';
 
 export const authentiateApi = async () => {
-  if(apiResponse.token === '') {
+  if (apiResponse.token === '' || undefined) {
     try {
       const response = await axios.post(
-        `${url}/authenticate`, 
-        credentials, {
-          headers: { 
-            'Content-Type': 'application/json'
-        }
-      });
+        `${url}/authenticate`,
+        credentials,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
       apiResponse = response.data;
       console.log(apiResponse);
       return apiResponse;
     } catch (e) {
       console.log(e);
     }
-  } else {
-    return apiResponse;
   }
-
-}
+  return apiResponse;
+};
 
 export const getCinemas = async () => {
-  let cinemas: ICinema[] = [];
-  try{
-    const response = await axios.get(
-      `${url}/theaters`, {
-        headers: {
-          'x-access-token': apiResponse.token
-        }
-      });
-      const cinemasTrimmed: any = whiteSpaceDESTROYER(response.data);
-      console.log(cinemasTrimmed)
-    for(const i of cinemasTrimmed) {
-      let cinema: ICinema = {
+  const cinemas: ICinema[] = [];
+  try {
+    const response = await axios.get(`${url}/theaters`, {
+      headers: {
+        'x-access-token': apiResponse.token,
+      },
+    });
+    const cinemasTrimmed: any = whiteSpaceDESTROYER(response.data);
+    for (const i of cinemasTrimmed) {
+      const cinema: ICinema = {
         id: i.id,
         name: i.name,
         description: i.description,
         completeAddress: `${i.address}, ${i.city}`,
         phone: i.phone,
-        website: i.website
-      }
+        website: i.website,
+      };
       cinemas.push(cinema);
     }
     return cinemas;
@@ -62,154 +61,120 @@ export const getCinemas = async () => {
     console.log(e);
   }
   return cinemas as ICinema[];
-}
+};
 
-/*
-export const getGenres = async () => {
-  try{
-    const genres = await axios.get(
-      `${url}/genres`, {
-        headers: {
-          'x-access-token': apiResponse.token
-        }
-      });
-    //console.log(genres.data);
-    return genres.data;
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-export const getImages = async () => {
-  try{
-    const images = await axios.get(
-      `${url}/images`, {
-        headers: {
-          'x-access-token': apiResponse.token
-        }
-      });
-    //console.log(images.data);
-    return images.data;
-  } catch (e) {
-    console.log(e);
-  }
-}
-*/
 export const getUpcomingMovies = async () => {
-  let upcomingMovies: IUpcomingMovie[] = [];
-  try{
-    const response = await axios.get(
-      `${url}/upcoming`, {
-        headers: {
-          'x-access-token': apiResponse.token
-        }
-      });
+  const upcomingMovies: IUpcomingMovie[] = [];
+  try {
+    const response = await axios.get(`${url}/upcoming`, {
+      headers: {
+        'x-access-token': apiResponse.token,
+      },
+    });
     const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
-    
+
     // populate the return value
-    for(const i of moviesTrimmed) {
-      let trailers: string[] = [];
-      for(const t of i.trailers) {
-        for(const r of t.results) {
+    for (const i of moviesTrimmed) {
+      const trailers: string[] = [];
+      for (const t of i.trailers) {
+        for (const r of t.results) {
           trailers.push(r.key);
         }
       }
 
-      let upComingMovie: IUpcomingMovie = {
+      const upComingMovie: IUpcomingMovie = {
         title: i.title,
         poster: i.poster,
         releaseDate: i.releaseDate,
-        //@ts-ignore
-        trailers: trailers
-      }
+        // @ts-ignore
+        trailers,
+      };
       upcomingMovies.push(upComingMovie);
-    }    
+    }
     return upcomingMovies as IUpcomingMovie[];
   } catch (e) {
     console.log(e);
   }
   return upcomingMovies as IUpcomingMovie[];
-}
+};
 
 export const getMovies = async () => {
-  let movies: IMovie[] = [];
-  try{
-    const response = await axios.get(
-      `${url}/movies`, {
-        headers: {
-          'x-access-token': apiResponse.token
-        }
-      });
+  const movies: IMovie[] = [];
+  try {
+    const response = await axios.get(`${url}/movies`, {
+      headers: {
+        'x-access-token': apiResponse.token,
+      },
+    });
     const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
     // populate the return value
-    for(const i of moviesTrimmed) {
+    for (const i of moviesTrimmed) {
       // populate genres
-      let genres: IGenre[] = [];
+      const genres: IGenre[] = [];
       const genresTrimmed: any = whiteSpaceDESTROYER(i.genres);
-      for(const g of genresTrimmed) {
-
-        let genre: IGenre = {
+      for (const g of genresTrimmed) {
+        const genre: IGenre = {
           id: g.ID,
           name: g.Name,
-          nameEN: g.NameEN
-        }
+          nameEN: g.NameEN,
+        };
         genres.push(genre);
       }
 
       // pobulate showtimes
-      let showTimes: IShowTime[] = [];
-      let schedules: ISchedule[] = [];
-      for(const s of i.showtimes) {
-        //populate schedules
-        for(const sc of s.schedule) {
-        let schedule: ISchedule = {
-          time: sc.time,
-          purchase_url: sc.purchase_url
+      const showTimes: IShowTime[] = [];
+      const schedules: ISchedule[] = [];
+      for (const s of i.showtimes) {
+        // populate schedules
+        for (const sc of s.schedule) {
+          const schedule: ISchedule = {
+            time: sc.time,
+            purchase_url: sc.purchase_url,
+          };
+          schedules.push(schedule);
         }
-        schedules.push(schedule);
-      }
-        let showTime: IShowTime = {
+        const showTime: IShowTime = {
           cinema: { id: s.cinema.id, name: s.cinema.name },
-          schedule: schedules
-        }
+          schedule: schedules,
+        };
         showTimes.push(showTime);
       }
-      let trailers: string[] = [];
-      for(const t of i.trailers) {
-        for(const r of t.results) {
+      const trailers: string[] = [];
+      for (const t of i.trailers) {
+        for (const r of t.results) {
           trailers.push(r.key);
         }
       }
 
-      let movie: IMovie = {
+      const movie: IMovie = {
         id: i.id,
         title: i.title,
         poster: i.poster,
         plot: i.plot,
         durationMinutes: i.durationMinutes,
         year: i.year,
-        genres: genres,
-        //@ts-ignore
+        genres,
+        // @ts-ignore
         trailer: trailers,
-        showTimes: showTimes
-      }
+        showTimes,
+      };
       movies.push(movie);
-    }    
+    }
     return movies as IMovie[];
   } catch (e) {
     console.log(e);
   }
-  
+
   return movies as IMovie[];
-}
+};
 
 const whiteSpaceDESTROYER = <T>(data: T[]) => {
   const trimmedData = data.map((l) => {
     const parsed: T[] = [];
-    //@ts-ignore
+    // @ts-ignore
     Object.keys(l).forEach((key) => parsed[key.trim()] = l[key]);
     return parsed;
-  })
+  });
 
   return trimmedData;
-}
+};
