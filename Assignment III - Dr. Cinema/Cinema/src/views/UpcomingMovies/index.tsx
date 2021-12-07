@@ -4,15 +4,19 @@ import styles from './styles';
 import { getUpcomingMovies } from '../../services';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpcomingMovieList from '../../components/UpcomingMovieList';
+import YouTube from '../../components/Youtube';
 import ICinema from '../../models/ICinema';
 
 const UpcomingMovies = () => {
   const [upcomingMovies, setUpcomingMovies] = useState<IUpcomingMovie[]>()
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [currentYouTubeId, setCurrentYouTubeId] = useState<string>('')
   useEffect(() => {
-    (async() => {
-    const data = await getUpcomingMovies();
-    sortUpcomingMovies(data);
-  })();
+    (async () => {
+      const data = await getUpcomingMovies();
+      sortUpcomingMovies(data);
+      setCurrentYouTubeId('');
+    })();
   }, [])
 
   const sortUpcomingMovies = (data: IUpcomingMovie[]) => {
@@ -20,7 +24,16 @@ const UpcomingMovies = () => {
   }
   return (
     <View>
-      <UpcomingMovieList movies={upcomingMovies as IUpcomingMovie[]} />
+      <UpcomingMovieList 
+        movies={upcomingMovies as IUpcomingMovie[]} 
+        setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)} 
+        setModal={() => setIsAddModalOpen(true)}
+      />
+      <YouTube
+        youTubeId={currentYouTubeId}
+        isOpen={isAddModalOpen}
+        closeModal={() => setIsAddModalOpen(false)} 
+      />
     </View>
   );
 }

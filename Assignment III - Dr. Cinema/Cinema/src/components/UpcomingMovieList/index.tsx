@@ -7,9 +7,11 @@ import styles from './styles';
 
 interface Props {
   movies: IUpcomingMovie[];
+  setCurrentYouTube: (id: string) => void;
+  setModal: (x: boolean) => void; 
 }
 
-const UpcomingMovieList = ({movies}: Props) => {
+const UpcomingMovieList = ({movies, setCurrentYouTube, setModal}: Props) => {
   return (
     <View>
       <FlatList
@@ -17,7 +19,9 @@ const UpcomingMovieList = ({movies}: Props) => {
         data={movies}
         renderItem={({ item }) => (
           <UpComingMovie
+            setCurrentYouTube={setCurrentYouTube}
             movie={item}
+            setModal={setModal}
           />
         )}
         keyExtractor={(item) => item.title}
