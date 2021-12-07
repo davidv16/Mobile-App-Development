@@ -6,9 +6,11 @@ import IMovie from '../../models/IMovie';
 import MovieList from '../../components/MovieList';
 import GenresList from '../../components/GenresList';
 import ShowTimesList from '../../components/ShowTimesList';
+import ICinema from '../../models/ICinema';
 
 const MovieDetail = ({ route }: any) => {
   const { movie, cinema } = route.params;
+  const [selectedCinema, setSelectedCinema] = useState<ICinema>(cinema);
   return (
     <View>
       <Image
@@ -20,7 +22,8 @@ const MovieDetail = ({ route }: any) => {
       <Text style={styles.boardTitle}>{`Release Year: ${movie.year}`}</Text>
       <Text style={styles.boardTitle}>{movie.plot}</Text>
       <GenresList genres={movie.genres}/>
-      <ShowTimesList showTimes={movie.showTimes}/>
+      <Text style={styles.boardTitle}>ShowTimes</Text>
+      <ShowTimesList showTimes={movie.showTimes} cinema={selectedCinema}/>
 
     </View>
   );

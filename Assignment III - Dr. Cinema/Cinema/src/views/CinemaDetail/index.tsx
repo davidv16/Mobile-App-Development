@@ -4,22 +4,24 @@ import styles from './styles';
 import { getMovies } from '../../services'
 import IMovie from '../../models/IMovie';
 import MovieList from '../../components/MovieList';
+import ICinema from '../../models/ICinema';
 
 const CinemaDetail = ({ route }: any) => {
   const { cinema } = route.params;
   const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
+  const [selectedCinema, setSelectedCinema] = useState<ICinema>(cinema);
 
   useEffect(() => {
-      filterCinemaMovies();
+    filterCinemaMovies();
   }, []);
 
   const filterCinemaMovies = async () => {
     const movies: IMovie[] = await getMovies();
     const filtered: IMovie[] = [];
-    for(const i of movies) {
-      for(const s of i.showTimes as []) {
+    for (const i of movies) {
+      for (const s of i.showTimes as []) {
         //@ts-ignore
-        if(s.cinema.id === cinema.id) {
+        if (s.cinema.id === cinema.id) {
           filtered.push(i)
         }
       }
@@ -35,7 +37,7 @@ const CinemaDetail = ({ route }: any) => {
       <Text style={styles.boardTitle}>{cinema.website}</Text>
       <Text >{cinema.description}</Text>
 
-      <MovieList movies={filteredMovies} cinema={cinema}/>
+      <MovieList movies={filteredMovies} cinema={selectedCinema} />
     </View>
   );
 }

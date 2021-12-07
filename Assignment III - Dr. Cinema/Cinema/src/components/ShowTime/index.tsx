@@ -13,7 +13,6 @@ interface Props {
 const ShowTime = ({ showTime }: Props) => {
   return (
     <View style={styles.listItem}>
-     
       
       <AntDesign name="rightcircle" size={24} color="black" />
     </View>
