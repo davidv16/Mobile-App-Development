@@ -6,12 +6,10 @@ import styles from './styles';
 interface Props {
   genre: IGenre
 }
-const Genre = ({genre}: Props) => {
-  return (
-      <View style={styles.listItem}>
-        <Text style={styles.text}>{genre.name}</Text>
-      </View>
-  );
-}
+const Genre = ({ genre }: Props) => (
+  <View style={styles.listItem}>
+    <Text style={styles.text}>{genre.name}</Text>
+  </View>
+);
 
 export default Genre;
