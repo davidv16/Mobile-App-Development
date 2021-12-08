@@ -4,7 +4,7 @@ import styles from './styles';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpcomingMovieList from '../../components/UpcomingMovieList';
 import ICinema from '../../models/ICinema';
-import { getUpcoming } from '../../actions/upcomingActions';
+import { getUpcoming } from '../../store/actions/upcomingActions';
 import { useDispatch } from 'react-redux';
 
 const UpcomingMovies = () => {

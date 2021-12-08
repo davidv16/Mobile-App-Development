@@ -1,6 +1,6 @@
 import { GET_UPCOMING_MOVIES } from "../constants";
-import { getUpcomingMovies } from "../services";
-import IUpcomingMovie from '../models/IUpcomingMovie'
+import { getUpcomingMovies } from "../../services";
+import IUpcomingMovie from '../../models/IUpcomingMovie'
 import { Dispatch } from "redux";
 
 export const getUpcoming = () => async (dispatch: Dispatch) => {
