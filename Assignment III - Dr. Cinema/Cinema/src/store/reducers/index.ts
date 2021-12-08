@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import upcomingReducer from './upcomingReducer';
-import cinemaReducer from './cinemaReducer';
+import upcoming from './upcomingReducer';
+import cinema from './cinemaReducer';
 
 export default combineReducers ({
-    upcomingReducer,
-    cinemaReducer
+    upcoming,
+    cinema
 })

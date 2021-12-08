@@ -4,7 +4,7 @@ import ICinema from '../../models/IUpcomingMovie'
 import { Dispatch } from "redux";
 
 export const getCinema = () => async (dispatch: Dispatch) => {
-    const cinemas = await getCinemas();
+    const cinemas:any = await getCinemas();
     console.log('inside async action creator: ' + cinemas);
     dispatch(getCinemaSuccess(cinemas))
 };

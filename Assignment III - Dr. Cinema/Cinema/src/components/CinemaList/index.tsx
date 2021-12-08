@@ -8,7 +8,10 @@ interface Props {
   cinemas: ICinema[];
 }
 
-const CinemaList = ({ cinemas }: Props) => (
+const CinemaList = () => {
+  const cinemas = useSelector((state:any) => state.cinemas)
+  console.log(cinemas)
+  return(
   <View>
     <FlatList
       numColumns={1}
@@ -21,6 +24,6 @@ const CinemaList = ({ cinemas }: Props) => (
       keyExtractor={(item) => item.id.toString()}
     />
   </View>
-);
+  )};
 
 export default CinemaList;

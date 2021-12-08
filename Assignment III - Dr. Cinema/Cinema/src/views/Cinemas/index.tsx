@@ -4,19 +4,17 @@ import { getCinemas } from '../../services';
 import CinemaList from '../../components/CinemaList';
 import ICinema from '../../models/ICinema';
 import { useDispatch, useSelector } from 'react-redux';
+import {getCinema } from '../../store/actions/cinemasAction'
 
 const Cinemas = () => {
-  const [cinemas, setCinemas] = useState<ICinema[]>();
+  const dispatch = useDispatch();
   useEffect(() => {
-    (async () => {
-      const data = await getCinemas();
-      sortCinemas(data);
-    })();
-  }, []);
+    dispatch(getCinema());
+  }, [])
 
-  const sortCinemas = (data: ICinema[]) => {
-    setCinemas(data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))));
-  };
+  // const sortCinemas = (data: ICinema[]) => {
+  //   setCinemas(data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))));
+  // };
   return (
     <View>
       <CinemaList />

@@ -4,44 +4,41 @@ import { getUpcomingMovies } from '../../services';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpcomingMovieList from '../../components/UpcomingMovieList';
 import YouTube from '../../components/Youtube';
+import { useSelector, useDispatch } from 'react-redux';
+import {getUpcoming} from '../../store/actions/upcomingActions';
 
 const UpcomingMovies = () => {
-  const [upcomingMovies, setUpcomingMovies] = useState<IUpcomingMovie[]>();
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [currentYouTubeId, setCurrentYouTubeId] = useState<string>('');
+  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  // const [currentYouTubeId, setCurrentYouTubeId] = useState<string>('');
+  const dispatch = useDispatch();
   useEffect(() => {
-    (async () => {
-      const data = await getUpcomingMovies();
-      sortUpcomingMovies(data);
-      setCurrentYouTubeId('');
-    })();
-  }, []);
+    dispatch(getUpcoming());
+  }, [])
 
-  const sortUpcomingMovies = (data: IUpcomingMovie[]) => {
-    setUpcomingMovies(
-      data.sort((a, b) => (
-        (a.title > b.title) ? 1
-          : ((b.title > a.title) ? -1
-            : 0))),
-    );
-  };
-
-  const handleCloseModal = () => {
-    setIsAddModalOpen(false);
-    setCurrentYouTubeId('');
-  };
+  // const sortUpcomingMovies = (data: IUpcomingMovie[]) => {
+  //   setUpcomingMovies(
+  //     data.sort((a, b) => (
+  //       (a.title > b.title) ? 1
+  //         : ((b.title > a.title) ? -1
+  //           : 0))),
+  //   );
+  // };
+  // console.log(upcomingMovies)
+  // const handleCloseModal = () => {
+  //   setIsAddModalOpen(false);
+  //   setCurrentYouTubeId('');
+  // };
   return (
     <View>
       <UpcomingMovieList
-        movies={upcomingMovies as IUpcomingMovie[]}
-        setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)}
-        setModal={() => setIsAddModalOpen(true)}
+        // setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)}
+        // setModal={() => setIsAddModalOpen(true)}
       />
-      <YouTube
+      {/* <YouTube
         youTubeId={currentYouTubeId}
         isOpen={isAddModalOpen}
         closeModal={() => handleCloseModal()}
-      />
+      /> */}
     </View>
   );
 };
