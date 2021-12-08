@@ -1,1 +1,2 @@
 export const GET_UPCOMING_MOVIES = "GET-UPCOMING_MOVIES"
+export const GET_CINEMAS = "GET-CINEMAS"
