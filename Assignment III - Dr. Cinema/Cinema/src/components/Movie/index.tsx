@@ -20,14 +20,28 @@ const Movie = ({ movie, cinema }: Props) => {
       onPress={() => navigate('Movie' as never, { movie, cinema } as never)}
     >
       <View style={styles.listItem}>
-        <Image
-          source={{ uri: movie.poster }}
-          style={styles.image}
-        />
-        <Text style={styles.text}>{movie.title}</Text>
-        <Text style={styles.text}>{movie.year}</Text>
-        <GenresList genres={movie.genres} />
-        <AntDesign name="rightcircle" size={24} color="black" />
+
+        <View style={styles.titleSection}>
+          <Text style={styles.title}>{movie.title}</Text>
+        </View>
+
+        <View style={styles.mainSection}>
+          <View style={styles.imageBox}>
+            <Image
+              source={{ uri: movie.poster }}
+              style={styles.image}
+            />
+          </View>
+          <View>
+            <GenresList genres={movie.genres} />
+            {/* <AntDesign name="rightcircle" size={24} color="black" /> */}
+          </View>
+        </View>
+
+        <View style={styles.bottomSection}>
+          <Text style={styles.year}>{movie.year}</Text>
+        </View>
+
       </View>
     </Pressable>
   );

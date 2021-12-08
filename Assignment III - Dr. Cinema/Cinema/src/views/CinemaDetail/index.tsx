@@ -39,7 +39,7 @@ const CinemaDetail = ({ route }: any) => {
       <Text style={styles.boardTitle}>{cinema.completeAddress}</Text>
       <Text style={styles.boardTitle}>{cinema.phone}</Text>
       <Text style={styles.boardTitle}>{cinema.website}</Text>
-      <Text>{cinema.description}</Text>
+      <Text style={styles.description}>{cinema.description}</Text>
 
       <MovieList movies={filteredMovies} cinema={selectedCinema} />
     </View>
