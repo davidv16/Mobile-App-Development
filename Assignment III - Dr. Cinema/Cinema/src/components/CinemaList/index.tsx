@@ -3,13 +3,15 @@ import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
 import ICinema from '../../models/ICinema';
 import Cinema from '../Cinema';
+import {useSelector} from 'react-redux';
 
 
-interface Props {
-  cinemas: ICinema[];
-}
+// interface Props {
+//   cinemas: ICinema[];
+// }
 
-const CinemaList = ({cinemas}: Props) => {
+const CinemaList = () => {
+  const cinemas: ICinema[] = useSelector((state:any) => state.cinemas)
   return (
     <View>
     <FlatList

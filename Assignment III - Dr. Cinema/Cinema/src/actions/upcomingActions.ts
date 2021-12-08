@@ -9,7 +9,7 @@ export const getUpcoming = () => async (dispatch: Dispatch) => {
     dispatch(getUpcomingMoviesSuccess(upcomingMovies))
 };
 
-const getUpcomingMoviesSuccess = upcoming => ({
+const getUpcomingMoviesSuccess = (upcoming: IUpcomingMovie[]) => ({
     type: GET_UPCOMING_MOVIES,
     payload: upcoming
 }) 

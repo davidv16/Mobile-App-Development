@@ -9,15 +9,15 @@ import { useSelector } from 'react-redux';
 // interface Props {
 //   movies: IUpcomingMovie[];
 // }
-
+// todo fixing movies type
 const UpcomingMovieList = () => {
-  const movies = useSelector(state =>state)
-  // console.log(movies)
+  const movies:any = useSelector((state:any) =>state.upcomingReducer)
+  console.log(movies)
   return (
     <View>
       <FlatList
         numColumns={1}
-        data={movies.upcomingReducer}
+        data={movies}
         renderItem={({ item }) => (
           <UpComingMovie
             movie={item}
