@@ -9,7 +9,7 @@ interface Props {
 }
 
 const CinemaList = () => {
-  const cinemas = useSelector((state:any) => state.cinemas)
+  const cinemas = useSelector((state:any) => state.cinema)
   console.log(cinemas)
   return(
   <View>

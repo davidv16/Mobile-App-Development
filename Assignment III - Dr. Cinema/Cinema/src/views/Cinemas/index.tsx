@@ -4,12 +4,12 @@ import { getCinemas } from '../../services';
 import CinemaList from '../../components/CinemaList';
 import ICinema from '../../models/ICinema';
 import { useDispatch, useSelector } from 'react-redux';
-import {getCinema } from '../../store/actions/cinemasAction'
+import {getCinemasDispatch } from '../../store/actions/cinemasAction'
 
 const Cinemas = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCinema());
+    dispatch(getCinemasDispatch());
   }, [])
 
   // const sortCinemas = (data: ICinema[]) => {
