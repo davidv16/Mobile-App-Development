@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import { ScrollView } from 'react-native-gesture-handler';
 import styles from './styles';
 import IMovie from '../../models/IMovie';
 import MovieList from '../../components/MovieList';
@@ -29,8 +30,9 @@ const CinemaDetail = ({ route }: any) => {
       <Text style={styles.boardTitle}>{cinema.phone}</Text>
       <Text style={styles.boardTitle}>{cinema.website}</Text>
       <Text style={styles.description}>{cinema.description}</Text>
-
-      <MovieList movies={filteredMovies} cinema={selectedCinema} />
+      <ScrollView style={{ flex: 1 }}>
+        <MovieList movies={filteredMovies} cinema={selectedCinema} />
+      </ScrollView>
     </View>
   );
 };
