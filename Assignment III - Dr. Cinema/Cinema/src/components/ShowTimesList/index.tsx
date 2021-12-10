@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import ICinema from '../../models/ICinema';
 import IShowTime from '../../models/IShowTime';
 import SchedulesList from '../SchedulesList';
-
+import styles from './styles'
 interface Props {
   showTimes: IShowTime[];
   cinema: ICinema
@@ -16,7 +16,7 @@ const ShowTimesList = ({ showTimes, cinema }: Props) => {
   });
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>{selectedCinema[0].cinema.name}</Text>
       <SchedulesList schedules={selectedCinema[0].schedule} />
     </View>

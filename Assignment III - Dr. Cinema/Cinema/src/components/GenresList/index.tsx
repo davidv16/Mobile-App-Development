@@ -9,7 +9,7 @@ interface Props {
 const GenresList = ({ genres }: Props) => (
   <View>
     <FlatList
-      numColumns={1}
+      numColumns={2}
       data={genres}
       renderItem={({ item }) => (
         <Genre
