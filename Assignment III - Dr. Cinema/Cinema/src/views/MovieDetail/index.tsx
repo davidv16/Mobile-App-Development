@@ -14,7 +14,7 @@ const MovieDetail = ({ route }: any) => {
         source={{ uri: movie.poster }}
         style={styles.image}
       />
-      <Text style={styles.boardTitle}>{movie.name}</Text>
+      <Text style={styles.boardTitle}>{movie.title}</Text>
       <Text style={styles.boardTitle}>{`Duration: ${movie.durationMinutes} minutes`}</Text>
       <Text style={styles.boardTitle}>{`Release Year: ${movie.year}`}</Text>
       <Text style={styles.boardTitle}>{movie.plot}</Text>

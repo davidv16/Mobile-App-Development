@@ -16,7 +16,7 @@ const GenresList = ({ genres }: Props) => (
           genre={item}
         />
       )}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.name}
     />
   </View>
 );

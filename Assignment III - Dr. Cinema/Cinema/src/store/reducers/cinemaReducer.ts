@@ -1,6 +1,10 @@
 import {GET_CINEMAS} from '../constants';
 
-export default function (state = 0, action){
+const initialCinemas = {
+  cinemas: []
+}
+
+export default function (state = initialCinemas, action: any){
     switch (action.type) {
         case GET_CINEMAS:
             return action.payload

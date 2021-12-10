@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { getCinemas } from '../../services';
 import CinemaList from '../../components/CinemaList';
-import ICinema from '../../models/ICinema';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {getCinemasDispatch } from '../../store/actions/cinemasAction'
+import { getMoviesDispatch } from '../../store/actions/movieAction';
 
 const Cinemas = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCinemasDispatch());
+    dispatch(getMoviesDispatch());
   }, [])
-
-  // const sortCinemas = (data: ICinema[]) => {
-  //   setCinemas(data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))));
-  // };
+  
   return (
     <View>
       <CinemaList />

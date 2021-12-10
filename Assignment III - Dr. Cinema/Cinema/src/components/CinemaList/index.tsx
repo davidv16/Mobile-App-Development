@@ -1,16 +1,12 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import ICinema from '../../models/ICinema';
 import Cinema from '../Cinema';
 import {useSelector} from 'react-redux';
-
-interface Props {
-  cinemas: ICinema[];
-}
+import ICinema from '../../models/ICinema';
 
 const CinemaList = () => {
-  const cinemas = useSelector((state:any) => state.cinemas)
-  console.log(cinemas)
+  const cinemas: ICinema[] = useSelector((state:any) => state.cinemas)
+
   return(
   <View>
     <FlatList
