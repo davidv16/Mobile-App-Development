@@ -13,13 +13,14 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     flexGrow: 0.4,
-    borderRadius: 10,
-    width: winWidth - 100,
-    backgroundColor: 'white',
+    // borderRadius: 10,
+    width: winWidth,
+    backgroundColor: 'black',
     padding: 40,
   },
   title: {
     fontSize: 20,
     marginBottom: 20,
+    color: 'white',
   },
 });
