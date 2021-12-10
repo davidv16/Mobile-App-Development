@@ -1,14 +1,19 @@
-import IMovie from '../../models/IMovie';
-import {GET_MOVIES, GET_MOVIES_ERROR} from '../constants';
+import { GET_MOVIES, GET_MOVIES_ERROR } from '../constants';
+import { MovieAction, MovieState } from '..';
 
-const initialMovieState = {
-  movies: []
+const initialMovieState: MovieState = {
+  movies: [],
 }
 
-export default function (state = initialMovieState, action: any){
-    switch (action.type) {
-        case GET_MOVIES:
-          return action.payload
-        default: return state;
-    }
+const movieReducer = (state = initialMovieState, action: MovieAction) => {
+  switch (action.type) {
+    case GET_MOVIES:
+      return action.payload;
+    case GET_MOVIES_ERROR:
+      return action.payload;
+    default:
+      return state;
+  }
 }
+
+export default movieReducer;

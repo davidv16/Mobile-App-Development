@@ -1,6 +1,6 @@
+import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 import {
   View, Text, Pressable,
 } from 'react-native';

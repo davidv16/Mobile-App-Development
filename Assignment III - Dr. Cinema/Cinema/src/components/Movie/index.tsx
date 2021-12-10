@@ -1,6 +1,6 @@
+import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 import {
   View, Text, Image, Pressable,
 } from 'react-native';
@@ -8,6 +8,7 @@ import IMovie from '../../models/IMovie';
 import styles from './styles';
 import GenresList from '../GenresList';
 import ICinema from '../../models/ICinema';
+import IGenre from '../../models/IGenre';
 
 interface Props {
   movie: IMovie
@@ -26,7 +27,7 @@ const Movie = ({ movie, cinema }: Props) => {
         />
         <Text style={styles.text}>{movie.title}</Text>
         <Text style={styles.text}>{movie.year}</Text>
-        <GenresList genres={movie.genres} />
+        <GenresList genres={movie.genres as IGenre[]} />
         <AntDesign name="rightcircle" size={24} color="black" />
       </View>
     </Pressable>

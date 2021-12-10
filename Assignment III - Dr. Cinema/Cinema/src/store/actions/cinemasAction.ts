@@ -1,20 +1,28 @@
-import { GET_CINEMAS } from "../constants";
-import { getCinemas } from "../../services";
+import { Dispatch } from 'redux';
+import { GET_CINEMAS, GET_CINEMAS_ERROR } from '../constants';
+import { getCinemas } from '../../services';
 import ICinema from '../../models/ICinema'
-import { Dispatch } from "redux";
 
 export const getCinemasDispatch = () => async (dispatch: Dispatch) => {
+  try {
     const cinemas:ICinema[] = await getCinemas();
     const sortedCinemas: ICinema[] = sortCinemas(cinemas);
-    dispatch(getCinemaSuccess(sortedCinemas))
+    dispatch(getCinemaSuccess(sortedCinemas));
+  } catch (err) {
+    dispatch(getCinemaError(err));
+  }
 };
 
 const getCinemaSuccess = (cinemas: ICinema[]) => ({
-    type: GET_CINEMAS,
-    payload: cinemas
+  type: GET_CINEMAS,
+  payload: cinemas,
 });
 
+const getCinemaError = (err: any) => ({
+  type: GET_CINEMAS_ERROR,
+  payload: `GET in /cinemas: ${err.message}`,
+})
 
 const sortCinemas = (data: ICinema[]) => {
-  return data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));
-};
+  return data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))); 
+}

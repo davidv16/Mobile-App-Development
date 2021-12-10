@@ -1,13 +1,19 @@
-import {GET_CINEMAS} from '../constants';
+import { GET_CINEMAS, GET_CINEMAS_ERROR } from '../constants';
+import { CinemaAction, CinemaState } from '..';
 
-const initialCinemas = {
-  cinemas: []
+const initialCinemas: CinemaState = {
+  cinemas: [],
 }
 
-export default function (state = initialCinemas, action: any){
-    switch (action.type) {
-        case GET_CINEMAS:
-            return action.payload
-        default: return state
-    }
+const cinemaReducer = (state = initialCinemas, action: CinemaAction) => {
+  switch (action.type) {
+    case GET_CINEMAS:
+      return action.payload;
+    case GET_CINEMAS_ERROR:
+      return action.payload;
+    default:
+      return state;
+  }
 }
+
+export default cinemaReducer;

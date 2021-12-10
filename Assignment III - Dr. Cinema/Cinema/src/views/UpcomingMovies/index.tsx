@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { getUpcomingMovies } from '../../services';
-import IUpcomingMovie from '../../models/IUpcomingMovie';
+import { useDispatch } from 'react-redux';
 import UpcomingMovieList from '../../components/UpcomingMovieList';
 import YouTube from '../../components/Youtube';
-import { useSelector, useDispatch } from 'react-redux';
-import {getUpcoming} from '../../store/actions/upcomingAction';
+import { getUpcomingDispatch } from '../../store/actions/upcomingAction';
 
 const UpcomingMovies = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [currentYouTubeId, setCurrentYouTubeId] = useState<string>('');
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getUpcoming());
+    dispatch(getUpcomingDispatch());
   }, [])
 
-  
-  // console.log(upcomingMovies)
   const handleCloseModal = () => {
     setIsAddModalOpen(false);
     setCurrentYouTubeId('');

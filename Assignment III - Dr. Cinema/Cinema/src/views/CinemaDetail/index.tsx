@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 import styles from './styles';
 import IMovie from '../../models/IMovie';
 import MovieList from '../../components/MovieList';
 import ICinema from '../../models/ICinema';
-import { useSelector } from 'react-redux';
 
 const CinemaDetail = ({ route }: any) => {
   const movies = useSelector((state:any) => state.movies);
   const { cinema } = route.params;
   const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
   const [selectedCinema] = useState<ICinema>(cinema);
-  console.log(movies)
 
   useEffect(() => {
     filterCinemaMovies();

@@ -3,14 +3,12 @@ import { View, FlatList } from 'react-native';
 import IMovie from '../../models/IMovie';
 import Movie from '../Movie';
 import ICinema from '../../models/ICinema';
-import { useSelector } from 'react-redux';
 
 interface Props {
   movies: IMovie[];
   cinema: ICinema;
 }
-const MovieList = ({ movies, cinema }: Props) => {
-  return(
+const MovieList = ({ movies, cinema }: Props) => (
   <View>
     <FlatList
       numColumns={1}
@@ -24,7 +22,6 @@ const MovieList = ({ movies, cinema }: Props) => {
       keyExtractor={(item) => item.title}
     />
   </View>
-  );
-}
+)
 
 export default MovieList;

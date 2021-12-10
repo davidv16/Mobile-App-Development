@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
-import CinemaList from '../../components/CinemaList';
 import { useDispatch } from 'react-redux';
-import {getCinemasDispatch } from '../../store/actions/cinemasAction'
+import CinemaList from '../../components/CinemaList';
+import { getCinemasDispatch } from '../../store/actions/cinemasAction'
 import { getMoviesDispatch } from '../../store/actions/movieAction';
 
 const Cinemas = () => {
@@ -11,7 +11,7 @@ const Cinemas = () => {
     dispatch(getCinemasDispatch());
     dispatch(getMoviesDispatch());
   }, [])
-  
+
   return (
     <View>
       <CinemaList />

@@ -19,6 +19,7 @@ const GenresList = ({ genres }: Props) => (
       keyExtractor={(item) => item.name}
     />
   </View>
-);
+
+)
 
 export default GenresList;

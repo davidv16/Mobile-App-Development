@@ -1,19 +1,28 @@
-import { GET_UPCOMING_MOVIES } from "../constants";
-import { getUpcomingMovies } from "../../services";
+import { Dispatch } from 'redux';
+import { GET_UPCOMING_MOVIES, GET_UPCOMING_MOVIES_ERROR } from '../constants';
+import { getUpcomingMovies } from '../../services';
 import IUpcomingMovie from '../../models/IUpcomingMovie'
-import { Dispatch } from "redux";
 
-export const getUpcoming = () => async (dispatch: Dispatch) => {
-    const upcoming = await getUpcomingMovies();
-    const sortedUpcoming = sortUpcomingMovies(upcoming)
-    dispatch(getUpcomingMoviesSuccess(sortedUpcoming))
+export const getUpcomingDispatch = () => async (dispatch: Dispatch) => {
+  try {
+    const upcoming: IUpcomingMovie[] = await getUpcomingMovies();
+    const sortedUpcoming = sortUpcomingMovies(upcoming);
+    dispatch(getUpcomingMoviesSuccess(sortedUpcoming));
+  } catch (err) {
+    dispatch(getMoviesError(err));
+  }
 };
 
 const getUpcomingMoviesSuccess = (upcoming: IUpcomingMovie[]) => ({
-    type: GET_UPCOMING_MOVIES,
-    payload: upcoming
-}) 
+  type: GET_UPCOMING_MOVIES,
+  payload: upcoming,
+})
+
+const getMoviesError = (err: any) => ({
+  type: GET_UPCOMING_MOVIES_ERROR,
+  payload: `GET in /upcoming: ${err.message}`,
+})
 
 const sortUpcomingMovies = (data: IUpcomingMovie[]) => {
-  return data.sort((a, b) => ((a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)));
-};
+  return data.sort((a, b) => ((a.releaseDate > b.releaseDate) ? 1 : ((b.releaseDate > a.releaseDate) ? -1 : 0)));
+}

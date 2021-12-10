@@ -1,10 +1,19 @@
-import { GET_UPCOMING_MOVIES } from "../constants";
+import { GET_UPCOMING_MOVIES, GET_UPCOMING_MOVIES_ERROR } from '../constants';
+import { UpcomingAction, UpcomingState } from '..';
 
-export default function (state = 0, action) {
-    switch (action.type) {
-        case GET_UPCOMING_MOVIES:
-            // console.log('inside reducer: ' + action.payload);    
-            return action.payload
-        default: return state
-    }
+const initialUpcoming: UpcomingState = {
+  upcoming: [],
 }
+
+const upcomingReducer = (state = initialUpcoming, action: UpcomingAction) => {
+  switch (action.type) {
+    case GET_UPCOMING_MOVIES:
+      return action.payload;
+    case GET_UPCOMING_MOVIES_ERROR:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export default upcomingReducer;

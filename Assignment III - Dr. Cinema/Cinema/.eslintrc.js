@@ -36,5 +36,7 @@ module.exports = {
     'no-restricted-syntax': 'off',
     'no-extra-semi': 'off',
     semi: 'off',
+    'no-unused-vars': 'off',
+    'import/no-unresolved': 'off',
   },
 };
