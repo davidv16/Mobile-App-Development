@@ -15,7 +15,7 @@ let apiResponse = {
 const url = 'https://api.kvikmyndir.is';
 
 export const authentiateApi = async () => {
-  if (apiResponse.token === '' || undefined) {
+  if (apiResponse.token === '' || apiResponse.token === undefined) {
     try {
       const response = await axios.post(
         `${url}/authenticate`,
@@ -45,7 +45,7 @@ export const getCinemas = async () => {
       },
     });
     const cinemasTrimmed: any = whiteSpaceAndHyphenDESTROYER(response.data);
-    
+
     for (const i of cinemasTrimmed) {
       const cinema: ICinema = {
         id: i.id,
