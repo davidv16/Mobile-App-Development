@@ -11,7 +11,7 @@ interface Props {
 const SchedulesList = ({ schedules }: Props) => (
   <View style={styles.container}>
     <FlatList
-     nestedScrollEnabled
+      nestedScrollEnabled
       numColumns={1}
       data={schedules}
       renderItem={({ item }) => (

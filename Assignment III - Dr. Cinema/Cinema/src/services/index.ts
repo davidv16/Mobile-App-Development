@@ -177,10 +177,8 @@ const whiteSpaceAndHyphenDESTROYER = <T>(data: T[]) => {
     Object.keys(l).forEach((key) => parsed[key.replace(/-/g, '')] = l[key]);
     return parsed;
   });
-  
+
   return trimmedData;
 };
 
-const brDESTROYER = (data: string) => {
-  return data ? data.replace(/<br>|<b>|<\/b>/gi, '') : data;
-};
+const brDESTROYER = (data: string) => (data ? data.replace(/<br>|<b>|<\/b>/gi, '') : data);

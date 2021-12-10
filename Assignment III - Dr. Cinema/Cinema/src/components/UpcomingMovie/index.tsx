@@ -1,5 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, Image, Pressable,
 } from 'react-native';

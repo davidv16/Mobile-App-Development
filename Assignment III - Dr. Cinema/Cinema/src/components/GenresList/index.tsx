@@ -2,7 +2,6 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import Genre from '../Genre';
 import IGenre from '../../models/IGenre';
-import MovieDetail from '../../views/MovieDetail';
 
 interface Props {
   genres: IGenre[];
