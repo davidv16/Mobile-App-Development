@@ -24,16 +24,16 @@ const CinemaDetail = ({ route }: any) => {
     setFilteredMovies(filtered);
   };
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={styles.boardTitle}>{cinema.name}</Text>
-      <Text style={styles.boardTitle}>{cinema.completeAddress}</Text>
-      <Text style={styles.boardTitle}>{cinema.phone}</Text>
-      <Text style={styles.boardTitle}>{cinema.website}</Text>
-      <Text style={styles.description}>{cinema.description}</Text>
-      <ScrollView style={{ flex: 1 }}>
-        <MovieList movies={filteredMovies} cinema={selectedCinema} />
-      </ScrollView>
-    </View>
+    <ScrollView>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.boardTitle}>{cinema.name}</Text>
+        <Text style={styles.boardTitle}>{cinema.completeAddress}</Text>
+        <Text style={styles.boardTitle}>{cinema.phone}</Text>
+        <Text style={styles.boardTitle}>{cinema.website}</Text>
+        <Text style={styles.description}>{cinema.description}</Text>
+          <MovieList movies={filteredMovies} cinema={selectedCinema} />
+      </View>
+    </ScrollView>
   );
 };
 
