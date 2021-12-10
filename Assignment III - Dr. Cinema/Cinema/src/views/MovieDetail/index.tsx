@@ -10,7 +10,7 @@ const MovieDetail = ({ route }: any) => {
   const [selectedCinema] = useState<ICinema>(cinema);
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1}}>
+      <ScrollView>
       <Image
         source={{ uri: movie.poster }}
         style={styles.image}
