@@ -1,7 +1,7 @@
 import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
 import {
-  View, Text, Image, Pressable,
+  View, Text, Image, Pressable, 
 } from 'react-native';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import styles from './styles';
@@ -26,18 +26,20 @@ const UpcomingMovie = ({ movie, setCurrentYouTube, setModal }: Props) => {
     setYoutubeTrailerId();
   };
   return (
-    <Pressable onPress={() => handlePress()}>
-      <View style={styles.listItem}>
+    <View style={styles.listItem}>
         <Image
           source={{ uri: movie.poster }}
           style={styles.image}
         />
         <Text style={styles.text}>{movie.title}</Text>
         <Text style={styles.text}>{movie.releaseDate}</Text>
-        <AntDesign name="rightcircle" size={24} color="black" />
+  
+        <Pressable onPress={() => handlePress()}
+        style={styles.button}>
+          <Text style={styles.buttonText}>Trailer</Text>
+        </Pressable>
       </View>
 
-    </Pressable>
   );
 };
 

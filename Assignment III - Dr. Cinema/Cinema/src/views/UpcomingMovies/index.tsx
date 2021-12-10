@@ -4,6 +4,7 @@ import { getUpcomingMovies } from '../../services';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpcomingMovieList from '../../components/UpcomingMovieList';
 import YouTube from '../../components/Youtube';
+import styles from './styles';
 
 const UpcomingMovies = () => {
   const [upcomingMovies, setUpcomingMovies] = useState<IUpcomingMovie[]>();
@@ -31,7 +32,7 @@ const UpcomingMovies = () => {
     setCurrentYouTubeId('');
   };
   return (
-    <View>
+    <View style={styles.container}>
       <UpcomingMovieList
         movies={upcomingMovies as IUpcomingMovie[]}
         setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)}

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpComingMovie from '../UpcomingMovie';
-
+import styles from './styles';
 interface Props {
   movies: IUpcomingMovie[];
   setCurrentYouTube: () => void;
@@ -10,8 +10,9 @@ interface Props {
 }
 
 const UpcomingMovieList = ({ movies, setCurrentYouTube, setModal }: Props) => (
-  <View>
+  <View style={styles.container}>
     <FlatList
+      horizontal
       numColumns={1}
       data={movies}
       renderItem={({ item }) => (
@@ -22,6 +23,8 @@ const UpcomingMovieList = ({ movies, setCurrentYouTube, setModal }: Props) => (
         />
       )}
       keyExtractor={(item) => item.title}
+      ItemSeparatorComponent={() => <View style={{backgroundColor:'black', height:20}}>
+        </View>}
     />
   </View>
 );

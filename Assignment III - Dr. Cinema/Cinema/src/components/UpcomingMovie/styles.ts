@@ -2,17 +2,23 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 30,
-    borderWidth: 0.2,
-    borderColor: 'black',
+    width: '90%',
+    height: 300,
   },
   button: {
-    height: 50,
-    width: 35,
+    height: 30,
+    width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'black',
+    borderWidth: 2,
+    backgroundColor: 'black'
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: 'white'
+
   },
   icon: {
     fontSize: 25,
@@ -22,16 +28,19 @@ export default StyleSheet.create({
   text: {
     paddingLeft: 10,
     justifyContent: 'center',
-    flex: 1,
+    fontWeight: 'bold',
+    fontSize: 20,
+    flexWrap : 'wrap',
   },
   listItem: {
+    height: '90%',
     margin: 10,
     padding: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.08)',
-    width: '90%',
-    flex: 1,
-    alignSelf: 'center',
-    flexDirection: 'row',
+    width: 300,
+    // flex: 1,
+    // flexGrow: 1,
+    // // flexDirection: 'row',
     borderRadius: 5,
     borderColor: 'black',
     borderWidth: 2,
