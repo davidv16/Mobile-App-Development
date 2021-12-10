@@ -1,0 +1,16 @@
+{/*<FlatList*/ }
+      //  ListHeaderComponent={
+      //    <MovieDetailHeader movie={movie} />
+      //  }
+      //  numColumns={1}
+      //  data={movie}
+      //  renderItem={({ item }) =>
+      //    <View>
+      //      <GenresList genres={item.genres} />
+//
+      //      <ShowTimesList showTimes={item.showTimes} cinema={selectedCinema} />
+      //    </View>
+//
+      //  }
+      //  keyExtractor={(item) => item.title}
+      ///>

@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView, FlatList } from 'react-native';
-import styles from './styles';
+import { View } from 'react-native';
 import GenresList from '../../components/GenresList';
 import ShowTimesList from '../../components/ShowTimesList';
 import ICinema from '../../models/ICinema';
-import Movie from '../../components/Movie';
-import MovieList from '../../components/MovieList';
 import MovieDetailHeader from '../../components/MovieDetailHeader';
 
 
@@ -24,20 +21,3 @@ const MovieDetail = ({ route }: any) => {
 };
 
 export default MovieDetail;
-
- {/*<FlatList*/}
-      //  ListHeaderComponent={
-      //    <MovieDetailHeader movie={movie} />
-      //  }
-      //  numColumns={1}
-      //  data={movie}
-      //  renderItem={({ item }) =>
-      //    <View>
-      //      <GenresList genres={item.genres} />
-//
-      //      <ShowTimesList showTimes={item.showTimes} cinema={selectedCinema} />
-      //    </View>
-//
-      //  }
-      //  keyExtractor={(item) => item.title}
-      ///>
