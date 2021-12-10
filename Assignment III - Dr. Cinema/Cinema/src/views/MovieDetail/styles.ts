@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   image: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 130,
+    height: 200,
+    // borderRadius: ,
     borderWidth: 0.2,
     borderColor: 'black',
     alignSelf: 'center',
@@ -12,26 +12,12 @@ export default StyleSheet.create({
   boardTitle: {
     width: '100%',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 15,
   },
-  button: {
-    marginTop: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  buttonText: {
-    color: 'white',
+  movieTitle: {
+    fontWeight: 'bold',
     textAlign: 'center',
-  },
-  icon: {
-    fontSize: 25,
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  editDeleteContacts: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    fontSize: 30,
+  
   },
 });

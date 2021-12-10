@@ -5,7 +5,6 @@ export default StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    borderWidth: 0.2,
     borderColor: 'black',
     alignSelf: 'center',
   },
@@ -13,6 +12,11 @@ export default StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     fontSize: 20,
+  },
+  description: {
+    // width: '90%',
+    padding: 15,
+    textAlign: 'center',
   },
   button: {
     marginTop: 10,

@@ -20,7 +20,6 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   text: {
-    height: '50%',
     paddingLeft: 10,
     justifyContent: 'center',
     flex: 1,

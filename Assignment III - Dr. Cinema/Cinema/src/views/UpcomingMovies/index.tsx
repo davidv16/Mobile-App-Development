@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import UpcomingMovieList from '../../components/UpcomingMovieList';
 import YouTube from '../../components/Youtube';
 import { getUpcomingDispatch } from '../../store/actions/upcomingAction';
+import styles from './styles';
 
 const UpcomingMovies = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -19,7 +20,7 @@ const UpcomingMovies = () => {
     setCurrentYouTubeId('');
   };
   return (
-    <View>
+    <View style={styles.container}>
       <UpcomingMovieList
         setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)}
         setModal={() => setIsAddModalOpen(true)}

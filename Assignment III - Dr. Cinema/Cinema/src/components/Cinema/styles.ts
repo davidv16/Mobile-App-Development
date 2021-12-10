@@ -20,7 +20,6 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   text: {
-    height: '50%',
     paddingLeft: 10,
     justifyContent: 'center',
     flex: 1,
@@ -28,7 +27,7 @@ export default StyleSheet.create({
   listItem: {
     margin: 10,
     padding: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.08)',
+    backgroundColor: '#C54249',
     width: '90%',
     flex: 1,
     alignSelf: 'center',

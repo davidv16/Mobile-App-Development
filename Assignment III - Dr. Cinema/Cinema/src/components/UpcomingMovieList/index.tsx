@@ -1,20 +1,22 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
+import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpComingMovie from '../UpcomingMovie';
-
+import styles from './styles';
 interface Props {
   setCurrentYouTube: (id: string) => void;
   setModal: (x: boolean) => void;
 }
 
 const UpcomingMovieList = ({ setCurrentYouTube, setModal }: Props) => {
-  const movies = useSelector((state:any) => state.upcoming)
+  const upcoming: IUpcomingMovie[] = useSelector((state: any) => state.upcoming)
   return (
-    <View>
+    <View style={styles.container} >
       <FlatList
+        horizontal
         numColumns={1}
-        data={movies}
+        data={upcoming}
         renderItem={({ item }) => (
           <UpComingMovie
             setCurrentYouTube={setCurrentYouTube}
@@ -23,9 +25,9 @@ const UpcomingMovieList = ({ setCurrentYouTube, setModal }: Props) => {
           />
         )}
         keyExtractor={(item) => item.title}
+        ItemSeparatorComponent={() => <View style={{ backgroundColor: 'black', height: 20 }}></View>}
       />
     </View>
-
   );
-}
+};
 export default UpcomingMovieList;
