@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView, FlatList } from 'react-native';
 import styles from './styles';
 import GenresList from '../../components/GenresList';
 import ShowTimesList from '../../components/ShowTimesList';
 import ICinema from '../../models/ICinema';
+import Movie from '../../components/Movie';
+import MovieList from '../../components/MovieList';
+import MovieDetailHeader from '../../components/MovieDetailHeader';
+
 
 const MovieDetail = ({ route }: any) => {
   const { movie, cinema } = route.params;
   const [selectedCinema] = useState<ICinema>(cinema);
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView>
-      <Image
-        source={{ uri: movie.poster }}
-        style={styles.image}
-      />
-      <Text style={styles.movieTitle}>{movie.title}</Text>
-      <Text style={styles.boardTitle}>{`Lengd: ${movie.durationMinutes} mínutur`}</Text>
-      <Text style={styles.boardTitle}>{`Útgáfu ár: ${movie.year}`}</Text>
-      <Text style={styles.boardTitle}>{movie.plot}</Text>
+    <View>
+      <MovieDetailHeader movie={movie} />
       <GenresList genres={movie.genres} />
-      <Text style={styles.boardTitle}>ShowTimes</Text>
       <ShowTimesList showTimes={movie.showTimes} cinema={selectedCinema} />
-      </ScrollView>
+
+
     </View>
   );
 };
 
 export default MovieDetail;
+
+ {/*<FlatList*/}
+      //  ListHeaderComponent={
+      //    <MovieDetailHeader movie={movie} />
+      //  }
+      //  numColumns={1}
+      //  data={movie}
+      //  renderItem={({ item }) =>
+      //    <View>
+      //      <GenresList genres={item.genres} />
+//
+      //      <ShowTimesList showTimes={item.showTimes} cinema={selectedCinema} />
+      //    </View>
+//
+      //  }
+      //  keyExtractor={(item) => item.title}
+      ///>

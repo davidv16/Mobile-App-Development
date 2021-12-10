@@ -17,6 +17,7 @@ const ShowTimesList = ({ showTimes, cinema }: Props) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.boardTitle}>ShowTimes</Text>
       <Text>{selectedCinema[0].cinema.name}</Text>
       <SchedulesList schedules={selectedCinema[0].schedule} />
     </View>
