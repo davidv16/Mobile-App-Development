@@ -45,11 +45,12 @@ export const getCinemas = async () => {
       },
     });
     const cinemasTrimmed: any = whiteSpaceAndHyphenDESTROYER(response.data);
+    
     for (const i of cinemasTrimmed) {
       const cinema: ICinema = {
         id: i.id,
         name: i.name,
-        description: i.description,
+        description: brDESTROYER(i.description),
         completeAddress: `${i.address}, ${i.city}`,
         phone: i.phone,
         website: i.website,
@@ -176,6 +177,10 @@ const whiteSpaceAndHyphenDESTROYER = <T>(data: T[]) => {
     Object.keys(l).forEach((key) => parsed[key.replace(/-/g, '')] = l[key]);
     return parsed;
   });
-
+  
   return trimmedData;
+};
+
+const brDESTROYER = (data: string) => {
+  return data ? data.replace(/<br>|<b>|<\/b>/gi, '') : data;
 };
