@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   image: {
     width: '90%',
-    height: 300,
+    height: 350,
   },
   button: {
     height: 30,
