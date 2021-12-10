@@ -1,7 +1,8 @@
 import React from 'react';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import { Dimensions } from 'react-native'
 import Modal from '../Modal';
-import {Dimensions} from 'react-native'
+
 const win = Dimensions.get('window');
 interface Props {
   youTubeId: string;
@@ -9,7 +10,7 @@ interface Props {
   closeModal: () => void;
 }
 const Youtube = ({ youTubeId, isOpen, closeModal }: Props) => (
-  
+
   <Modal
     title="Trailer"
     isOpen={isOpen}
@@ -17,7 +18,7 @@ const Youtube = ({ youTubeId, isOpen, closeModal }: Props) => (
   >
     <YoutubePlayer
       height={200}
-      width={win.width-10}
+      width={win.width - 10}
       play
       videoId={youTubeId}
     />

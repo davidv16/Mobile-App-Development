@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
-import { ScrollView } from 'react-native-gesture-handler';
 import styles from './styles';
 import IMovie from '../../models/IMovie';
 import MovieList from '../../components/MovieList';
 import ICinema from '../../models/ICinema';
 
 const CinemaDetail = ({ route }: any) => {
-  const movies = useSelector((state:any) => state.movies);
+  const movies = useSelector((state: any) => state.movies);
   const { cinema } = route.params;
   const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
   const [selectedCinema] = useState<ICinema>(cinema);
@@ -24,16 +23,23 @@ const CinemaDetail = ({ route }: any) => {
     setFilteredMovies(filtered);
   };
   return (
-    <ScrollView>
-      <View style={{ flex: 1 }}>
-        <Text style={styles.boardTitle}>{cinema.name}</Text>
-        <Text style={styles.boardTitle}>{cinema.completeAddress}</Text>
-        <Text style={styles.boardTitle}>{cinema.phone}</Text>
-        <Text style={styles.boardTitle}>{cinema.website}</Text>
-        <Text style={styles.description}>{cinema.description}</Text>
-          <MovieList movies={filteredMovies} cinema={selectedCinema} />
-      </View>
-    </ScrollView>
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={[]}
+        renderItem={null}
+        ListHeaderComponent={() => (
+          <>
+            <Text style={styles.boardTitle}>{cinema.name}</Text>
+            <Text style={styles.boardTitle}>{cinema.completeAddress}</Text>
+            <Text style={styles.boardTitle}>{cinema.phone}</Text>
+            <Text style={styles.boardTitle}>{cinema.website}</Text>
+            <Text style={styles.description}>{cinema.description}</Text>
+            <MovieList movies={filteredMovies} cinema={selectedCinema} />
+          </>
+        )}
+      />
+    </View>
+
   );
 };
 

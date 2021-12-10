@@ -13,7 +13,7 @@ interface Props {
 }
 const UpcomingMovie = ({ movie, setCurrentYouTube, setModal }: Props) => {
   const [isTrailer, setIsTrailer] = useState(movie.trailers[0]);
-  
+
   const setYoutubeTrailerId = () => {
     for (const t of movie.trailers) {
       if (!(t === undefined)) {
@@ -28,7 +28,7 @@ const UpcomingMovie = ({ movie, setCurrentYouTube, setModal }: Props) => {
     setModal(true);
     setYoutubeTrailerId();
   };
-  
+
   return (
     <View style={styles.listItem}>
       <Image
@@ -38,11 +38,15 @@ const UpcomingMovie = ({ movie, setCurrentYouTube, setModal }: Props) => {
       <Text style={styles.text}>{movie.title}</Text>
       <Text style={styles.text}>{movie.releaseDate}</Text>
 
-      {isTrailer ?
-        <Pressable onPress={() => handlePress()}
-          style={styles.button}>
-          <Text style={styles.buttonText}>Trailer</Text>
-        </Pressable>
+      {isTrailer
+        ? (
+          <Pressable
+            onPress={() => handlePress()}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Trailer</Text>
+          </Pressable>
+        )
         : null}
     </View>
 

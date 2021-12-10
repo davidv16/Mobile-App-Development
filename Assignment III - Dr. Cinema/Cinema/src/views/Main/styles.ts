@@ -14,7 +14,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 40
+    fontSize: 40,
   },
   button: {
     margin: 10,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 20,
 
   },
   logo: {

@@ -18,6 +18,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 30,
-  
+
   },
 });

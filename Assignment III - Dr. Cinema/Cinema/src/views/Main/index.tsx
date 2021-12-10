@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 import * as services from '../../services';
-import { AntDesign } from '@expo/vector-icons';
 
 const Main = () => {
   const { navigate } = useNavigation();
@@ -15,7 +15,7 @@ const Main = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>Dr. Cinema</Text>
-      <AntDesign name="videocamera" size={200} color="lightgray" style={styles.logo}/>
+      <AntDesign name="videocamera" size={200} color="lightgray" style={styles.logo} />
       <TouchableHighlight
         style={styles.button}
         onPress={() => navigate('Cinemas' as never)}

@@ -12,12 +12,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderColor: 'black',
     borderWidth: 2,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   buttonText: {
     fontWeight: 'bold',
     fontSize: 15,
-    color: 'white'
+    color: 'white',
 
   },
   icon: {
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     fontWeight: 'bold',
     fontSize: 20,
-    flexWrap : 'wrap',
+    flexWrap: 'wrap',
   },
   listItem: {
     height: '90%',

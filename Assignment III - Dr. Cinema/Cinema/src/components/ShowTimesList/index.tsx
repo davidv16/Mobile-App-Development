@@ -4,6 +4,7 @@ import ICinema from '../../models/ICinema';
 import IShowTime from '../../models/IShowTime';
 import SchedulesList from '../SchedulesList';
 import styles from './styles'
+
 interface Props {
   showTimes: IShowTime[];
   cinema: ICinema
@@ -17,7 +18,7 @@ const ShowTimesList = ({ showTimes, cinema }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.boardTitle}>ShowTimes</Text>
+      <Text style={styles.boardTitle}>Sýningartímar</Text>
       <Text>{selectedCinema[0].cinema.name}</Text>
       <SchedulesList schedules={selectedCinema[0].schedule} />
     </View>

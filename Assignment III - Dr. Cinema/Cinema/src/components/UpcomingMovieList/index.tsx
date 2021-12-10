@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import IUpcomingMovie from '../../models/IUpcomingMovie';
 import UpComingMovie from '../UpcomingMovie';
 import styles from './styles';
+
 interface Props {
   setCurrentYouTube: (id: string) => void;
   setModal: (x: boolean) => void;
@@ -12,7 +13,7 @@ interface Props {
 const UpcomingMovieList = ({ setCurrentYouTube, setModal }: Props) => {
   const upcoming: IUpcomingMovie[] = useSelector((state: any) => state.upcoming)
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <FlatList
         horizontal
         numColumns={1}
@@ -25,7 +26,7 @@ const UpcomingMovieList = ({ setCurrentYouTube, setModal }: Props) => {
           />
         )}
         keyExtractor={(item) => item.title}
-        ItemSeparatorComponent={() => <View style={{ backgroundColor: 'black', height: 20 }}></View>}
+        ItemSeparatorComponent={() => <View style={{ backgroundColor: 'black', height: 20 }} />}
       />
     </View>
   );
