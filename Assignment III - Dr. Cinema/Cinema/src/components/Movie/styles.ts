@@ -21,18 +21,13 @@ export default StyleSheet.create({
   },
   year: {
     // paddingLeft: 10,
-    // flex: 1,
     fontWeight: 'bold',
   },
   text: {
     paddingLeft: 10,
-    // flex: 1,
   },
   titleSection: {
-    // alignSelf: 'flex-start',
     flex: 1,
-    borderColor: 'orange',
-    borderWidth: 1,
     alignSelf: 'flex-start',
   },
   imageBox: {
@@ -41,16 +36,12 @@ export default StyleSheet.create({
   },
   mainSection: {
     flex: 2,
-    borderColor: 'pink',
     borderWidth: 1,
     flexDirection: 'row',
   },
   bottomSection: {
     flex: 1,
-    // alignContent: 'flex-end',
-    borderColor: 'yellow',
-    borderWidth: 1,
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-end',
   },
   title: {
     fontWeight: 'bold',
@@ -64,9 +55,6 @@ export default StyleSheet.create({
     flex: 1,
     alignSelf: 'center',
     flexDirection: 'column',
-    borderRadius: 5,
-    borderColor: 'black',
-    borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -28,7 +28,7 @@ export default StyleSheet.create({
     margin: 5,
     padding: 5,
     // Gamlar stillingar
-    backgroundColor: '#BEC2D4',
+    // backgroundColor: 'rgba(0, 0, 0, 0.08)',
     borderRadius: 5,
     borderColor: 'black',
     borderWidth: 2,
