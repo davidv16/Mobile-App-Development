@@ -38,5 +38,8 @@ module.exports = {
     semi: 'off',
     'no-unused-vars': 'off',
     'import/no-unresolved': 'off',
+    'default-param-last': 'off',
+    'max-len': 'off',
+    'no-return-assign': 'off',
   },
 };

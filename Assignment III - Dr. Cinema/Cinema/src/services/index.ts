@@ -44,7 +44,7 @@ export const getCinemas = async () => {
         'x-access-token': apiResponse.token,
       },
     });
-    const cinemasTrimmed: any = whiteSpaceDESTROYER(response.data);
+    const cinemasTrimmed: any = whiteSpaceAndHyphenDESTROYER(response.data);
     for (const i of cinemasTrimmed) {
       const cinema: ICinema = {
         id: i.id,
@@ -71,8 +71,7 @@ export const getUpcomingMovies = async () => {
         'x-access-token': apiResponse.token,
       },
     });
-    const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
-
+    const moviesTrimmed: any = whiteSpaceAndHyphenDESTROYER(response.data);
     // populate the return value
     for (const i of moviesTrimmed) {
       const trailers: string[] = [];
@@ -85,7 +84,7 @@ export const getUpcomingMovies = async () => {
       const upComingMovie: IUpcomingMovie = {
         title: i.title,
         poster: i.poster,
-        releaseDate: i.releaseDate,
+        releaseDate: i.releasedateIS,
         // @ts-ignore
         trailers,
       };
@@ -106,12 +105,12 @@ export const getMovies = async () => {
         'x-access-token': apiResponse.token,
       },
     });
-    const moviesTrimmed: any = whiteSpaceDESTROYER(response.data);
+    const moviesTrimmed: any = whiteSpaceAndHyphenDESTROYER(response.data);
     // populate the return value
     for (const i of moviesTrimmed) {
       // populate genres
       const genres: IGenre[] = [];
-      const genresTrimmed: any = whiteSpaceDESTROYER(i.genres);
+      const genresTrimmed: any = whiteSpaceAndHyphenDESTROYER(i.genres);
       for (const g of genresTrimmed) {
         const genre: IGenre = {
           id: g.ID,
@@ -168,11 +167,13 @@ export const getMovies = async () => {
   return movies as IMovie[];
 };
 
-const whiteSpaceDESTROYER = <T>(data: T[]) => {
+const whiteSpaceAndHyphenDESTROYER = <T>(data: T[]) => {
   const trimmedData = data.map((l) => {
     const parsed: T[] = [];
     // @ts-ignore
     Object.keys(l).forEach((key) => parsed[key.trim()] = l[key]);
+    // @ts-ignore
+    Object.keys(l).forEach((key) => parsed[key.replace(/-/g, '')] = l[key]);
     return parsed;
   });
 

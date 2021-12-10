@@ -23,6 +23,4 @@ const getCinemaError = (err: any) => ({
   payload: `GET in /cinemas: ${err.message}`,
 })
 
-const sortCinemas = (data: ICinema[]) => {
-  return data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))); 
-}
+const sortCinemas = (data: ICinema[]) => data.sort((a, b) => ((a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)));

@@ -25,6 +25,7 @@ const UpcomingMovie = ({ movie, setCurrentYouTube, setModal }: Props) => {
     setModal(true);
     setYoutubeTrailerId();
   };
+  
   return (
     <Pressable onPress={() => handlePress()}>
       <View style={styles.listItem}>

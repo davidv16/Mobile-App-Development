@@ -23,6 +23,4 @@ const getMoviesError = (err: any) => ({
   payload: `GET in /upcoming: ${err.message}`,
 })
 
-const sortUpcomingMovies = (data: IUpcomingMovie[]) => {
-  return data.sort((a, b) => ((a.releaseDate > b.releaseDate) ? 1 : ((b.releaseDate > a.releaseDate) ? -1 : 0)));
-}
+const sortUpcomingMovies = (data: IUpcomingMovie[]) => data.sort((a, b) => ((a.releaseDate > b.releaseDate) ? 1 : ((b.releaseDate > a.releaseDate) ? -1 : 0)));
