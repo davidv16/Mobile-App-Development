@@ -5,12 +5,12 @@ import UpComingMovie from '../UpcomingMovie';
 import { useSelector } from 'react-redux';
 
 interface Props {
-  movies: IUpcomingMovie[];
-//   setCurrentYouTube: () => void;
-//   setModal: (x: boolean) => void;
+  //movies: IUpcomingMovie[];
+  setCurrentYouTube: (id: string) => void;
+  setModal: (x: boolean) => void;
 }
 
-const UpcomingMovieList = () => {
+const UpcomingMovieList = ({setCurrentYouTube, setModal}: Props) => {
   const movies = useSelector((state:any) => state.upcoming)
   return (
   <View>
@@ -19,9 +19,9 @@ const UpcomingMovieList = () => {
       data={movies}
       renderItem={({ item }) => (
         <UpComingMovie
-          // setCurrentYouTube={setCurrentYouTube}
+          setCurrentYouTube={setCurrentYouTube}
           movie={item}
-          // setModal={setModal}
+          setModal={setModal}
         />
       )}
       keyExtractor={(item) => item.title}

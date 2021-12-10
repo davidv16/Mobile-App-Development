@@ -24,14 +24,14 @@ const UpcomingMovies = () => {
   return (
     <View>
       <UpcomingMovieList
-        // setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)}
-        // setModal={() => setIsAddModalOpen(true)}
+        setCurrentYouTube={(id: string) => setCurrentYouTubeId(id)}
+        setModal={() => setIsAddModalOpen(true)}
       />
-      {/* <YouTube
+      <YouTube
         youTubeId={currentYouTubeId}
         isOpen={isAddModalOpen}
         closeModal={() => handleCloseModal()}
-      /> */}
+      />
     </View>
   );
 };
