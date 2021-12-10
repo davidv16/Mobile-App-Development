@@ -47,6 +47,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
   },
+  genresSection: {
+    flex: 4,
+  },
   listItem: {
     margin: 10,
     padding: 10,

@@ -32,7 +32,7 @@ const Movie = ({ movie, cinema }: Props) => {
               style={styles.image}
             />
           </View>
-          <View>
+          <View style={styles.genresSection}>
             <GenresList genres={movie.genres} />
             {/* <AntDesign name="rightcircle" size={24} color="black" /> */}
           </View>
